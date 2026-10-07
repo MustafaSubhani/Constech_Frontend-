@@ -109,10 +109,45 @@ def _consider_note_dumps(project, rules):
         _consider(" ".join(parts), path.stem, rules)
 
 
-def find_rules(project, search_parent_zip=True):
-    """Search drawing PDFs under the project folder (and optional zip beside it)."""
-    project = Path(project) if project else None
+MANUAL_RULE_KEYS = {"blinding_mm": int, "footing_cover_mm": int}
+MANUAL_SOURCE = "Set manually in Constech"
+
+
+def load_manual_rules(project):
+    """Values the QS typed in because the notes sheet was missing or unreadable."""
+    path = Path(project) / "out" / "project-inputs.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+    values = data.get("values") or {}
     rules = {}
+    for key, cast in MANUAL_RULE_KEYS.items():
+        if values.get(key) in (None, ""):
+            continue
+        try:
+            rules[key] = cast(values[key])
+        except (TypeError, ValueError):
+            continue
+    if "blinding_mm" in rules:
+        rules["blinding_source"] = MANUAL_SOURCE
+        rules["blinding_applies_to"] = values.get("blinding_applies_to") or ["foundations", "beams", "slabs"]
+        rules["blinding_subjects"] = rules["blinding_applies_to"]
+        rules["blinding_grade"] = values.get("blinding_grade") or ""
+    if "footing_cover_mm" in rules:
+        rules["cover_source"] = MANUAL_SOURCE
+    return rules
+
+
+def find_rules(project, search_parent_zip=True):
+    """Search drawing PDFs under the project folder (and optional zip beside it).
+
+    Values set manually in project-inputs.json win over values read from the notes.
+    """
+    project = Path(project) if project else None
+    rules = load_manual_rules(project) if project else {}
     files = []
     seen = set()
 

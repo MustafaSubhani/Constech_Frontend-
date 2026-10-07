@@ -20,8 +20,6 @@ from .foundations import (
     _measure_sheet,
     _polylines,
     _texts,
-    ensure_dump,
-    ensure_geometry_dump,
     point_in_poly,
 )
 from .geometry import bbox, centroid, perimeter
@@ -32,6 +30,7 @@ from .measurements import (
     structure_slab_review,
 )
 from .rebar import LAP_SOURCE, STOCK_SOURCE, extra_marked_kg, mat_steel
+from .sheets import SheetIndex
 from .walls import pit_and_tank_walls, plan_walls_by_floor
 
 MARK = re.compile(r"^(C\d+\*{0,2}|W\d+)$")
@@ -43,20 +42,6 @@ MESH = re.compile(r"T\s*(\d+)\s*@\s*(\d+)", re.I)
 OPENING_WORDS = re.compile(r"\bOPENING\b|\bVOID\b|\bSHAFT\b|\bDUCT\b", re.I)
 FRAMED = ("FB", "RB", "URB", "SB")
 
-FLOOR_ORDER = ("ground", "first", "roof", "upper")
-
-
-def _floor_of(name):
-    upper = name.upper()
-    if "UPPER" in upper:
-        return "upper"
-    if "ROOF" in upper and "UPPER" not in upper:
-        return "roof"
-    if "FIRST" in upper or re.search(r"\b1ST\b", upper):
-        return "first"
-    if "GROUND" in upper or re.search(r"S-101-A", upper):
-        return "ground"
-    return ""
 
 
 def _plan_shows_columns(dump):
@@ -1438,40 +1423,12 @@ def _upstands(dump):
     return {"concrete_m3": volume, "formwork_m2": form, "count": count}
 
 
-def _load_plans(project, out_dir):
-    plans = []
-    skip = {"out", "node_modules", ".git"}
-    for dwg in sorted(project.rglob("*.dwg")):
-        if set(dwg.parts) & skip:
-            continue
-        floor = _floor_of(dwg.name)
-        if not floor or "REINF" in dwg.name.upper():
-            continue
-        upper = dwg.name.upper()
-        if any(word in upper for word in ("LOADING", "SCHEDULE", "SECTION", "TYPICAL", "STAIR")):
-            continue
-        if "FRAMING" not in upper and "FLOOR PLAN" not in upper:
-            continue
-        dump = ensure_dump(dwg, out_dir / f"{dwg.stem}.json")
-        plans.append({"floor": floor, "name": dwg.stem, "dump": dump})
-    plans.sort(key=lambda item: FLOOR_ORDER.index(item["floor"]))
-    return plans
-
-
-def _load_named(project, out_dir, token):
-    skip = {"out", "node_modules", ".git"}
-    token = token.upper()
-    for dwg in sorted(project.rglob("*.dwg")):
-        if set(dwg.parts) & skip:
-            continue
-        if token in dwg.name.upper():
-            return ensure_dump(dwg, out_dir / f"{dwg.stem}.json")
-    for pdf in sorted(project.rglob("*.pdf")):
-        if set(pdf.parts) & skip:
-            continue
-        if token in pdf.name.upper():
-            return ensure_geometry_dump(pdf, out_dir / f"{pdf.stem}.json")
-    return None
+def _load_plans(index):
+    """Storey plans found by role and floor (see sheets.SheetIndex), lowest storey first."""
+    return [
+        {"floor": sheet["floor"], "name": sheet["stem"], "dump": index.load(sheet)}
+        for sheet in index.plans()
+    ]
 
 
 def _steel_note(counter):
@@ -1494,11 +1451,16 @@ def run_structure(project):
     project = Path(project)
     out_dir = project / "out"
     out_dir.mkdir(parents=True, exist_ok=True)
-    plans = _load_plans(project, out_dir)
+    sheet_index = SheetIndex(project)
+    plans = _load_plans(sheet_index)
     if len(plans) < 2:
-        raise SystemExit("Need the ground floor plan and the floors above it")
+        raise SystemExit("Need at least two storey plans (for example the ground floor and the floor above) to measure storey heights")
 
     by_floor = {item["floor"]: item for item in plans}
+    storeys = [item["floor"] for item in plans]
+    # "ground" is the lowest storey plan present: grade beams and slab on grade are read from it.
+    ground_floor = storeys[0]
+    above_ground = storeys[1] if len(storeys) > 1 else None
     levels = {item["floor"]: _modal_ssl(item["dump"]) for item in plans}
     depths = {item["floor"]: _beam_depth(item["dump"]) for item in plans}
     areas = {item["floor"]: _member_areas(item["dump"]) for item in plans}
@@ -1516,10 +1478,7 @@ def run_structure(project):
     storey_heights_form = {}
     legend_text = ""
     assumed_side = False
-    for index, floor in enumerate(FLOOR_ORDER[:-1]):
-        above = FLOOR_ORDER[index + 1]
-        if floor not in levels or above not in levels:
-            continue
+    for floor, above in zip(storeys, storeys[1:]):
         lower, upper = levels[floor], levels[above]
         if lower is None or upper is None:
             continue
@@ -1573,20 +1532,18 @@ def run_structure(project):
                 confidence="medium",
             ))
 
-    foundations = _load_named(project, out_dir, "FOUNDATION")
+    foundation_entry = sheet_index.foundation()
+    foundations = sheet_index.load(foundation_entry)
+    foundation_name = foundation_entry["stem"] if foundation_entry else "foundation plan"
     raft_area = unary_union([])
     if foundations:
         from .foundations import _rafts
         raft_area = unary_union([
             _plan_polygon(raft["vertices"]) for raft in _rafts(foundations) if raft.get("vertices")
         ])
-    reinf = {
-        "ground": _load_named(project, out_dir, "101-B"),
-        "first": _load_named(project, out_dir, "102-B"),
-        "roof": _load_named(project, out_dir, "103-B"),
-        "upper": _load_named(project, out_dir, "104-B"),
-    }
-    ground = by_floor.get("ground")
+    reinf_entries = {floor: sheet_index.reinforcement(floor) for floor in storeys}
+    reinf = {floor: sheet_index.load(entry) for floor, entry in reinf_entries.items()}
+    ground = by_floor.get(ground_floor)
     beams = _grade_beams(ground["dump"]) if ground else {
         "concrete_m3": 0, "formwork_m2": 0, "count": 0, "segments": [],
     }
@@ -1634,7 +1591,7 @@ def run_structure(project):
         regions = _slab_regions(item["dump"])
         suspended = [region for region in regions if not region["on_grade"]]
         framed = None
-        if item["floor"] != "ground":
+        if item["floor"] != ground_floor:
             framed = _grade_beams(item["dump"], prefixes=FRAMED, slabs=suspended)
             gross_beam_m3 = framed["concrete_m3"] + framed["shared_m3"]
             frame_m3 += gross_beam_m3
@@ -1710,7 +1667,7 @@ def run_structure(project):
                     laps, hooks = unpriced_sus[mesh[0]] or (0, 0)
                     unpriced_sus[mesh[0]] = (laps + steel["unpriced_laps"], hooks + steel["unpriced_hooks"])
         opening_m2 += sum(hole.area for hole in seen_openings) / 1e6
-        if sheet and item["floor"] != "ground":
+        if sheet and item["floor"] != ground_floor:
             kg, counted, found = extra_marked_kg(sheet)
             sus_kg += kg
             extra_kg += kg
@@ -1720,13 +1677,13 @@ def run_structure(project):
             sus_m2 += sum(region["area_m2"] for region in suspended)
             sus_m2 += _free_edges_m2(suspended)
 
-    schedule = _load_named(project, out_dir, "S-201")
+    schedule = sheet_index.load(sheet_index.column_schedule())
     necks = _column_necks(
         ground["dump"] if ground else None,
         foundations,
         schedule,
     )
-    wall_schedule = _load_named(project, out_dir, "S-202")
+    wall_schedule = sheet_index.load(sheet_index.wall_schedule())
     wall_split, wall_form, _wall_detail = plan_walls_by_floor(
         plans,
         storey_heights,
@@ -1734,13 +1691,9 @@ def run_structure(project):
         form_heights=storey_heights_form,
     )
     wall_m3 = sum(wall_split.values())
-    section_dumps = []
-    for token in ("S-300", "S-301"):
-        loaded = _load_named(project, out_dir, token)
-        if loaded:
-            section_dumps.append(loaded)
-    pit_height = storey_heights.get("ground", 0.0)
-    tank_height = (levels.get("first") or 0.0) - (levels.get("ground") or 0.0)
+    section_dumps = [dump for dump in (sheet_index.load(s) for s in sheet_index.sections()) if dump]
+    pit_height = storey_heights.get(ground_floor, 0.0)
+    tank_height = (levels.get(above_ground) or 0.0) - (levels.get(ground_floor) or 0.0)
     if tank_height < 0:
         tank_height = pit_height
     pit_tank = pit_and_tank_walls(foundations, section_dumps, pit_height, tank_height)
@@ -1870,7 +1823,7 @@ def run_structure(project):
         structure_meas.append(rebar_total_record(
             "sog-rebar-total",
             "sog_steel",
-            "101-B",
+            (reinf_entries.get(ground_floor) or {}).get("stem") or "slab on grade",
             sog_kg,
             "estimated",
             flags=sog_flags,
@@ -1893,7 +1846,7 @@ def run_structure(project):
         ))
 
     if necks.get("concrete_m3"):
-        foundation_sheet = foundations.get("name") if foundations else "269-S-100-FOUNDATIONS"
+        foundation_sheet = foundation_name
         structure_meas.append(simple_structure_record(
             "column-necks-total",
             "column_neck",
@@ -1943,7 +1896,7 @@ def run_structure(project):
         ))
 
     if pit_tank.get("tank_m3"):
-        foundation_sheet = foundations.get("name") if foundations else "269-S-100-FOUNDATIONS"
+        foundation_sheet = foundation_name
         structure_meas.append(simple_structure_record(
             "tank-walls-total",
             "tank_wall",
@@ -1958,7 +1911,7 @@ def run_structure(project):
             confidence="medium",
         ))
     if pit_tank.get("lift_pit_m3"):
-        foundation_sheet = foundations.get("name") if foundations else "269-S-100-FOUNDATIONS"
+        foundation_sheet = foundation_name
         structure_meas.append(simple_structure_record(
             "lift-pit-walls-total",
             "lift_pit_wall",

@@ -72,12 +72,26 @@ def _cluster_rows(cells, tolerance):
     return rows
 
 
+_FOOTING_TITLE = re.compile(r"\b(FOOTINGS?|FOUNDATIONS?|PADS?|BASES?|PAD\s+FOOTINGS?)\b")
+_OTHER_SCHEDULE = re.compile(r"\b(BEAMS?|COLUMNS?|WALLS?|SLABS?|LINTELS?|STAIRS?)\b")
+
+
+def _is_footing_title(text):
+    """'FOOTING SCHEDULE', 'SCHEDULE OF FOOTINGS', 'FOUNDATION SCHEDULE', 'PAD BASE SCHEDULE'...
+    but not 'BEAM REINFORCEMENT SCHEDULE FOR FOUNDATION STRAP BEAMS'."""
+    upper = " ".join(text.upper().split())
+    if "SCHEDULE" not in upper:
+        return False
+    if "FOOTING" in upper:
+        return True
+    if len(upper) > 60:
+        return False
+    return bool(_FOOTING_TITLE.search(upper)) and not _OTHER_SCHEDULE.search(upper)
+
+
 def _schedule_titles(dump):
     texts = _texts(dump)
-    direct = [
-        t for t in texts
-        if "FOOTING" in t["text"].upper() and "SCHEDULE" in t["text"].upper()
-    ]
+    direct = [t for t in texts if _is_footing_title(t["text"])]
     if direct:
         return direct
     # Searchable PDFs often emit one word per token; merge each text row into a phrase.
@@ -88,7 +102,9 @@ def _schedule_titles(dump):
     for row in by_row.values():
         phrase = " ".join(t["text"] for t in sorted(row, key=lambda e: e["x"]))
         upper = phrase.upper()
-        if "FOOTING" in upper and "SCHEDULE" in upper:
+        if "SCHEDULE" in upper and (
+            "FOOTING" in upper or (_FOOTING_TITLE.search(upper) and not _OTHER_SCHEDULE.search(upper))
+        ):
             merged.append({
                 "text": phrase,
                 "x": min(t["x"] for t in row),
@@ -382,7 +398,7 @@ def _family_depth(schedule, tag):
     return _median(depths)
 
 
-def _quantities(paired, schedule, dump):
+def _quantities(paired, schedule, dump, cover=COVER_MM):
     rows = []
     for shape, tag in paired:
         if tag is None:
@@ -447,7 +463,7 @@ def _quantities(paired, schedule, dump):
                 # bottom long plus bottom short is one reading, and counting each entry
                 # both ways is the weight the schedule's four columns produce together
                 # when the two bottom spacings match and the two top spacings match.
-                steel += _bar_kg(x_mm, y_mm, diameter, spacing)
+                steel += _bar_kg(x_mm, y_mm, diameter, spacing, cover)
         elif spec and spec.get("refer_to_plan"):
             note = (note + "; bars left out").strip("; ")
         rows.append({
@@ -926,7 +942,7 @@ def _foundation_sources(project):
     return sources
 
 
-def _measure_sheet(dump):
+def _measure_sheet(dump, cover=COVER_MM):
     cells = _schedule_cells(dump)
     schedule = _parse_schedule(cells, _bar_directions(dump, cells))
     if not schedule:
@@ -935,7 +951,7 @@ def _measure_sheet(dump):
     tags = _plan_tags(dump, schedule, table_ids)
     shapes = _shapes_for_schedule(dump, schedule, table_ids)
     paired, unused = _pair(shapes, tags, schedule)
-    rows = _quantities(paired, schedule, dump)
+    rows = _quantities(paired, schedule, dump, cover)
     rows.extend(_missed_outlines(dump, rows))
     rafts = _rafts(dump)
     plan_tag_texts = {t["text"] for t in tags}
@@ -987,12 +1003,14 @@ def run_foundations(project, dwg=None, pdf=None, bill=None, out=None):
     all_unused_tags = []
     schedule_tags_by_sheet = {}
     alignments = []
+    rules_for_steel = find_rules(project, search_parent_zip=False) if project else {}
+    cover_mm = rules_for_steel.get("footing_cover_mm") or COVER_MM
     for geom_path, pdf_path in pairs:
         dump_path = out_dir / f"{geom_path.stem}.json"
         print(f"reading {geom_path.name}", flush=True)
         dump = ensure_geometry_dump(geom_path, dump_path)
         dumps.append(dump)
-        result = _measure_sheet(dump)
+        result = _measure_sheet(dump, cover_mm)
         if result is None:
             from .discovery import _scan_dump
 
@@ -1061,7 +1079,7 @@ def run_foundations(project, dwg=None, pdf=None, bill=None, out=None):
                     "anchor": fit[5],
                 })
                 _overlay(page, result["rows"], result["rafts"], fit)
-                overlay = out_dir / f"{dwg_path.stem}-overlay.pdf"
+                overlay = out_dir / f"{geom_path.stem}-overlay.pdf"
                 doc.save(overlay)
                 doc.close()
                 print(f"  overlay {overlay.name} via {fit[5]!r}, residual {fit[4]:.2f} pt", flush=True)
@@ -1078,7 +1096,6 @@ def run_foundations(project, dwg=None, pdf=None, bill=None, out=None):
         alignments,
         schedule_tags_by_sheet,
     )
-    rules_for_steel = find_rules(project, search_parent_zip=False) if project else {}
     footing_kg_total = _sum(all_rows, "rebar_kg")
     if footing_kg_total:
         cover = rules_for_steel.get("footing_cover_mm")

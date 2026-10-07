@@ -1,38 +1,30 @@
 import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from "react";
 import { ConstechLoader } from "./ConstechLoader";
 
-type LoaderCtx = { show: () => void; hide: () => void };
+type LoaderCtx = { show: (status?: string) => void; hide: () => void };
 
 const Ctx = createContext<LoaderCtx | null>(null);
 
 export function PageLoaderProvider({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(false);
   const [out, setOut] = useState(false);
-  const started = useRef(0);
+  const [status, setStatus] = useState("");
   const timer = useRef(0);
 
-  const show = useCallback(() => {
+  const show = useCallback((text?: string) => {
     window.clearTimeout(timer.current);
+    setStatus(text ?? "");
     setOut(false);
     setVisible(true);
-    started.current = performance.now();
   }, []);
 
   const hide = useCallback(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const min = reduced ? 120 : 550;
-    const wait = Math.max(0, min - (performance.now() - started.current));
     window.clearTimeout(timer.current);
+    setOut(true);
     timer.current = window.setTimeout(() => {
-      setOut(true);
-      window.setTimeout(
-        () => {
-          setVisible(false);
-          setOut(false);
-        },
-        reduced ? 0 : 280,
-      );
-    }, wait);
+      setVisible(false);
+      setOut(false);
+    }, 280);
   }, []);
 
   const value = useMemo(() => ({ show, hide }), [show, hide]);
@@ -40,7 +32,7 @@ export function PageLoaderProvider({ children }: { children: ReactNode }) {
   return (
     <Ctx.Provider value={value}>
       {children}
-      <ConstechLoader active={visible} exiting={out} />
+      <ConstechLoader active={visible} exiting={out} status={status} />
     </Ctx.Provider>
   );
 }

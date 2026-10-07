@@ -99,32 +99,186 @@ def _adjustments_path(project):
     return Path(project) / "out" / "bill-adjustments.json"
 
 
-def load_bill_adjustments(project):
+def _load_adjustment_file(project):
     path = _adjustments_path(project)
     if not path.is_file():
-        return {}
+        return {"lines": {}, "custom": [], "hidden": []}
     data = json.loads(path.read_text(encoding="utf-8"))
-    return data.get("lines") or {}
+    data.setdefault("lines", {})
+    data.setdefault("custom", [])
+    data.setdefault("hidden", [])
+    return data
+
+
+def _save_adjustment_file(project, data):
+    path = _adjustments_path(project)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+def load_bill_adjustments(project):
+    return _load_adjustment_file(project).get("lines") or {}
 
 
 def adjust_bill_line(project, item_key, patch):
-    """Persist QS override to the measured (ours) quantity on a bill line."""
-    project = Path(project)
-    out = project / "out"
-    out.mkdir(parents=True, exist_ok=True)
-    path = _adjustments_path(project)
-    data = {"lines": load_bill_adjustments(project)}
+    """Persist QS override to the measured (ours) quantity on a bill line.
+
+    When an expression is given the server evaluates it; the posted number is ignored.
+    """
+    from .formula import evaluate
+
+    data = _load_adjustment_file(project)
     entry = dict(data["lines"].get(item_key) or {})
     entry["item_key"] = item_key
-    if patch.get("ours") is not None:
+    if patch.get("expression"):
+        variables = patch.get("variables") or {}
+        entry["ours"] = round(evaluate(patch["expression"], variables), 4)
+        entry["expression"] = patch["expression"]
+        entry["variables"] = variables
+    elif patch.get("ours") is not None:
         entry["ours"] = float(patch["ours"])
+        entry.pop("expression", None)
+        entry.pop("variables", None)
     for key in ("formula", "note", "adjustment_reason"):
         if key in patch and patch[key] is not None:
             entry[key] = patch[key]
     entry["status"] = "adjusted"
     data["lines"][item_key] = entry
-    path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    _save_adjustment_file(project, data)
     return entry
+
+
+def reset_bill_line(project, item_key):
+    data = _load_adjustment_file(project)
+    removed = data["lines"].pop(item_key, None) is not None
+    if item_key in data["hidden"]:
+        data["hidden"].remove(item_key)
+        removed = True
+    _save_adjustment_file(project, data)
+    return removed
+
+
+def set_line_hidden(project, item_key, hidden):
+    data = _load_adjustment_file(project)
+    hidden_set = [key for key in data["hidden"] if key != item_key]
+    if hidden:
+        hidden_set.append(item_key)
+    data["hidden"] = hidden_set
+    _save_adjustment_file(project, data)
+    return {"item_key": item_key, "hidden": bool(hidden)}
+
+
+def add_custom_line(project, body):
+    """A bill line the QS adds by hand (not produced by the engine)."""
+    import uuid
+
+    from .formula import evaluate
+
+    label = (body.get("label") or "").strip()
+    if not label:
+        raise ValueError("A custom line needs a description")
+    unit = (body.get("unit") or "").strip()[:12]
+    line = {
+        "id": f"custom-{uuid.uuid4().hex[:8]}",
+        "label": label[:200],
+        "section": (body.get("section") or "Custom").strip()[:60] or "Custom",
+        "unit": unit,
+        "bill": float(body["bill"]) if body.get("bill") not in (None, "") else None,
+        "note": (body.get("note") or "").strip(),
+        "floor": (body.get("floor") or "").strip()[:40],
+    }
+    if body.get("expression"):
+        variables = body.get("variables") or {}
+        line["ours"] = round(evaluate(body["expression"], variables), 4)
+        line["expression"] = body["expression"]
+        line["variables"] = variables
+    else:
+        line["ours"] = float(body["ours"]) if body.get("ours") not in (None, "") else None
+    data = _load_adjustment_file(project)
+    data["custom"].append(line)
+    _save_adjustment_file(project, data)
+    return line
+
+
+def update_custom_line(project, line_id, body):
+    from .formula import evaluate
+
+    data = _load_adjustment_file(project)
+    for line in data["custom"]:
+        if line.get("id") != line_id:
+            continue
+        for key in ("label", "section", "unit", "note", "floor"):
+            if body.get(key) is not None:
+                line[key] = str(body[key]).strip()
+        if "bill" in body:
+            line["bill"] = float(body["bill"]) if body["bill"] not in (None, "") else None
+        if body.get("expression"):
+            variables = body.get("variables") or {}
+            line["ours"] = round(evaluate(body["expression"], variables), 4)
+            line["expression"] = body["expression"]
+            line["variables"] = variables
+        elif "ours" in body:
+            line["ours"] = float(body["ours"]) if body["ours"] not in (None, "") else None
+            line.pop("expression", None)
+            line.pop("variables", None)
+        _save_adjustment_file(project, data)
+        return line
+    return None
+
+
+def delete_custom_line(project, line_id):
+    data = _load_adjustment_file(project)
+    kept = [line for line in data["custom"] if line.get("id") != line_id]
+    if len(kept) == len(data["custom"]):
+        return False
+    data["custom"] = kept
+    _save_adjustment_file(project, data)
+    return True
+
+
+def measurement_deltas(raw_records, effective_records):
+    """How far QS edits to element records move each bill line's measured total.
+
+    Engine CSV totals stay the baseline; only the change made in the UI is added,
+    so lines the engine measures with extra rules keep those rules.
+    """
+    deltas = {}
+    raw_by_id = {r.get("id"): r for r in raw_records or []}
+    for key, (element_types, field) in _ROLLUP.items():
+        raw_total = 0.0
+        new_total = 0.0
+        changed = []
+        for record in raw_records or []:
+            if (record.get("element_type") or "") in element_types:
+                raw_total += _qty(record, field)
+        for record in effective_records or []:
+            if (record.get("element_type") or "") not in element_types:
+                continue
+            value = 0.0 if record.get("status") == "excluded" else _qty(record, field)
+            new_total += value
+            before = _qty(raw_by_id[record["id"]], field) if record.get("id") in raw_by_id else 0.0
+            if abs(value - before) > 1e-9:
+                changed.append({
+                    "measurementId": record.get("id"),
+                    "tag": record.get("tag") or "",
+                    "before": round(before, 4),
+                    "after": round(value, 4),
+                    "status": record.get("status") or "",
+                })
+        delta = new_total - raw_total
+        if changed and abs(delta) > 1e-9:
+            deltas[key] = {"delta": round(delta, 4), "changes": changed}
+    return deltas
+
+
+def _qty(record, field):
+    value = (record.get("quantities") or {}).get(field)
+    if value in (None, ""):
+        return 0.0
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0.0
 
 
 def _manifest_sheets_for_key(manifest, key):
@@ -165,7 +319,13 @@ def _manifest_sheet_map(manifest):
     return by_stem
 
 
-def placements_for_bill_key(project_dir, manifest, key, shape_index=None):
+def _records(project_dir, records):
+    if records is not None:
+        return records
+    return load_measurement_bundle(Path(project_dir)).get("measurements") or []
+
+
+def placements_for_bill_key(project_dir, manifest, key, shape_index=None, records=None):
     """Each measured element that rolls into this bill line, with drawing placement when known."""
     spec = _ROLLUP.get(key)
     if not spec:
@@ -175,12 +335,11 @@ def placements_for_bill_key(project_dir, manifest, key, shape_index=None):
         element_types = {element_types}
     shape_index = shape_index or {}
     by_stem = _manifest_sheet_map(manifest)
-    bundle = load_measurement_bundle(Path(project_dir))
-    records = bundle.get("measurements") or []
+    records = _records(project_dir, records)
     placements = []
     for record in records:
         rec_type = record.get("element_type") or ""
-        if rec_type not in element_types:
+        if rec_type not in element_types or record.get("status") == "excluded":
             continue
         val = (record.get("quantities") or {}).get(field)
         if val in (None, ""):
@@ -192,16 +351,6 @@ def placements_for_bill_key(project_dir, manifest, key, shape_index=None):
         mid = record.get("id") or ""
         sheet_stem = record.get("sheet") or ""
         linked = shape_index.get(mid) or {}
-        if not linked.get("shapeId") and shape_index:
-            prefix_match = next((item for k, item in shape_index.items() if (k.startswith(mid) or mid.startswith(k))), None)
-            if prefix_match:
-                linked = prefix_match
-            else:
-                target_kind = "column" if "col" in rec_type else ("slab" if "slab" in rec_type or "sog" in rec_type else ("beam" if "beam" in rec_type else ("wall" if "wall" in rec_type else ("footing" if "foot" in rec_type or "neck" in rec_type else ""))))
-                if target_kind:
-                    kind_match = next((item for item in shape_index.values() if item.get("sheetId") == sheet_stem and item.get("kind") == target_kind), None)
-                    if kind_match:
-                        linked = kind_match
         manifest_row = by_stem.get(sheet_stem) or {}
         inputs = record.get("inputs") or {}
         placements.append({
@@ -209,13 +358,14 @@ def placements_for_bill_key(project_dir, manifest, key, shape_index=None):
             "shapeId": linked.get("shapeId") or "",
             "sheetId": linked.get("sheetId") or sheet_stem,
             "sheetCode": linked.get("sheetCode") or manifest_row.get("sheet_no") or "",
-            "sourceFile": manifest_row.get("file") or f"{sheet_stem}.dwg",
+            "sourceFile": manifest_row.get("file") or (f"{sheet_stem}.dwg" if sheet_stem else ""),
             "sourceRole": manifest_row.get("role") or "",
             "tag": record.get("tag") or "",
             "label": linked.get("label") or record.get("tag") or "",
             "kind": linked.get("kind") or rec_type,
             "quantity": round(qty, 4),
             "quantityField": field,
+            "status": record.get("status") or "",
             "widthMm": inputs.get("width_mm"),
             "heightMm": inputs.get("height_mm"),
             "depthMm": inputs.get("depth_mm"),
@@ -225,7 +375,7 @@ def placements_for_bill_key(project_dir, manifest, key, shape_index=None):
     return placements
 
 
-def rollup_for_bill_key(project_dir, key):
+def rollup_for_bill_key(project_dir, key, records=None):
     """Aggregate element records that feed a bill line."""
     spec = _ROLLUP.get(key)
     if not spec:
@@ -233,14 +383,13 @@ def rollup_for_bill_key(project_dir, key):
     element_types, field = spec
     if isinstance(element_types, str):
         element_types = {element_types}
-    bundle = load_measurement_bundle(Path(project_dir))
-    records = bundle.get("measurements") or []
+    records = _records(project_dir, records)
     total = 0.0
     count = 0
     sheets = set()
     formulas = []
     for record in records:
-        if (record.get("element_type") or "") not in element_types:
+        if (record.get("element_type") or "") not in element_types or record.get("status") == "excluded":
             continue
         val = (record.get("quantities") or {}).get(field)
         if val in (None, ""):
@@ -266,7 +415,7 @@ def rollup_for_bill_key(project_dir, key):
     }
 
 
-def trace_for_bill_line(project_dir, manifest, key, note_from_csv, shape_index=None):
+def trace_for_bill_line(project_dir, manifest, key, note_from_csv, shape_index=None, records=None):
     """Structured traceability for one comparison row."""
     out_dir = Path(project_dir) / "out"
     formula = note_from_csv or _FORMULA_HINT.get(key) or ""
@@ -278,8 +427,9 @@ def trace_for_bill_line(project_dir, manifest, key, note_from_csv, shape_index=N
             "file": sheet.get("file") or f"{stem}.dwg",
             "detail": f"{sheet.get('role', 'sheet').replace('_', ' ')} · {sheet.get('title') or stem}",
         })
-    inputs = rollup_for_bill_key(project_dir, key)
-    placements = placements_for_bill_key(project_dir, manifest, key, shape_index)
+    records = _records(project_dir, records)
+    inputs = rollup_for_bill_key(project_dir, key, records)
+    placements = placements_for_bill_key(project_dir, manifest, key, shape_index, records)
     return {
         "formula": formula,
         "sources": sources,
@@ -306,6 +456,10 @@ def apply_bill_adjustments(rows, adjustments):
         if patch.get("ours") is not None:
             merged["ours"] = patch["ours"]
         merged["adjusted"] = True
+        merged["lineOverride"] = True
+        if patch.get("expression"):
+            merged["expression"] = patch["expression"]
+            merged["variables"] = patch.get("variables") or {}
         merged["adjustmentReason"] = patch.get("adjustment_reason") or patch.get("adjustmentReason") or ""
         if patch.get("formula"):
             merged["formula"] = patch["formula"]

@@ -1,0 +1,110 @@
+/* Design tokens. Neutral surfaces, soft rings instead of hard boxes, one motion vocabulary. */
+:root {
+  color-scheme: light;
+  --bg: #f4f4f6;
+  --surface: #ffffff;
+  --surface-2: #fafafb;
+  --surface-3: #f1f1f4;
+  --line: #ececf0;
+  --line-strong: #dedee5;
+  --ink: #111114;
+  --ink-2: #3f3f47;
+  --muted: #6e6e78;
+  --faint: #a3a3ad;
+
+  --brand: #2b0266;
+  --brand-hover: #3a0f80;
+  --brand-press: #22014f;
+  --brand-text: #3d1590;
+  --brand-soft: #f3f0fb;
+  --brand-line: #ddd3f3;
+  --accent: #1f8a72;
+  --accent-soft: #e7f5f0;
+
+  --ok: #157a52;
+  --ok-soft: #e8f5ee;
+  --warn: #9a5b00;
+  --warn-soft: #fcf3e3;
+  --bad: #c0261b;
+  --bad-soft: #fdeceb;
+  --info: #2457c5;
+  --info-soft: #ebf1fd;
+
+  --canvas-bg: #ebebef;
+  --sheet-paper: #ffffff;
+  --overlay: rgba(17, 17, 20, 0.32);
+  --ring: 0 0 0 1px rgba(17, 17, 24, 0.06);
+  --shadow-card: 0 0 0 1px rgba(17, 17, 24, 0.055), 0 1px 2px rgba(17, 17, 24, 0.04);
+  --shadow-raised: 0 0 0 1px rgba(17, 17, 24, 0.05), 0 2px 6px rgba(17, 17, 24, 0.05), 0 12px 32px -12px rgba(17, 17, 24, 0.12);
+  --shadow-pop: 0 0 0 1px rgba(17, 17, 24, 0.06), 0 10px 32px -6px rgba(17, 17, 24, 0.18), 0 2px 6px rgba(17, 17, 24, 0.06);
+  --focus: 0 0 0 3px rgba(91, 52, 196, 0.22);
+
+  --font: "Geist", "Inter", "Segoe UI", system-ui, sans-serif;
+  --mono: "Geist Mono", "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+
+  --r-sm: 7px;
+  --r-md: 9px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+
+  --rail-w: 240px;
+  --rail-w-collapsed: 68px;
+  --topbar-h: 56px;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --dur-3: 260ms;
+  --dur-4: 420ms;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0c0c0f;
+  --surface: #151518;
+  --surface-2: #19191d;
+  --surface-3: #202025;
+  --line: #26262c;
+  --line-strong: #34343c;
+  --ink: #f2f2f5;
+  --ink-2: #c9c9d1;
+  --muted: #94949f;
+  --faint: #66666f;
+
+  --brand: #6a43d6;
+  --brand-hover: #7952e2;
+  --brand-press: #5a35c2;
+  --brand-text: #c4b1f8;
+  --brand-soft: #211a35;
+  --brand-line: #3a2f5e;
+  --accent: #4cc2a5;
+  --accent-soft: #14302a;
+
+  --ok: #4cc58f;
+  --ok-soft: #13281e;
+  --warn: #e3ae4b;
+  --warn-soft: #2d2412;
+  --bad: #f2867c;
+  --bad-soft: #331919;
+  --info: #86a9f5;
+  --info-soft: #18223c;
+
+  --canvas-bg: #09090b;
+  --sheet-paper: #f3f1ec;
+  --overlay: rgba(0, 0, 0, 0.55);
+  --ring: 0 0 0 1px rgba(255, 255, 255, 0.07);
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-raised: 0 0 0 1px rgba(255, 255, 255, 0.07), 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+  --shadow-pop: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 14px 36px -6px rgba(0, 0, 0, 0.7);
+  --focus: 0 0 0 3px rgba(157, 128, 240, 0.32);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
+    --dur-3: 0ms;
+    --dur-4: 0ms;
+  }
+}

@@ -3,23 +3,23 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
-import { ToastProvider } from "./components/Toast";
+import { ToastProvider } from "./components/ui/Toast";
+import { ConfirmProvider } from "./components/ui/Confirm";
 import { PageLoaderProvider } from "./components/PageLoader";
-import "./styles/app.css";
-import "./styles/app-overrides.css";
+import { applyTheme } from "./lib/settings";
+import "./styles/tokens.css";
+import "./styles/base.css";
+import "./styles/components.css";
+import "./styles/brand.css";
+import "./styles/shell.css";
+import "./styles/pages.css";
+import "./styles/workspace.css";
 
-(function initTheme() {
-  const saved = localStorage.getItem("constech.theme");
-  const theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-  document.documentElement.setAttribute("data-theme", theme);
-})();
+applyTheme();
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: {
-      staleTime: 60_000,
-      refetchOnWindowFocus: false,
-    },
+    queries: { staleTime: 30_000, refetchOnWindowFocus: false, retry: 1 },
   },
 });
 
@@ -29,7 +29,9 @@ createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <PageLoaderProvider>
           <ToastProvider>
-            <App />
+            <ConfirmProvider>
+              <App />
+            </ConfirmProvider>
           </ToastProvider>
         </PageLoaderProvider>
       </BrowserRouter>

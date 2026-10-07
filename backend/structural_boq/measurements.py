@@ -228,6 +228,43 @@ def load_manual(project):
     return data.get("entries") or []
 
 
+MANUAL_ELEMENT_TYPES = {
+    "footing", "raft", "column_storey", "wall_storey", "suspended_slab",
+    "slab_on_grade", "grade_beam", "beam", "column_neck", "other",
+}
+QUANTITY_FIELDS = ("concrete_m3", "formwork_m2", "rebar_kg", "area_m2", "blinding_m3")
+
+
+def _clean_points(points):
+    if not isinstance(points, list):
+        return None
+    clean = []
+    for point in points[:200]:
+        if not isinstance(point, (list, tuple)) or len(point) != 2:
+            return None
+        clean.append([round(float(point[0]), 1), round(float(point[1]), 1)])
+    return clean if len(clean) >= 3 else None
+
+
+def _apply_expressions(entry, expressions):
+    """Compute quantities from {field: {expression, variables}} on the server."""
+    from .formula import evaluate
+
+    quantities = dict(entry.get("quantities") or {})
+    stored = dict(entry.get("expressions") or {})
+    for field, spec in (expressions or {}).items():
+        if field not in QUANTITY_FIELDS or not isinstance(spec, dict):
+            continue
+        variables = spec.get("variables") or {}
+        value = evaluate(spec.get("expression") or "", variables)
+        quantities[field] = round(value, 4)
+        stored[field] = {"expression": spec.get("expression"), "variables": variables}
+    entry["quantities"] = quantities
+    if stored:
+        entry["expressions"] = stored
+    return entry
+
+
 def append_manual(project, entry):
     out = Path(project) / "out"
     out.mkdir(parents=True, exist_ok=True)
@@ -238,10 +275,48 @@ def append_manual(project, entry):
     entry.setdefault("status", "manual")
     entry.setdefault("confidence", "low")
     entry.setdefault("element_type", "footing")
+    if entry["element_type"] not in MANUAL_ELEMENT_TYPES:
+        raise ValueError(f"Unknown element type '{entry['element_type']}'")
+    if "points" in entry:
+        entry["points"] = _clean_points(entry.get("points"))
+    if entry.get("expressions"):
+        _apply_expressions(entry, entry["expressions"])
     entry.setdefault("sources", [{"role": "manual", "detail": entry.get("reason") or "user entry"}])
     data["entries"].append(entry)
     path.write_text(json.dumps(data, indent=2), encoding="utf-8")
     return entry
+
+
+def update_manual(project, entry_id, patch):
+    path = Path(project) / "out" / "manual-measurements.json"
+    entries = load_manual(project)
+    for entry in entries:
+        if entry.get("id") != entry_id:
+            continue
+        if "points" in patch:
+            entry["points"] = _clean_points(patch.get("points"))
+        for key in ("tag", "reason", "formula", "note"):
+            if patch.get(key) is not None:
+                entry[key] = patch[key]
+        if patch.get("quantities"):
+            entry["quantities"] = {**(entry.get("quantities") or {}), **patch["quantities"]}
+        if patch.get("inputs"):
+            entry["inputs"] = {**(entry.get("inputs") or {}), **patch["inputs"]}
+        if patch.get("expressions"):
+            _apply_expressions(entry, patch["expressions"])
+        path.write_text(json.dumps({"entries": entries}, indent=2), encoding="utf-8")
+        return entry
+    return None
+
+
+def delete_manual(project, entry_id):
+    path = Path(project) / "out" / "manual-measurements.json"
+    entries = load_manual(project)
+    kept = [entry for entry in entries if entry.get("id") != entry_id]
+    if len(kept) == len(entries):
+        return False
+    path.write_text(json.dumps({"entries": kept}, indent=2), encoding="utf-8")
+    return True
 
 
 def simple_structure_record(
@@ -332,9 +407,12 @@ def merge_manual_measurements(measurements, manual_entries):
             },
             "formula": entry.get("formula") or "manual entry",
             "inputs": entry.get("inputs") or {},
+            "expressions": entry.get("expressions") or {},
             "sources": entry.get("sources") or [{"role": "manual", "detail": entry.get("reason", "")}],
             "note": entry.get("reason") or "",
             "missed": False,
+            "manual": True,
+            "points": entry.get("points"),
         })
     return merged
 
@@ -361,10 +439,13 @@ def apply_measurement_overrides(measurements, overrides):
             out.append(record)
             continue
         merged = dict(record)
+        merged["engine_quantities"] = dict(record.get("quantities") or {})
         if patch.get("quantities"):
             merged["quantities"] = {**(merged.get("quantities") or {}), **patch["quantities"]}
         if patch.get("inputs"):
             merged["inputs"] = {**(merged.get("inputs") or {}), **patch["inputs"]}
+        if patch.get("expressions"):
+            merged["expressions"] = patch["expressions"]
         for key in ("formula", "note"):
             if patch.get(key) not in (None, ""):
                 merged[key] = patch[key]
@@ -391,13 +472,29 @@ def adjust_measurement(project, measurement_id, patch):
         entry["quantities"] = {**(entry.get("quantities") or {}), **patch["quantities"]}
     if patch.get("inputs"):
         entry["inputs"] = {**(entry.get("inputs") or {}), **patch["inputs"]}
+    if patch.get("expressions"):
+        computed = _apply_expressions({"quantities": entry.get("quantities") or {}}, patch["expressions"])
+        entry["quantities"] = computed["quantities"]
+        entry["expressions"] = {**(entry.get("expressions") or {}), **computed.get("expressions", {})}
+        for spec in patch["expressions"].values():
+            if isinstance(spec, dict) and isinstance(spec.get("variables"), dict):
+                entry["inputs"] = {**(entry.get("inputs") or {}), **spec["variables"]}
     for key in ("formula", "note", "adjustment_reason"):
         if key in patch and patch[key] is not None:
             entry[key] = patch[key]
-    entry["status"] = "adjusted"
+    entry["status"] = "excluded" if patch.get("status") == "excluded" else "adjusted"
     data["overrides"][measurement_id] = entry
     path.write_text(json.dumps(data, indent=2), encoding="utf-8")
     return entry
+
+
+def reset_measurement(project, measurement_id):
+    path = _overrides_path(project)
+    data = {"overrides": load_measurement_overrides(project)}
+    if data["overrides"].pop(measurement_id, None) is None:
+        return False
+    path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+    return True
 
 
 def project_measurements(project):

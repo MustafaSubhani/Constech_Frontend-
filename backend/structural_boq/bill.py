@@ -3,9 +3,11 @@
 The reader looks for a header row with Description and Quantity, on whatever
 sheet that header sits on. It does not assume a file name or a sheet name.
 """
+import csv
 import zipfile
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from pathlib import Path
 
 NS = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
@@ -50,22 +52,60 @@ def _load(path):
     return data
 
 
+def _column_letter(index):
+    letters = ""
+    index += 1
+    while index:
+        index, rem = divmod(index - 1, 26)
+        letters = chr(65 + rem) + letters
+    return letters
+
+
+def _load_csv(path):
+    rows = defaultdict(dict)
+    with open(path, encoding="utf-8-sig", newline="") as handle:
+        for r, record in enumerate(csv.reader(handle), start=1):
+            for c, value in enumerate(record):
+                if value.strip():
+                    rows[r][_column_letter(c)] = value.strip()
+    return {Path(path).stem: rows}
+
+
+def load_table(path):
+    """Workbook-like {sheet: {row: {col: value}}} for .xlsx and .csv files."""
+    if Path(path).suffix.lower() == ".csv":
+        return _load_csv(path)
+    return _load(path)
+
+
+_DESC_HEADERS = {"description", "item description", "desc", "item"}
+_QTY_HEADERS = {"quantity", "qty", "qty.", "quantities"}
+_UNIT_HEADERS = {"unit", "units", "uom"}
+
+
 def _header_map(rows):
-    """Return (description column, quantity column, unit column) from a header row."""
-    for row in sorted(rows):
-        cells = {col: str(val).strip().lower() for col, val in rows[row].items()}
-        desc = next((col for col, val in cells.items() if val == "description"), None)
-        qty = next((col for col, val in cells.items() if val == "quantity"), None)
-        unit = next((col for col, val in cells.items() if val == "unit"), None)
-        if desc and qty:
-            return desc, qty, unit
+    """Return (description column, quantity column, unit column) from a header row.
+
+    The strict "Description"/"Quantity" pass runs first so existing bills read exactly as before.
+    """
+    for desc_names, qty_names, unit_names in (
+        ({"description"}, {"quantity"}, {"unit"}),
+        (_DESC_HEADERS, _QTY_HEADERS, _UNIT_HEADERS),
+    ):
+        for row in sorted(rows):
+            cells = {col: str(val).strip().lower() for col, val in rows[row].items()}
+            desc = next((col for col, val in cells.items() if val in desc_names), None)
+            qty = next((col for col, val in cells.items() if val in qty_names), None)
+            unit = next((col for col, val in cells.items() if val in unit_names), None)
+            if desc and qty:
+                return desc, qty, unit
     return None
 
 
 def quantity_lines(path):
     """Every measured line in the workbook, in sheet order."""
     lines = []
-    for sheet, rows in _load(path).items():
+    for sheet, rows in load_table(path).items():
         header = _header_map(rows)
         if not header:
             continue

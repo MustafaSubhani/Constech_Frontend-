@@ -7,6 +7,7 @@ placed with the shared-label fit.
 import csv
 import json
 import math
+import re
 import struct
 import zipfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -315,12 +316,146 @@ def _points(vertices, fit, zoom):
     return [[round((ax * x + bx) * zoom, 1), round((ay * y + by) * zoom, 1)] for x, y in vertices]
 
 
-def _foundation_shapes(dump, fit, zoom, sheet_stem):
+def _union_box(boxes):
+    boxes = [b for b in boxes if b]
+    if not boxes:
+        return None
+    return (
+        min(b[0] for b in boxes), min(b[1] for b in boxes),
+        max(b[2] for b in boxes), max(b[3] for b in boxes),
+    )
+
+
+class _Locator:
+    """Places evidence on the sheet raster.
+
+    DWG text anchors are alignment points, so a box built from text height alone
+    drifts. Each text is mapped through the fit and snapped to the PDF words with
+    the same text nearest to it; the PDF word boxes are exact.
+    """
+
+    def __init__(self, fit, words, zoom, snap_pt=14.0):
+        self.fit = fit
+        self.zoom = zoom
+        self.snap_pt = snap_pt
+        self.words = [(w[0], w[1], w[2], w[3], w[4].strip()) for w in words or []]
+        self.by_token = defaultdict(list)
+        for w in self.words:
+            self.by_token[w[4]].append(w[:4])
+
+    def table_row(self, tag, row_text, pad=3.0):
+        """A schedule row found in the PDF itself.
+
+        Schedules are often placed elsewhere on the printed sheet than in model space,
+        so the plan fit does not apply; the row is found by its tag and its own values.
+        """
+        wanted = [t for t in row_text.replace("\n", " ").split() if t.lower() != "x" and t != tag]
+        if not wanted:
+            return None
+        best = None
+        for x0, y0, x1, y1 in self.by_token.get(tag, ()):
+            cy = (y0 + y1) / 2
+            tol = max((y1 - y0) * 0.6, 1.5)
+            line = [w for w in self.words if abs((w[1] + w[3]) / 2 - cy) <= tol and x0 - 2 <= w[0] <= x0 + 1200]
+            tokens = [w[4] for w in line]
+            score = sum(1 for t in wanted if t in tokens)
+            if best is None or score > best[0]:
+                best = (score, (x0, y0, x1, y1), line)
+        if not best or best[0] < max(2, len(wanted) // 2):
+            return None
+        keep = [best[1]] + [w[:4] for w in best[2] if w[4] in wanted or w[4].lower() == "x"]
+        return self._canvas(_union_box(keep), pad)
+
+    def _pdf_point(self, x, y):
+        ax, bx, ay, by = self.fit[:4]
+        return ax * x + bx, ay * y + by
+
+    def _snap(self, text):
+        px, py = self._pdf_point(text["x"], text["y"])
+        tokens = [t for t in (text.get("text") or "").replace("\n", " ").split() if t]
+        reach = self.snap_pt + abs(self.fit[0]) * float(text.get("height") or 200) * max(len(" ".join(tokens)), 1) * 0.7
+        found = []
+        for token in tokens:
+            best = None
+            for x0, y0, x1, y1 in self.by_token.get(token, ()):
+                dx = max(x0 - px, 0, px - x1)
+                dy = max(y0 - py, 0, py - y1)
+                dist = (dx * dx + dy * dy) ** 0.5
+                if dist <= reach and (best is None or dist < best[0]):
+                    best = (dist, (x0, y0, x1, y1))
+            if best:
+                found.append(best[1])
+        if found:
+            return _union_box(found)
+        half = abs(self.fit[0]) * float(text.get("height") or 200) / 2
+        width = half * 1.25 * max(len(" ".join(tokens)), 1)
+        return (px, py - half, px + width, py + half)
+
+    def _canvas(self, box, pad):
+        z = self.zoom
+        return [round(box[0] * z - pad, 1), round(box[1] * z - pad, 1), round(box[2] * z + pad, 1), round(box[3] * z + pad, 1)]
+
+    def texts(self, texts, pad=3.0):
+        boxes = [self._snap(t) for t in texts if t]
+        box = _union_box(boxes)
+        return self._canvas(box, pad) if box else None
+
+    def outline(self, vertices, pad=2.0):
+        pts = [self._pdf_point(x, y) for x, y in vertices]
+        box = (min(p[0] for p in pts), min(p[1] for p in pts), max(p[0] for p in pts), max(p[1] for p in pts))
+        return self._canvas(box, pad)
+
+
+def _evidence(role, label, canvas_box, text="", sheet="", allow_unplaced=False):
+    """canvas_box may be None only when the text itself is still worth showing."""
+    if not canvas_box and not allow_unplaced:
+        return None
+    return {"role": role, "label": label, "text": (text or "")[:160], "box": canvas_box, "sheetId": sheet}
+
+
+def _schedule_rows(dump):
+    """Footing schedule rows by tag: DWG box and the row's text, left to right."""
+    from .foundations import _cluster_rows, _row_tag, _row_tolerance, _schedule_cells
+
+    cells = _schedule_cells(dump)
+    if not cells:
+        return {}
+    rows = {}
+    for row in _cluster_rows(cells, _row_tolerance(cells)):
+        row = sorted(row, key=lambda e: e["x"])
+        tag = _row_tag(row)
+        if not tag or tag in rows:
+            continue
+        rows[tag] = {
+            "cells": row,
+            "text": "  ".join(cell["text"].replace("\n", " ").strip() for cell in row),
+            "ids": {id(cell) for cell in cells},
+        }
+    return rows
+
+
+def _nearest_text(dump, point, predicate, limit=None):
+    best = None
+    for text in _texts(dump):
+        if not predicate(text):
+            continue
+        dist = ((text["x"] - point[0]) ** 2 + (text["y"] - point[1]) ** 2) ** 0.5
+        if limit is not None and dist > limit:
+            continue
+        if best is None or dist < best[0]:
+            best = (dist, text)
+    return best[1] if best else None
+
+
+def _foundation_shapes(dump, fit, zoom, sheet_stem, loc=None):
     measured = _measure_sheet(dump)
     if not measured or not fit:
         return []
     if fit[4] > FIT_RESIDUAL_OK_PT:
         return []
+    loc = loc or _Locator(fit, [], zoom)
+    schedule_rows = _schedule_rows(dump)
+    table_ids = next(iter(schedule_rows.values()))["ids"] if schedule_rows else set()
     shapes = []
     for index, row in enumerate(measured["rows"]):
         vertices = row.get("vertices") or []
@@ -333,6 +468,26 @@ def _foundation_shapes(dump, fit, zoom, sheet_stem):
         if detail != "" and detail is not None:
             label = f"{label}  {detail} m³"
         mid = f"footing-{sheet_stem}-{tag}-{index}"
+        evidence = []
+        sched = schedule_rows.get(tag) if not missed else None
+        if sched:
+            evidence.append(_evidence(
+                "schedule", f"Footing schedule, row {tag}", loc.table_row(tag, sched["text"]), sched["text"], sheet_stem,
+                allow_unplaced=True,
+            ))
+        if not missed:
+            center = centroid(vertices)
+            plan_tag = _nearest_text(
+                dump, center, lambda t: t["text"].strip() == tag and id(t) not in table_ids, limit=6000,
+            )
+            if plan_tag:
+                evidence.append(_evidence(
+                    "plan_tag", f"Tag {tag} on the plan", loc.texts([plan_tag]), plan_tag["text"], sheet_stem,
+                ))
+        evidence.append(_evidence(
+            "outline", "Plan outline", loc.outline(vertices),
+            f"{row.get('width_mm', '')} x {row.get('height_mm', '')} mm", sheet_stem,
+        ))
         shapes.append({
             "id": f"f{index}",
             "measurement_id": mid,
@@ -340,11 +495,21 @@ def _foundation_shapes(dump, fit, zoom, sheet_stem):
             "label": label,
             "points": _points(vertices, fit, zoom),
             "dashed": missed,
+            "evidence": [e for e in evidence if e],
         })
     for index, raft in enumerate(measured["rafts"]):
         vertices = raft.get("vertices") or []
         if len(vertices) < 3:
             continue
+        note = _nearest_text(
+            dump, centroid(vertices),
+            lambda t: "RAFT" in t["text"].upper() and point_in_poly(t["x"], t["y"], vertices),
+        )
+        evidence = [_evidence("outline", "Raft outline", loc.outline(vertices), "", sheet_stem)]
+        if note:
+            evidence.insert(0, _evidence(
+                "note", "Raft thickness note", loc.texts([note]), note["text"], sheet_stem,
+            ))
         shapes.append({
             "id": f"r{index}",
             "measurement_id": f"raft-{sheet_stem}-{index}",
@@ -352,13 +517,15 @@ def _foundation_shapes(dump, fit, zoom, sheet_stem):
             "label": f"Raft  {raft.get('thickness', '')} mm",
             "points": _points(vertices, fit, zoom),
             "dashed": True,
+            "evidence": [e for e in evidence if e],
         })
     return shapes
 
 
-def _plan_shapes(dump, fit, zoom, stem=""):
+def _plan_shapes(dump, fit, zoom, stem="", loc=None):
     if not fit:
         return []
+    loc = loc or _Locator(fit, [], zoom)
     marks = [
         text for text in _texts(dump)
         if text["text"].strip() and len(text["text"].strip()) <= 6 and "IDEN" in text.get("layer", "")
@@ -390,7 +557,7 @@ def _plan_shapes(dump, fit, zoom, stem=""):
                     continue
                 dist = ((mark["x"] - cx) ** 2 + (mark["y"] - cy) ** 2) ** 0.5
                 if best is None or dist < best[0]:
-                    best = (dist, token)
+                    best = (dist, token, mark)
             if best and best[0] < 2000:
                 label = best[1]
                 if label.startswith("W"):
@@ -398,6 +565,14 @@ def _plan_shapes(dump, fit, zoom, stem=""):
             label = f"{label}  {area:.2f} m²"
         tag_key = label.split()[0] if label else str(index)
         mid = f"columns-{stem}-{tag_key}" if kind == "column" else f"walls-{stem}-{tag_key}"
+        evidence = []
+        if best and best[0] < 2000:
+            evidence.append(_evidence(
+                "plan_tag", f"Mark {best[1]} on the plan", loc.texts([best[2]]), best[2]["text"], stem,
+            ))
+        evidence.append(_evidence(
+            "outline", "Plan outline", loc.outline(vertices), f"{area:.2f} m² plan area", stem,
+        ))
         shapes.append({
             "id": f"p{index}",
             "measurement_id": mid,
@@ -405,6 +580,7 @@ def _plan_shapes(dump, fit, zoom, stem=""):
             "label": label,
             "points": _points(vertices, fit, zoom),
             "dashed": False,
+            "evidence": [e for e in evidence if e],
         })
         index += 1
     for region in _slab_regions(dump):
@@ -412,6 +588,18 @@ def _plan_shapes(dump, fit, zoom, stem=""):
         if _mentions(dump, vertices, "STEEL ROOF"):
             continue
         area = region["area_m2"]
+        evidence = []
+        for text in _texts(dump):
+            upper = text["text"].upper()
+            if "SLAB" in upper and "MM" in upper and point_in_poly(text["x"], text["y"], vertices):
+                evidence.append(_evidence(
+                    "note", "Slab thickness note", loc.texts([text]), text["text"], stem,
+                ))
+                if len(evidence) >= 3:
+                    break
+        evidence.append(_evidence(
+            "outline", "Slab outline", loc.outline(vertices), f"{area:.1f} m²", stem,
+        ))
         shapes.append({
             "id": f"s{index}",
             "measurement_id": f"slab-{stem}-{index}",
@@ -419,11 +607,25 @@ def _plan_shapes(dump, fit, zoom, stem=""):
             "label": f"Slab {region['thickness']} mm  {area:.0f} m²",
             "points": _points(vertices, fit, zoom),
             "dashed": False,
+            "evidence": [e for e in evidence if e],
         })
         index += 1
     beams = _grade_beams(dump, prefixes=("GB", "FB", "RB", "URB", "SB", "B"))
     for segment in beams.get("segments") or []:
         band = _beam_band(segment["a"], segment["b"], segment["width_mm"])
+        mid_point = ((segment["a"][0] + segment["b"][0]) / 2, (segment["a"][1] + segment["b"][1]) / 2)
+        size_token = f"{segment['width_mm']}X{segment['depth_mm']}"
+        label_text = _nearest_text(
+            dump, mid_point,
+            lambda t, token=size_token: token in t["text"].upper().replace(" ", ""),
+            limit=8000,
+        )
+        evidence = []
+        if label_text:
+            evidence.append(_evidence(
+                "label", "Beam label with section size", loc.texts([label_text]), label_text["text"], stem,
+            ))
+        evidence.append(_evidence("outline", "Beam centre line", loc.outline(band), "", stem))
         shapes.append({
             "id": f"b{index}",
             "measurement_id": f"grade-beam-{stem}-{index}",
@@ -431,6 +633,7 @@ def _plan_shapes(dump, fit, zoom, stem=""):
             "label": f"Beam {segment['width_mm']}×{segment['depth_mm']}",
             "points": _points(band, fit, zoom),
             "dashed": False,
+            "evidence": [e for e in evidence if e],
         })
         index += 1
     return shapes
@@ -469,25 +672,66 @@ def _sheet_title(stem):
     return f"{head} {rest}".strip()
 
 
-def build_catalog(project):
+_FOUNDATION_ROLES = {"foundation_plan", "foundation_layout", "footing_schedule"}
+_PLAN_ROLES = {"floor_plan", "framing_plan", "structural_plan"}
+
+
+def _catalog_kind(entry):
+    """'foundation', 'plan' or '' (not drawn) for a register entry."""
+    role = entry.get("role") or ""
+    signals = set(entry.get("signals") or [])
+    if role in _FOUNDATION_ROLES:
+        return "foundation"
+    if role in _PLAN_ROLES:
+        return "plan"
+    if role in ("", "other"):
+        upper = (entry.get("stem") or "").upper()
+        if "footing_schedule_table" in signals or re.search(r"FOUNDATION|FOOTING", upper):
+            return "foundation"
+        from .sheets import floor_of
+
+        if (signals & {"slab_thk_notes", "closed_slab_polylines"}) or (floor_of(upper) and re.search(r"PLAN|FRAMING", upper) and "REINF" not in upper):
+            return "plan"
+    return ""
+
+
+def build_catalog(project, on_sheet=None):
+    """Sheet rasters plus fitted outlines. on_sheet(index, total, stem) reports progress."""
     project = Path(project)
     out = project / "out"
     cache = out / "workspace"
     cache.mkdir(parents=True, exist_ok=True)
     sheets = []
-    dumps = sorted(p for p in out.glob("*.json") if not p.name.startswith("_") and not p.stem.startswith("S-10"))
-    # Prefer the full sheet name over the short alias dumps.
-    seen = set()
-    for dump_path in dumps:
-        stem = dump_path.stem
-        if stem in seen:
-            continue
-        if "REINF" in stem.upper() or "SCHEDULE" in stem.upper() or "SECTION" in stem.upper():
-            continue
-        pdf = _find_pdf(project, stem)
-        if pdf is None:
-            continue
-        seen.add(stem)
+    manifest_path = out / "project-manifest.json"
+    manifest_sheets = {}
+    if manifest_path.is_file():
+        try:
+            manifest_sheets = {
+                s["stem"]: s for s in json.loads(manifest_path.read_text(encoding="utf-8")).get("sheets") or [] if s.get("stem")
+            }
+        except (json.JSONDecodeError, OSError, KeyError):
+            manifest_sheets = {}
+    todo = []
+    if manifest_sheets:
+        # The drawing register decides which sheets are measurable, not their file names.
+        for stem, entry in sorted(manifest_sheets.items()):
+            kind = _catalog_kind(entry)
+            dump_path = out / f"{stem}.json"
+            if not kind or not dump_path.is_file():
+                continue
+            pdf = _find_pdf(project, stem)
+            if pdf is not None:
+                todo.append((dump_path, stem, pdf, kind))
+    else:
+        for dump_path in sorted(p for p in out.glob("*.json") if not p.name.startswith("_")):
+            stem = dump_path.stem
+            kind = _catalog_kind({"stem": stem, "role": "", "signals": []})
+            pdf = _find_pdf(project, stem) if kind else None
+            if pdf is not None:
+                todo.append((dump_path, stem, pdf, kind))
+    for position, (dump_path, stem, pdf, kind) in enumerate(todo):
+        if on_sheet:
+            on_sheet(position, len(todo), stem)
         print(f"  sheet {stem}", flush=True)
         dump = json.loads(dump_path.read_text(encoding="utf-8"))
         doc = pymupdf.open(pdf)
@@ -496,13 +740,15 @@ def build_catalog(project):
         image = cache / f"{stem}.png"
         width, height = _ensure_sheet_raster(page, image, pdf.stat().st_mtime)
         width, height = int(page.rect.width * ZOOM), int(page.rect.height * ZOOM)
+        words = page.get_text("words")
         doc.close()
         fit_ok = fit is not None and fit[4] <= FIT_RESIDUAL_OK_PT
         fit_residual = round(fit[4], 2) if fit else None
-        if "FOUNDATION" in stem.upper():
-            shapes = _foundation_shapes(dump, fit, ZOOM, stem) if fit_ok else []
-        elif "FLOOR" in stem.upper() or "PLAN" in stem.upper():
-            shapes = _plan_shapes(dump, fit, ZOOM, stem) if fit_ok else []
+        loc = _Locator(fit, words, ZOOM) if fit else None
+        if kind == "foundation":
+            shapes = _foundation_shapes(dump, fit, ZOOM, stem, loc) if fit_ok else []
+        elif kind == "plan":
+            shapes = _plan_shapes(dump, fit, ZOOM, stem, loc) if fit_ok else []
         else:
             shapes = []
         if not shapes and not fit_ok:
@@ -519,6 +765,7 @@ def build_catalog(project):
             "height": height,
             "fit_residual_pt": fit_residual,
             "fit_ok": fit_ok,
+            "pdf": pdf.name,
             "shapes": shapes,
         })
     manifest_path = out / "project-manifest.json"
