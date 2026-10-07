@@ -29,6 +29,6 @@ py -3 -m structural_boq app --work D:\Constech\work --port 8780
 
 See [backend/README.md](backend/README.md) and [frontend/README.md](frontend/README.md).
 
-**GitHub:** UI lives in [Constech_Frontend-](https://github.com/MustafaSubhani/Constech_Frontend-). This repo holds the engine, `work/` projects, and docs. Original zip deliveries under `data/archives/` are local-only (~5GB) and are not pushed.
+**GitHub:** [Constech_Frontend-](https://github.com/MustafaSubhani/Constech_Frontend-) (monorepo: `frontend/`, `backend/`, `work/`, `docs/`). Original zip deliveries under `data/archives/` are local-only (~5GB) and are not pushed.
 
 If an empty legacy `tools/` or `structural_boq/` folder remains, delete it after closing terminals that used the old paths.

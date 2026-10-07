@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2B0266">
+  <title>Constech Takeoff</title>
+  <script>
+    (function () {
+      var saved = localStorage.getItem("constech.theme");
+      var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="icon" href="assets/20450-Mamdouh-Labib-V6_Logo11.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,800&family=Roboto+Condensed:wght@500;600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css?v=20261006b">
+</head>
+<body>
+  <div id="login" class="login">
+    <section class="login-art">
+      <div class="art-bg" aria-hidden="true">
+        <span class="orb orb-a"></span>
+        <span class="orb orb-b"></span>
+      </div>
+      <div class="logo-chip">
+        <img class="brand-logo" src="assets/20450-Mamdouh-Labib-V6_Logo11.png" alt="Constech Construction">
+      </div>
+      <h1 class="rise" style="--d: 0.1s">See every <em>quantity</em> on the drawing.</h1>
+      <p class="lede rise" style="--d: 0.2s">Footings, slabs, beams, and walls, measured from the sheets and set beside the consultant bill.</p>
+      <ol class="steps rise" style="--d: 0.3s">
+        <li style="--i: 0"><b>1</b>Read the drawings</li>
+        <li style="--i: 1"><b>2</b>Measure the outlines</li>
+        <li style="--i: 2"><b>3</b>Compare with the bill</li>
+      </ol>
+
+      <div class="plan-stage rise" style="--d: 0.4s" aria-hidden="true">
+        <svg class="plan-art" viewBox="0 0 560 330">
+          <defs>
+            <linearGradient id="scan" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#48B59B" stop-opacity="0"></stop>
+              <stop offset="0.85" stop-color="#48B59B" stop-opacity="0.35"></stop>
+              <stop offset="1" stop-color="#7FE0C6" stop-opacity="1"></stop>
+            </linearGradient>
+          </defs>
+          <rect class="draw frame" x="20" y="20" width="520" height="290" pathLength="1"></rect>
+          <path class="draw grid" style="--d: 0.5s" d="M20 115 H540 M20 215 H540 M190 20 V310 M370 20 V310" pathLength="1"></path>
+          <path class="raft" d="M120 80 H420 V150 H470 V260 H120 Z"></path>
+          <path class="draw beam" style="--d: 1.1s" d="M70 62 H490" pathLength="1"></path>
+          <path class="draw beam" style="--d: 1.25s" d="M70 62 V270" pathLength="1"></path>
+          <path class="draw beam" style="--d: 1.4s" d="M490 62 V270" pathLength="1"></path>
+          <path class="draw beam" style="--d: 1.55s" d="M70 270 H490" pathLength="1"></path>
+          <g class="footings">
+            <rect class="pop" style="--d: 1.7s" x="40" y="34" width="58" height="52"></rect>
+            <rect class="pop" style="--d: 1.8s" x="250" y="30" width="56" height="50"></rect>
+            <rect class="pop" style="--d: 1.9s" x="462" y="34" width="58" height="52"></rect>
+            <rect class="pop" style="--d: 2.0s" x="40" y="246" width="58" height="52"></rect>
+            <rect class="pop" style="--d: 2.1s" x="250" y="252" width="56" height="50"></rect>
+            <rect class="pop" style="--d: 2.2s" x="462" y="246" width="58" height="52"></rect>
+          </g>
+          <g class="columns">
+            <rect class="pop" style="--d: 2.3s" x="180" y="105" width="20" height="20"></rect>
+            <rect class="pop" style="--d: 2.4s" x="360" y="105" width="20" height="20"></rect>
+            <rect class="pop" style="--d: 2.5s" x="180" y="205" width="20" height="20"></rect>
+            <rect class="pop" style="--d: 2.6s" x="360" y="205" width="20" height="20"></rect>
+          </g>
+          <rect class="missed pop" style="--d: 2.7s" x="395" y="170" width="52" height="42"></rect>
+          <g class="scanner">
+            <rect x="-60" y="20" width="60" height="290" fill="url(#scan)"></rect>
+          </g>
+        </svg>
+
+        <div class="float-card card-a">
+          <span class="dot teal"></span>
+          <div><small>Footing concrete</small><strong><span data-count="47.15" data-digits="2">0.00</span> m³</strong></div>
+        </div>
+        <div class="float-card card-b">
+          <span class="dot purple"></span>
+          <div><small>Footing steel</small><strong><span data-count="3510" data-digits="0">0</span> kg</strong></div>
+        </div>
+        <div class="float-card card-c">
+          <span class="ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15"></circle><circle class="ring-fill" cx="18" cy="18" r="15" pathLength="100"></circle></svg></span>
+          <div><small>Lines within 5% of the bill</small><strong><span data-count="13" data-digits="0">0</span> of 26</strong></div>
+        </div>
+      </div>
+    </section>
+    <section class="login-form">
+      <form class="login-card" id="login-form">
+        <img class="form-logo" src="assets/20450-Mamdouh-Labib-V6_Logo11.png" alt="Constech Construction">
+        <p class="eyebrow rise" style="--d: 0.15s">Quantity takeoff</p>
+        <h1 class="rise" style="--d: 0.22s">Welcome back</h1>
+        <p class="lede rise" style="--d: 0.29s">Sign in to open a drawing set, review what was measured, and compare it with the bill.</p>
+        <p class="form-error" id="login-error" hidden></p>
+        <label class="field rise" style="--d: 0.36s">
+          <span>Email</span>
+          <span class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z M4 7l8 6 8-6"></path></svg>
+            <input id="email" name="email" type="email" autocomplete="username" required placeholder="name@constech-uae.com">
+          </span>
+        </label>
+        <label class="field rise" style="--d: 0.43s">
+          <span>Password</span>
+          <span class="input-wrap password">
+            <svg class="input-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 11h12v9H6z M8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg>
+            <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Your password">
+            <button class="btn-text" type="button" id="toggle-password">Show</button>
+          </span>
+        </label>
+        <button class="btn btn-primary btn-signin rise" style="--d: 0.5s" id="login-submit" type="submit">
+          <span class="label">Sign in</span>
+          <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+        <p class="login-note rise" style="--d: 0.57s">
+          Preview sign-in accepts any work email until the login API is connected.
+          <button class="btn-text" type="button" id="fill-preview">Use a preview account</button>
+        </p>
+      </form>
+    </section>
+  </div>
+
+  <div id="app" class="shell" hidden>
+    <header class="topbar">
+      <button class="brand" type="button" data-action="projects" aria-label="All projects">
+        <img src="assets/20450-Mamdouh-Labib-V6_Logo11.png" alt="Constech Construction">
+      </button>
+      <span class="spacer"></span>
+      <div class="top-actions">
+        <button class="theme-btn" type="button" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3a7 7 0 0 0 11.5 11.5z"></path></svg>
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        </button>
+        <button class="btn btn-ghost" type="button" data-action="logout">Sign out</button>
+      </div>
+    </header>
+    <div class="subbar" id="subbar" hidden></div>
+    <main class="shell-main" id="main"></main>
+  </div>
+
+  <dialog id="new-project">
+    <form method="dialog" id="new-project-form">
+      <h2>New project</h2>
+      <p>The drawing folder is attached on the server. This only adds the project to the list.</p>
+      <p class="form-error" id="new-error" hidden></p>
+      <label class="field">
+        <span>Project name</span>
+        <input id="new-name" name="name" required placeholder="Al Barsha Residence">
+      </label>
+      <label class="field">
+        <span>Place</span>
+        <input id="new-place" name="place" placeholder="Dubai">
+      </label>
+      <div class="dialog-actions">
+        <button class="btn btn-ghost" type="button" data-action="close-dialog">Cancel</button>
+        <button class="btn btn-primary" type="submit">Add project</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="loader" class="loader" hidden role="status" aria-live="polite" aria-label="Loading">
+    <p class="loader-word">CONSTECH</p>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js?v=20261006b"></script>
+</body>
+</html>
