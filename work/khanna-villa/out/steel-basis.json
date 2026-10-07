@@ -1,0 +1,25 @@
+{
+  "lines": {
+    "sog_kg": {
+      "kg": 2995.9,
+      "basis": "estimated",
+      "flags": [
+        "mesh_from_reinf_plan",
+        "no_cover_deducted",
+        "unpriced_laps_or_hooks"
+      ],
+      "note": "mesh note on the ground floor reinforcement plan laid over that area; 130 laps on T10 counted but not priced (no lap length for T10)"
+    },
+    "suspended_kg": {
+      "kg": 26236.7,
+      "basis": "estimated",
+      "flags": [
+        "mesh_from_reinf_plan",
+        "no_cover_deducted",
+        "class_b_lap_from_typical_detail",
+        "partial_marked_bars"
+      ],
+      "note": "T12@200 top and bottom laid over each slab less openings, no cover deducted; a lap where a bar is longer than stock (12 m supply length (assumed; no sheet states it)); lap and hook from S-010 detail 9, class B, 35 MPa row (typed in, not read from the sheet); additional marked bars with a length and a range line add 3465 kg (17 of 46; the rest have no length or no range)"
+    }
+  }
+}

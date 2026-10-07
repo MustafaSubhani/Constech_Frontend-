@@ -1,0 +1,44 @@
+item,bill,courtyard,ours,diff_bill,pct_bill,diff_courtyard,pct_courtyard,note
+blinding_m3,46.000,44.068,45.992,-0.008,-0.0,1.924,4.4,"269-S-001-GENERAL NOTES - (SHEET 1 OF 2): 50 mm C12/15 under ALL FOUNDATIONS, GROUND BEAMS, GROUND SLABS; footing pads from the schedule (9.00 m3); slab on grade 600 m2; raft beds 140 m2; ground beams outside the slab 0 m2; raft blinding is the lower layer and is added to the slab blinding"
+raft_m3,65.000,66.740,65.228,0.228,0.4,-1.512,-2.3,closed outline around each raft thickness note
+raft_m2,41.000,41.370,41.016,0.016,0.0,-0.354,-0.9,edge length of that outline times thickness
+raft_kg,5608.000,5856.596,5537.900,-70.100,-1.3,-318.696,-5.4,"mesh note inside each raft, bars run across the rectangle around the outline, 75 mm cover; no edge bars"
+footing_m3,67.000,71.822,67.219,0.219,0.3,-4.603,-6.4,schedule depth times the matching outline
+footing_m2,143.000,149.350,144.210,1.210,0.8,-5.140,-3.4,perimeter times schedule depth
+footing_kg,5879.000,4690.401,5943.500,64.500,1.1,1253.099,26.7,"each schedule column measured both ways, bars inside the cover, 75 mm cover (assumed); no bends, laps or starter bars [steel basis: measured; schedule_both_ways, no_laps, no_bends, no_starter_bars]"
+neck_m3,9.000,8.000,9.686,0.686,7.6,1.686,21.1,from the top of each isolated footing to the underside of the ground beam; columns on the raft outline are excluded
+neck_m2,122.000,95.370,121.519,-0.481,-0.4,26.149,27.4,column perimeter times neck height plus half the local ground beam depth (form through the beam zone; concrete volume stops at the beam soffit)
+neck_kg,1626.000,1884.499,1569.022,-56.978,-3.5,-315.477,-16.7,"foundation-to-first-floor bars over that height, plus T10 stirrups at 200 mm"
+wall_m3,,3.000,33.961,,,30.961,1032.0,Sum of shear and core wall concrete from plan marks and S-202 thickness
+wall_m2,,19.800,,,,,,
+wall_kg,,468.793,,,,,,
+grade_beam_m3,43.000,44.000,41.702,-1.298,-3.0,-2.298,-5.2,"label size times the paired edges, extended to the column centre where the line stops short"
+grade_beam_m2,392.000,362.864,407.618,15.618,4.0,44.754,12.3,two sides plus the soffit; the section shows the beam bottom above the blinding
+grade_beam_kg,8109.000,7495.654,,,,,,
+tank_wall_m3,29.000,29.528,31.342,2.342,8.1,1.814,6.1,larger hatch annulus at the lift pit note times ground-to-first-floor height
+tank_wall_m2,231.000,227.230,254.934,23.934,10.4,27.704,12.2,
+tank_wall_kg,,3160.006,,,,,,
+lift_pit_wall_m3,3.000,3.000,2.981,-0.019,-0.6,-0.019,-0.6,lift pit hatch annulus times wall height from section (1500 mm when 2000 mm is total pit depth including slab build-up)
+lift_pit_wall_m2,27.000,23.400,26.851,-0.149,-0.6,3.451,14.7,
+lift_pit_wall_kg,,958.930,,,,,,
+sog_m3,57.000,80.000,58.433,1.433,2.5,-21.567,-27.0,"outline around each slab-on-grade note, raft footprint removed"
+sog_m2,,,486.943,,,,,"same area, top only; the bill has no separate soffit for slab on grade"
+sog_kg,3076.000,3493.335,2995.932,-80.068,-2.6,-497.403,-14.2,"mesh note on the ground floor reinforcement plan laid over that area; 130 laps on T10 counted but not priced (no lap length for T10) [steel basis: estimated; mesh_from_reinf_plan, no_cover_deducted, unpriced_laps_or_hooks]"
+column_m3,41.000,53.000,42.227,1.227,3.0,-10.773,-20.3,"column mark on each floor, from that floor up to the next, stopping at the beam on the floor above"
+column_m2,508.000,596.642,490.095,-17.905,-3.5,-106.547,-17.9,column perimeter times that height
+column_kg,7275.000,7828.538,,,,,,
+suspended_m3,323.000,273.763,329.714,6.714,2.1,55.951,20.4,"outline around each thickness note, less openings (28.4 m2) and less any slab drawn inside it; bays split at slab and column lines where notes disagree; notes disagree inside bays nothing drawn splits (roof 376 m2 (200-275 mm)), the thicker note is used: 103.5 m3, the thinner notes would make 75.3 m3; includes 39.2 m3 of framed beam within the slab thickness (monolithic zone)"
+suspended_m2,1294.000,1122.000,1370.844,76.844,5.9,248.844,22.2,"soffit of the slab outline, plus free edges and opening edges times the thickness"
+suspended_kg,25992.000,25543.468,26236.668,244.668,0.9,693.200,2.7,"T12@200 top and bottom laid over each slab less openings, no cover deducted; a lap where a bar is longer than stock (12 m supply length (assumed; no sheet states it)); lap and hook from S-010 detail 9, class B, 35 MPa row (typed in, not read from the sheet); additional marked bars with a length and a range line add 3465 kg (17 of 46; the rest have no length or no range) [steel basis: estimated; mesh_from_reinf_plan, no_cover_deducted, class_b_lap_from_typical_detail, partial_marked_bars]"
+beam_m3,106.000,114.425,112.181,6.181,5.8,-2.244,-2.0,label width times full depth on paired edges (bill-style capping line); 39.2 m3 of that full depth lies in the slab zone and is also counted in suspended slab
+beam_m2,830.000,,845.256,15.256,1.8,,,net beam faces in the monolithic zone plus full soffit on paired edges (matches bill capping form; slab line may also show soffit in the same zone)
+shear_wall_m3,18.000,19.866,18.747,0.747,4.1,-1.119,-5.6,W2 and W3 plan outlines times storey height; concrete scaled from S-202 bar detail thickness (e.g. 400 mm) over 200 mm plan symbol
+shear_wall_m2,155.000,157.480,152.260,-2.740,-1.8,-5.220,-3.3,
+shear_wall_kg,,2674.022,,,,,,
+core_wall_m3,16.000,19.096,15.215,-0.785,-4.9,-3.881,-20.3,W1 plan outlines times storey height; concrete scaled from S-202 detail thickness over 200 mm plan symbol
+core_wall_m2,56.000,158.240,56.709,0.709,1.3,-101.531,-64.2,
+core_wall_kg,,3324.531,,,,,,
+upstand_m3,10.000,10.132,10.003,0.003,0.0,-0.129,-1.3,"200 RC upstand labels on the nearest slab or beam edge; terrace run split between neighbours; concrete depth includes 125 mm slab zone, formwork to the 550 mm upstand face"
+upstand_m2,96.000,,96.330,0.330,0.3,,,two sides plus the soffit of that strip
+boundary_beam_m3,,,12.178,,,,,B(200X550) on the ground floor. S-300 schedules mark B as the boundary wall beam. The concrete bill has no line for it
+boundary_beam_m2,,,143.922,,,,,two sides plus the soffit of that section

@@ -1,0 +1,624 @@
+"""Local workspace: the sheet in the middle, detected outlines on top of it.
+
+Same arrangement as a takeoff canvas. Quantities stay in a side list.
+The drawing is the PDF. The outlines are the closed shapes from the DWG,
+placed with the shared-label fit.
+"""
+import csv
+import json
+import math
+import struct
+import zipfile
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import unquote, urlparse
+
+import pymupdf
+
+from collections import defaultdict
+
+from .foundations import (
+    _area_m2, _axis_fit, _fit_pdf, _measure_sheet, _row_points, _texts, point_in_poly,
+)
+from .geometry import centroid
+from .discovery import build_manifest
+from .measurements import (
+    FIT_RESIDUAL_OK_PT,
+    append_manual,
+    load_manual,
+    load_measurement_bundle,
+    merge_manual_measurements,
+)
+from .structure import _grade_beams, _slab_regions
+from .workspace_page import PAGE
+
+ZOOM = 1.35
+
+
+def _rasterize_page(page, zoom=ZOOM):
+    """Render page to a pixmap; returned width/height are the canonical canvas size."""
+    return page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False)
+
+
+def _read_png_size(path):
+    """Width/height from PNG header (matches saved pixmap pixels)."""
+    with Path(path).open("rb") as handle:
+        handle.seek(16)
+        return struct.unpack(">II", handle.read(8))
+
+
+def _ensure_sheet_raster(page, image_path, pdf_mtime):
+    """Write or reuse workspace PNG; return pixel width and height."""
+    image_path = Path(image_path)
+    stale = not image_path.is_file() or image_path.stat().st_mtime < pdf_mtime
+    if stale:
+        pix = _rasterize_page(page)
+        pix.save(image_path)
+        return pix.width, pix.height
+    return _read_png_size(image_path)
+
+
+LABELS = {
+    "blinding_m3": "Blinding, 50 mm",
+    "raft_m3": "Raft concrete",
+    "footing_m3": "Footing concrete",
+    "raft_kg": "Raft reinforcement",
+    "footing_kg": "Footing reinforcement",
+    "raft_m2": "Raft formwork",
+    "footing_m2": "Footing formwork",
+    "neck_m3": "Column necks",
+    "neck_kg": "Column neck steel",
+    "neck_m2": "Column neck formwork",
+    "grade_beam_m3": "Grade beams",
+    "grade_beam_m2": "Grade beam formwork",
+    "boundary_beam_m3": "Boundary wall beams",
+    "boundary_beam_m2": "Boundary wall beam formwork",
+    "sog_m3": "Slab on grade",
+    "sog_kg": "Slab on grade steel",
+    "sog_m2": "Slab on grade area",
+    "column_m3": "Columns",
+    "column_m2": "Column formwork",
+    "suspended_m3": "Suspended slabs",
+    "suspended_kg": "Suspended slab steel",
+    "suspended_m2": "Suspended slab sides and soffit",
+    "beam_m3": "Beams",
+    "beam_m2": "Beam sides and soffit",
+    "wall_m3": "All plan wall outlines",
+    "shear_wall_m3": "Shear walls (W2, W3)",
+    "core_wall_m3": "Core walls (W1)",
+    "lift_pit_wall_m3": "Lift pit walls",
+    "tank_wall_m3": "Tank walls",
+    "upstand_m3": "RC upstands",
+    "upstand_m2": "Upstand formwork",
+    "shear_wall_m2": "Shear wall formwork",
+    "core_wall_m2": "Core wall formwork",
+    "lift_pit_wall_m2": "Lift pit wall formwork",
+    "tank_wall_m2": "Tank wall formwork",
+}
+
+KIND_COLOR = {
+    "footing": "#c2410c",
+    "missed": "#b91c1c",
+    "raft": "#c2410c",
+    "column": "#1d4ed8",
+    "wall": "#0f766e",
+    "slab": "#b45309",
+    "beam": "#6d28d9",
+}
+
+
+def _unit(key):
+    if key.endswith("_kg"):
+        return "kg"
+    if key.endswith("_m2"):
+        return "m²"
+    if key.endswith("_m3"):
+        return "m³"
+    return ""
+
+
+def _digits(key):
+    return 1 if key.endswith("_kg") else 2
+
+
+def _num(value):
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except ValueError:
+        return None
+
+
+def _read_csv(path):
+    if not path.is_file():
+        return []
+    rows = []
+    with path.open(encoding="utf-8", newline="") as handle:
+        for record in csv.DictReader(handle):
+            key = (record.get("item") or "").strip()
+            if not key:
+                continue
+            row = {
+                "key": key,
+                "label": LABELS.get(key, key.replace("_", " ")),
+                "unit": _unit(key),
+                "digits": _digits(key),
+                "bill": _num(record.get("bill")),
+                "ours": _num(record.get("ours")),
+                "difference": _num(record.get("difference") or record.get("diff_bill")),
+                "pct": _num(record.get("pct") or record.get("pct_bill")),
+                "note": record.get("note") or record.get("reason") or "",
+            }
+            if "courtyard" in record:
+                row["courtyard"] = _num(record.get("courtyard"))
+                row["diff_courtyard"] = _num(record.get("diff_courtyard"))
+                row["pct_courtyard"] = _num(record.get("pct_courtyard"))
+            rows.append(row)
+    return rows
+
+
+def _compare_rows(out):
+    full = out / "full-structural-compare.csv"
+    if full.is_file():
+        rows = _read_csv(full)
+        if rows:
+            return rows, True
+    foundations = _read_csv(out / "foundations-compare.csv")
+    structure = _read_csv(out / "structure-compare.csv")
+    return foundations + structure, False
+
+
+def _find_pdf(project, stem):
+    pdf_dir = project / "pdf"
+    if pdf_dir.is_dir():
+        for path in pdf_dir.glob("*.pdf"):
+            if path.stem == stem:
+                return path
+    cache = project / "out" / "workspace" / "pdf"
+    cached = cache / f"{stem}.pdf"
+    if cached.is_file():
+        return cached
+    parents = [project.parent, project.parent.parent]
+    zip_paths = []
+    for folder in parents:
+        if folder and folder.is_dir():
+            zip_paths.extend(folder.glob("*.zip"))
+    for zip_path in zip_paths:
+        try:
+            archive = zipfile.ZipFile(zip_path)
+        except zipfile.BadZipFile:
+            continue
+        for name in archive.namelist():
+            if not name.lower().endswith(".pdf"):
+                continue
+            if Path(name).stem == stem:
+                cache.mkdir(parents=True, exist_ok=True)
+                cached.write_bytes(archive.read(name))
+                return cached
+    return None
+
+
+def ensure_sheet_png(project, stem):
+    """Rasterize the sheet PDF to out/workspace/{stem}.png if needed."""
+    project = Path(project)
+    stem = str(stem)
+    cache = project / "out" / "workspace"
+    cache.mkdir(parents=True, exist_ok=True)
+    image = cache / f"{stem}.png"
+    pdf = _find_pdf(project, stem)
+    if pdf is None:
+        return None
+    if not image.is_file() or image.stat().st_mtime < pdf.stat().st_mtime:
+        doc = pymupdf.open(pdf)
+        page = doc[0]
+        _ensure_sheet_raster(page, image, pdf.stat().st_mtime)
+        doc.close()
+    return image if image.is_file() else None
+
+
+def _fit_cloud(page, dump):
+    """Match a repeated word by its spread when the copies are not on one row."""
+    dwg_by_text = defaultdict(list)
+    for text in _texts(dump):
+        for token in text["text"].replace("\n", " ").split():
+            token = token.strip()
+            if 1 <= len(token) <= 12:
+                dwg_by_text[token].append((text["x"], text["y"]))
+    pdf_by_text = defaultdict(list)
+    for word in page.get_text("words"):
+        token = word[4].strip()
+        if 1 <= len(token) <= 12:
+            pdf_by_text[token].append(((word[0] + word[2]) / 2, (word[1] + word[3]) / 2))
+    best = None
+    for token, dwg in dwg_by_text.items():
+        pdf = pdf_by_text.get(token) or []
+        if len(dwg) < 3 or len(dwg) != len(pdf):
+            continue
+        dx0, dx1 = min(p[0] for p in dwg), max(p[0] for p in dwg)
+        if dx1 - dx0 < 50:
+            continue
+        px0, px1 = min(p[0] for p in pdf), max(p[0] for p in pdf)
+        ax = (px1 - px0) / (dx1 - dx0)
+        if not 0.015 <= abs(ax) <= 0.06:
+            continue
+        ay = -ax
+        dwg_cx = sum(p[0] for p in dwg) / len(dwg)
+        dwg_cy = sum(p[1] for p in dwg) / len(dwg)
+        pdf_cx = sum(p[0] for p in pdf) / len(pdf)
+        pdf_cy = sum(p[1] for p in pdf) / len(pdf)
+        bx = pdf_cx - ax * dwg_cx
+        by = pdf_cy - ay * dwg_cy
+        distances = []
+        for x, y in dwg:
+            qx, qy = ax * x + bx, ay * y + by
+            distances.append(min(((qx - px) ** 2 + (qy - py) ** 2) ** 0.5 for px, py in pdf))
+        distances.sort()
+        residual = distances[len(distances) // 2]
+        if residual > 4:
+            continue
+        if best is None or residual < best[0]:
+            best = (residual, ax, bx, ay, by, residual, token)
+    if not best:
+        return None
+    return best[1:]
+
+
+def _fit_sheet(page, dump):
+    """Line the DWG up with the PDF.
+
+    Whole labels are tried first. If the PDF has split a label into words,
+    those words are matched too. A fit is kept only when the row lines up.
+    """
+    direct = _fit_pdf(page, dump)
+    if direct and direct[4] < 8:
+        return direct
+    dwg_by_text = defaultdict(list)
+    for text in _texts(dump):
+        for token in text["text"].replace("\n", " ").split():
+            token = token.strip()
+            if 1 <= len(token) <= 12:
+                dwg_by_text[token].append((text["x"], text["y"]))
+    pdf_by_text = defaultdict(list)
+    for word in page.get_text("words"):
+        token = word[4].strip()
+        if 1 <= len(token) <= 12:
+            pdf_by_text[token].append(((word[0] + word[2]) / 2, (word[1] + word[3]) / 2))
+    best = None
+    for token, dwg_pts in dwg_by_text.items():
+        pdf_pts = pdf_by_text.get(token)
+        if not pdf_pts or len(dwg_pts) < 4 or len(pdf_pts) < 4:
+            continue
+        dwg_row = _row_points(dwg_pts, 1, 80)
+        pdf_row = _row_points(pdf_pts, 1, 6)
+        n = min(len(dwg_row), len(pdf_row))
+        if n < 4:
+            continue
+        span = dwg_row[n - 1][0] - dwg_row[0][0]
+        ax, bx = _axis_fit([p[0] for p in dwg_row[:n]], [p[0] for p in pdf_row[:n]])
+        if abs(ax) < 1e-9:
+            continue
+        ay = -ax
+        by = pdf_row[0][1] - ay * dwg_row[0][1]
+        residual = max(abs(ax * dwg_row[i][0] + bx - pdf_row[i][0]) for i in range(n))
+        if residual > 8:
+            continue
+        if best is None or span > best[0]:
+            best = (span, ax, bx, ay, by, residual, token)
+    if best:
+        return best[1:]
+    return _fit_cloud(page, dump) or direct
+
+
+def _points(vertices, fit, zoom):
+    ax, bx, ay, by = fit[:4]
+    return [[round((ax * x + bx) * zoom, 1), round((ay * y + by) * zoom, 1)] for x, y in vertices]
+
+
+def _foundation_shapes(dump, fit, zoom, sheet_stem):
+    measured = _measure_sheet(dump)
+    if not measured or not fit:
+        return []
+    if fit[4] > FIT_RESIDUAL_OK_PT:
+        return []
+    shapes = []
+    for index, row in enumerate(measured["rows"]):
+        vertices = row.get("vertices") or []
+        if len(vertices) < 3:
+            continue
+        missed = bool(row.get("missed"))
+        tag = row.get("tag") or "Footing"
+        label = "Missed" if missed else tag
+        detail = row.get("concrete_m3")
+        if detail != "" and detail is not None:
+            label = f"{label}  {detail} m³"
+        mid = f"footing-{sheet_stem}-{tag}-{index}"
+        shapes.append({
+            "id": f"f{index}",
+            "measurement_id": mid,
+            "kind": "missed" if missed else "footing",
+            "label": label,
+            "points": _points(vertices, fit, zoom),
+            "dashed": missed,
+        })
+    for index, raft in enumerate(measured["rafts"]):
+        vertices = raft.get("vertices") or []
+        if len(vertices) < 3:
+            continue
+        shapes.append({
+            "id": f"r{index}",
+            "measurement_id": f"raft-{sheet_stem}-{index}",
+            "kind": "raft",
+            "label": f"Raft  {raft.get('thickness', '')} mm",
+            "points": _points(vertices, fit, zoom),
+            "dashed": True,
+        })
+    return shapes
+
+
+def _plan_shapes(dump, fit, zoom, stem=""):
+    if not fit:
+        return []
+    marks = [
+        text for text in _texts(dump)
+        if text["text"].strip() and len(text["text"].strip()) <= 6 and "IDEN" in text.get("layer", "")
+    ]
+    shapes = []
+    index = 0
+    for entity in dump.get("entities", []):
+        if entity.get("kind") != "polyline" or not entity.get("closed"):
+            continue
+        if entity.get("source") != "model":
+            continue
+        vertices = entity.get("vertices") or []
+        if len(vertices) < 3:
+            continue
+        layer = entity.get("layer", "").upper()
+        area = _area_m2(vertices)
+        kind = ""
+        if "COL" in layer and 0.04 <= area <= 1.5:
+            kind = "column"
+        else:
+            continue
+        cx, cy = centroid(vertices)
+        label = "Column"
+        best = None
+        if kind == "column":
+            for mark in marks:
+                token = mark["text"].strip()
+                if not token[:1].isalpha():
+                    continue
+                dist = ((mark["x"] - cx) ** 2 + (mark["y"] - cy) ** 2) ** 0.5
+                if best is None or dist < best[0]:
+                    best = (dist, token)
+            if best and best[0] < 2000:
+                label = best[1]
+                if label.startswith("W"):
+                    kind = "wall"
+            label = f"{label}  {area:.2f} m²"
+        tag_key = label.split()[0] if label else str(index)
+        mid = f"columns-{stem}-{tag_key}" if kind == "column" else f"walls-{stem}-{tag_key}"
+        shapes.append({
+            "id": f"p{index}",
+            "measurement_id": mid,
+            "kind": kind,
+            "label": label,
+            "points": _points(vertices, fit, zoom),
+            "dashed": False,
+        })
+        index += 1
+    for region in _slab_regions(dump):
+        vertices = region["vertices"]
+        if _mentions(dump, vertices, "STEEL ROOF"):
+            continue
+        area = region["area_m2"]
+        shapes.append({
+            "id": f"s{index}",
+            "measurement_id": f"slab-{stem}-{index}",
+            "kind": "slab",
+            "label": f"Slab {region['thickness']} mm  {area:.0f} m²",
+            "points": _points(vertices, fit, zoom),
+            "dashed": False,
+        })
+        index += 1
+    beams = _grade_beams(dump, prefixes=("GB", "FB", "RB", "URB", "SB", "B"))
+    for segment in beams.get("segments") or []:
+        band = _beam_band(segment["a"], segment["b"], segment["width_mm"])
+        shapes.append({
+            "id": f"b{index}",
+            "measurement_id": f"grade-beam-{stem}-{index}",
+            "kind": "beam",
+            "label": f"Beam {segment['width_mm']}×{segment['depth_mm']}",
+            "points": _points(band, fit, zoom),
+            "dashed": False,
+        })
+        index += 1
+    return shapes
+
+
+def _mentions(dump, vertices, needle):
+    for text in _texts(dump):
+        if needle not in text["text"].upper():
+            continue
+        if point_in_poly(text["x"], text["y"], vertices):
+            return True
+    return False
+
+
+def _beam_band(start, end, width_mm):
+    dx = end[0] - start[0]
+    dy = end[1] - start[1]
+    length = math.hypot(dx, dy) or 1.0
+    offset = width_mm / 2.0
+    px = -dy / length * offset
+    py = dx / length * offset
+    return [
+        (start[0] + px, start[1] + py),
+        (end[0] + px, end[1] + py),
+        (end[0] - px, end[1] - py),
+        (start[0] - px, start[1] - py),
+    ]
+
+
+def _sheet_title(stem):
+    parts = stem.split("-")
+    if parts and parts[0].isdigit():
+        parts = parts[1:]
+    head = "-".join(parts[:2])
+    rest = " ".join(part.title() for part in parts[2:])
+    return f"{head} {rest}".strip()
+
+
+def build_catalog(project):
+    project = Path(project)
+    out = project / "out"
+    cache = out / "workspace"
+    cache.mkdir(parents=True, exist_ok=True)
+    sheets = []
+    dumps = sorted(p for p in out.glob("*.json") if not p.name.startswith("_") and not p.stem.startswith("S-10"))
+    # Prefer the full sheet name over the short alias dumps.
+    seen = set()
+    for dump_path in dumps:
+        stem = dump_path.stem
+        if stem in seen:
+            continue
+        if "REINF" in stem.upper() or "SCHEDULE" in stem.upper() or "SECTION" in stem.upper():
+            continue
+        pdf = _find_pdf(project, stem)
+        if pdf is None:
+            continue
+        seen.add(stem)
+        print(f"  sheet {stem}", flush=True)
+        dump = json.loads(dump_path.read_text(encoding="utf-8"))
+        doc = pymupdf.open(pdf)
+        page = doc[0]
+        fit = _fit_sheet(page, dump)
+        image = cache / f"{stem}.png"
+        width, height = _ensure_sheet_raster(page, image, pdf.stat().st_mtime)
+        width, height = int(page.rect.width * ZOOM), int(page.rect.height * ZOOM)
+        doc.close()
+        fit_ok = fit is not None and fit[4] <= FIT_RESIDUAL_OK_PT
+        fit_residual = round(fit[4], 2) if fit else None
+        if "FOUNDATION" in stem.upper():
+            shapes = _foundation_shapes(dump, fit, ZOOM, stem) if fit_ok else []
+        elif "FLOOR" in stem.upper() or "PLAN" in stem.upper():
+            shapes = _plan_shapes(dump, fit, ZOOM, stem) if fit_ok else []
+        else:
+            shapes = []
+        if not shapes and not fit_ok:
+            continue
+        if not shapes:
+            continue
+        for shape in shapes:
+            shape["color"] = KIND_COLOR.get(shape["kind"], "#444")
+        sheets.append({
+            "id": stem,
+            "title": _sheet_title(stem),
+            "image": f"/sheets/{stem}.png",
+            "width": width,
+            "height": height,
+            "fit_residual_pt": fit_residual,
+            "fit_ok": fit_ok,
+            "shapes": shapes,
+        })
+    manifest_path = out / "project-manifest.json"
+    manifest = {}
+    if manifest_path.is_file():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    bundle = load_measurement_bundle(project)
+    measurements = merge_manual_measurements(
+        bundle.get("measurements") or [],
+        load_manual(project),
+    )
+    return {
+        "project": project.name,
+        "sheets": sheets,
+        "manifest": manifest,
+        "measurements": measurements,
+        "review_queue": bundle.get("review_queue") or [],
+        "sheet_alignment": bundle.get("sheet_alignment") or [],
+        "foundations": _read_csv(out / "foundations-compare.csv"),
+        "structure": _read_csv(out / "structure-compare.csv"),
+        **(_compare_bundle(out)),
+    }
+
+
+def _compare_bundle(out):
+    rows, three_way = _compare_rows(out)
+    return {
+        "full_compare": rows,
+        "compare_three_way": three_way,
+    }
+
+
+def _ensure_manifest(project):
+    out = project / "out"
+    manifest_path = out / "project-manifest.json"
+    newest_dwg = 0.0
+    skip = {"out", "node_modules", ".git"}
+    for dwg in project.rglob("*.dwg"):
+        if set(dwg.parts) & skip:
+            continue
+        newest_dwg = max(newest_dwg, dwg.stat().st_mtime)
+    stale = not manifest_path.is_file() or manifest_path.stat().st_mtime < newest_dwg
+    if stale:
+        print("Updating drawing register (project-manifest.json)…", flush=True)
+        build_manifest(project, dump_json=True)
+
+
+def serve(project, port=8765):
+    project = Path(project).resolve()
+    _ensure_manifest(project)
+    print("Building the sheet views…", flush=True)
+    images = project / "out" / "workspace"
+    initial = build_catalog(project)
+
+    def catalog_payload():
+        return json.dumps(build_catalog(project)).encode("utf-8")
+
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, fmt, *args):
+            print(f"  {self.address_string()} {fmt % args}", flush=True)
+
+        def _send(self, code, body, content_type):
+            data = body if isinstance(body, bytes) else body.encode("utf-8")
+            self.send_response(code)
+            self.send_header("Content-Type", content_type)
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+
+        def do_GET(self):
+            path = unquote(urlparse(self.path).path)
+            if path in ("/", "/index.html"):
+                self._send(200, PAGE, "text/html; charset=utf-8")
+                return
+            if path == "/api/takeoff":
+                self._send(200, catalog_payload(), "application/json")
+                return
+            if path.startswith("/sheets/") and path.endswith(".png"):
+                image = images / Path(path).name
+                if image.is_file():
+                    self._send(200, image.read_bytes(), "image/png")
+                    return
+            self._send(404, "Not found", "text/plain; charset=utf-8")
+
+        def do_POST(self):
+            path = unquote(urlparse(self.path).path)
+            if path != "/api/manual":
+                self._send(404, "Not found", "text/plain; charset=utf-8")
+                return
+            length = int(self.headers.get("Content-Length") or 0)
+            raw = self.rfile.read(length) if length else b"{}"
+            try:
+                body = json.loads(raw.decode("utf-8"))
+            except json.JSONDecodeError:
+                self._send(400, '{"error":"invalid json"}', "application/json")
+                return
+            entry = append_manual(project, body)
+            self._send(200, json.dumps({"ok": True, "entry": entry}), "application/json")
+
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    sheet_count = len(initial.get("sheets") or [])
+    print(f"Workspace http://127.0.0.1:{port}/  {sheet_count} sheets", flush=True)
+    server.serve_forever()

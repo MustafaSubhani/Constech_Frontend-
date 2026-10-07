@@ -1,0 +1,228 @@
+{
+  "project": "khanna-villa",
+  "project_path": "D:\\Constech\\work\\khanna-villa",
+  "scan_mode": "filename_only",
+  "drawing_count": 13,
+  "bill_workbook": "Bill No. 2 - Main Villa.xlsx",
+  "rules_from_notes": {},
+  "sheets": [
+    {
+      "stem": "269-S-100-FOUNDATIONS",
+      "role": "foundation_plan",
+      "floor": "",
+      "sheet_no": "100",
+      "variant": "FOUNDATIONS",
+      "file": "269-S-100-FOUNDATIONS.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-100-FOUNDATIONS.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 100 FOUNDATIONS"
+    },
+    {
+      "stem": "269-S-101-A-GROUND FLOOR PLAN",
+      "role": "floor_plan",
+      "floor": "ground",
+      "sheet_no": "101",
+      "variant": "A",
+      "file": "269-S-101-A-GROUND FLOOR PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-101-A-GROUND FLOOR PLAN.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 101 A GROUND FLOOR PLAN"
+    },
+    {
+      "stem": "269-S-101-B-GROUND FLOOR REINF PLAN",
+      "role": "reinforcement_plan",
+      "floor": "ground",
+      "sheet_no": "101",
+      "variant": "B",
+      "file": "269-S-101-B-GROUND FLOOR REINF PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-101-B-GROUND FLOOR REINF PLAN.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 101 B GROUND FLOOR REINF PLAN"
+    },
+    {
+      "stem": "269-S-102-A-FIRST FLOOR PLAN",
+      "role": "floor_plan",
+      "floor": "first",
+      "sheet_no": "102",
+      "variant": "A",
+      "file": "269-S-102-A-FIRST FLOOR PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-102-A-FIRST FLOOR PLAN.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 102 A FIRST FLOOR PLAN"
+    },
+    {
+      "stem": "269-S-102-B-FIRST FLOOR REINF PLAN",
+      "role": "reinforcement_plan",
+      "floor": "first",
+      "sheet_no": "102",
+      "variant": "B",
+      "file": "269-S-102-B-FIRST FLOOR REINF PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-102-B-FIRST FLOOR REINF PLAN.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 102 B FIRST FLOOR REINF PLAN"
+    },
+    {
+      "stem": "269-S-103-A-ROOF FLOOR PLAN",
+      "role": "floor_plan",
+      "floor": "roof",
+      "sheet_no": "103",
+      "variant": "A",
+      "file": "269-S-103-A-ROOF FLOOR PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-103-A-ROOF FLOOR PLAN.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 103 A ROOF FLOOR PLAN"
+    },
+    {
+      "stem": "269-S-103-B-ROOF FLOOR REINF PLAN",
+      "role": "reinforcement_plan",
+      "floor": "roof",
+      "sheet_no": "103",
+      "variant": "B",
+      "file": "269-S-103-B-ROOF FLOOR REINF PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-103-B-ROOF FLOOR REINF PLAN.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 103 B ROOF FLOOR REINF PLAN"
+    },
+    {
+      "stem": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "role": "floor_plan",
+      "floor": "upper",
+      "sheet_no": "104",
+      "variant": "A",
+      "file": "269-S-104-A-UPPER ROOF FLOOR PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-104-A-UPPER ROOF FLOOR PLAN.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 104 A UPPER ROOF FLOOR PLAN"
+    },
+    {
+      "stem": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN",
+      "role": "reinforcement_plan",
+      "floor": "upper",
+      "sheet_no": "104",
+      "variant": "B",
+      "file": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-104-B-UPPER ROOF FLOOR REINF PLAN.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 104 B UPPER ROOF FLOOR REINF PLAN"
+    },
+    {
+      "stem": "269-S-200-BEAMS SCHEDULE",
+      "role": "beam_schedule",
+      "floor": "",
+      "sheet_no": "200",
+      "variant": "BEAMS",
+      "file": "269-S-200-BEAMS SCHEDULE.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-200-BEAMS SCHEDULE.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 200 BEAMS SCHEDULE"
+    },
+    {
+      "stem": "269-S-201-COLUMNS REINF. DETAILS",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "201",
+      "variant": "COLUMNS",
+      "file": "269-S-201-COLUMNS REINF. DETAILS.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-201-COLUMNS REINF. DETAILS.dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 201 COLUMNS REINF. DETAILS"
+    },
+    {
+      "stem": "269-S-300-SECTIONS DETAILS - (SHEET 1 OF 2)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "300",
+      "variant": "SECTIONS",
+      "file": "269-S-300-SECTIONS DETAILS - (SHEET 1 OF 2).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-300-SECTIONS DETAILS - (SHEET 1 OF 2).dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 300 SECTIONS DETAILS   (SHEET 1 OF 2)"
+    },
+    {
+      "stem": "269-S-301-SECTIONS DETAILS - (SHEET 2 OF 2)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "301",
+      "variant": "SECTIONS",
+      "file": "269-S-301-SECTIONS DETAILS - (SHEET 2 OF 2).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa\\dwg\\269-S-301-SECTIONS DETAILS - (SHEET 2 OF 2).dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269 S 301 SECTIONS DETAILS   (SHEET 2 OF 2)"
+    }
+  ],
+  "plan_reinf_pairs": [
+    {
+      "plan": "269-S-100-FOUNDATIONS",
+      "reinf": "269-S-101-B-GROUND FLOOR REINF PLAN",
+      "floor": "ground",
+      "confidence": "medium"
+    },
+    {
+      "plan": "269-S-101-A-GROUND FLOOR PLAN",
+      "reinf": "269-S-102-B-FIRST FLOOR REINF PLAN",
+      "floor": "ground",
+      "confidence": "medium"
+    },
+    {
+      "plan": "269-S-102-A-FIRST FLOOR PLAN",
+      "reinf": "269-S-103-B-ROOF FLOOR REINF PLAN",
+      "floor": "first",
+      "confidence": "medium"
+    },
+    {
+      "plan": "269-S-103-A-ROOF FLOOR PLAN",
+      "reinf": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN",
+      "floor": "roof",
+      "confidence": "medium"
+    },
+    {
+      "plan": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "reinf": "",
+      "floor": "",
+      "confidence": "none"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "storey_heights",
+      "status": "blocked",
+      "reason": "No slab spot levels (SSL or TOC/FFL) detected"
+    },
+    {
+      "id": "slabs",
+      "status": "blocked",
+      "reason": "Plan sheets present but no SLAB THK = n mm notes"
+    },
+    {
+      "id": "beams",
+      "status": "partial",
+      "reason": "Beam marks or schedule present but not Khanna-style sized labels on plans"
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+{
+  "project": "project-2099",
+  "project_path": "D:\\Constech\\work\\project-2099",
+  "scan_mode": "full",
+  "drawing_count": 9,
+  "dwg_count": 9,
+  "pdf_only_count": 0,
+  "bill_workbook": "",
+  "rules_from_notes": {},
+  "sheets": [
+    {
+      "stem": "2099-S-201-FOUNDATION LAYOUT",
+      "role": "foundation_layout",
+      "floor": "",
+      "sheet_no": "201",
+      "variant": "FOUNDATION",
+      "file": "2099-S-201-FOUNDATION LAYOUT.dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-201-FOUNDATION LAYOUT.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_other",
+        "other_level_marks"
+      ],
+      "ssl_levels": [],
+      "level_marks": [
+        -1.1,
+        0.3
+      ],
+      "title": "S-201",
+      "text_entity_count": 282,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "foundations.layout"
+      ]
+    },
+    {
+      "stem": "2099-S-300-GROUND FLOOR FRAMING PLAN",
+      "role": "framing_plan",
+      "floor": "ground",
+      "sheet_no": "300",
+      "variant": "GROUND",
+      "file": "2099-S-300-GROUND FLOOR FRAMING PLAN.dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-300-GROUND FLOOR FRAMING PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_other",
+        "other_level_marks",
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [
+        -1.55,
+        -1.1,
+        0.0,
+        0.3,
+        0.65
+      ],
+      "title": "S-300",
+      "text_entity_count": 217,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.beams",
+        "structure.columns",
+        "structure.slabs"
+      ]
+    },
+    {
+      "stem": "2099-S-303-1ST FLOOR  FRAMING PLAN",
+      "role": "framing_plan",
+      "floor": "first",
+      "sheet_no": "303",
+      "variant": "1ST",
+      "file": "2099-S-303-1ST FLOOR  FRAMING PLAN.dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-303-1ST FLOOR  FRAMING PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "other_level_marks",
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [
+        12.7,
+        12.9
+      ],
+      "title": "",
+      "text_entity_count": 657,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.beams",
+        "structure.columns",
+        "structure.slabs"
+      ]
+    },
+    {
+      "stem": "2099-S-303A-GROUND FLOOR TOP X-DIR REINFORECMENT PLAN",
+      "role": "reinforcement_plan",
+      "floor": "ground",
+      "sheet_no": "303",
+      "variant": "",
+      "file": "2099-S-303A-GROUND FLOOR TOP X-DIR REINFORECMENT PLAN.dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-303A-GROUND FLOOR TOP X-DIR REINFORECMENT PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "",
+      "text_entity_count": 569,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.rebar"
+      ]
+    },
+    {
+      "stem": "2099-S-304-2ND FLOOR  FRAMING PLAN",
+      "role": "framing_plan",
+      "floor": "second",
+      "sheet_no": "304",
+      "variant": "2ND",
+      "file": "2099-S-304-2ND FLOOR  FRAMING PLAN.dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-304-2ND FLOOR  FRAMING PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "other_level_marks"
+      ],
+      "ssl_levels": [],
+      "level_marks": [
+        16.5
+      ],
+      "title": "",
+      "text_entity_count": 342,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.beams",
+        "structure.columns",
+        "structure.slabs"
+      ]
+    },
+    {
+      "stem": "2099-S-306A-1ST FLOOR REINFORCEMENT PLAN",
+      "role": "reinforcement_plan",
+      "floor": "first",
+      "sheet_no": "306",
+      "variant": "",
+      "file": "2099-S-306A-1ST FLOOR REINFORCEMENT PLAN.dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-306A-1ST FLOOR REINFORCEMENT PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "",
+      "text_entity_count": 239,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.rebar"
+      ]
+    },
+    {
+      "stem": "2099-S-322-ROOF FLOOR  FRAMING PLAN",
+      "role": "framing_plan",
+      "floor": "roof",
+      "sheet_no": "322",
+      "variant": "ROOF",
+      "file": "2099-S-322-ROOF FLOOR  FRAMING PLAN.dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-322-ROOF FLOOR  FRAMING PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "",
+      "text_entity_count": 279,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.beams",
+        "structure.columns",
+        "structure.slabs"
+      ]
+    },
+    {
+      "stem": "2099-S-413-COLUMNS SCHEDULES (1-2)",
+      "role": "column_schedule",
+      "floor": "",
+      "sheet_no": "413",
+      "variant": "COLUMNS",
+      "file": "2099-S-413-COLUMNS SCHEDULES (1-2).dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-413-COLUMNS SCHEDULES (1-2).dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "",
+      "text_entity_count": 370,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.column_schedule"
+      ]
+    },
+    {
+      "stem": "2099-S-514-BEAMS AND PILE CAPS SCHEDULES",
+      "role": "pile_cap_schedule",
+      "floor": "",
+      "sheet_no": "514",
+      "variant": "BEAMS",
+      "file": "2099-S-514-BEAMS AND PILE CAPS SCHEDULES.dwg",
+      "path": "D:\\Constech\\work\\project-2099\\dwg\\2099-S-514-BEAMS AND PILE CAPS SCHEDULES.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_other",
+        "pile_cap_schedule_title"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "S-502",
+      "text_entity_count": 383,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "foundations.pile_caps"
+      ]
+    }
+  ],
+  "plan_reinf_pairs": [
+    {
+      "plan": "2099-S-300-GROUND FLOOR FRAMING PLAN",
+      "reinf": "2099-S-303A-GROUND FLOOR TOP X-DIR REINFORECMENT PLAN",
+      "floor": "ground",
+      "confidence": "high"
+    },
+    {
+      "plan": "2099-S-303-1ST FLOOR  FRAMING PLAN",
+      "reinf": "2099-S-306A-1ST FLOOR REINFORCEMENT PLAN",
+      "floor": "first",
+      "confidence": "high"
+    },
+    {
+      "plan": "2099-S-304-2ND FLOOR  FRAMING PLAN",
+      "reinf": "",
+      "floor": "",
+      "confidence": "none"
+    },
+    {
+      "plan": "2099-S-322-ROOF FLOOR  FRAMING PLAN",
+      "reinf": "",
+      "floor": "",
+      "confidence": "none"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "footings_pile_caps",
+      "status": "partial",
+      "reason": "Pile cap schedule title found; pile cap quantity rules are not implemented yet"
+    },
+    {
+      "id": "storey_heights",
+      "status": "partial",
+      "reason": "Level text found but not in SSL form; storey logic may not run"
+    },
+    {
+      "id": "slabs",
+      "status": "partial",
+      "reason": "Slab thickness notes found but outlines may not match villa-style rules"
+    },
+    {
+      "id": "beams",
+      "status": "partial",
+      "reason": "Beam marks or schedule present but not Khanna-style sized labels on plans"
+    }
+  ],
+  "project_files": {
+    "file_count": 9,
+    "drawing_prefixes": [],
+    "has_bill_workbook": false,
+    "has_courtyard_workbook": false
+  },
+  "sheet_joins": [
+    {
+      "token": "FOUNDATION",
+      "stem": "2099-S-201-FOUNDATION LAYOUT",
+      "modules": [
+        "foundations.layout"
+      ],
+      "present": true
+    },
+    {
+      "token": "S-201",
+      "stem": "2099-S-201-FOUNDATION LAYOUT",
+      "modules": [
+        "structure.column_schedule"
+      ],
+      "present": true
+    },
+    {
+      "token": "S-202",
+      "stem": "",
+      "modules": [
+        "structure.wall_schedule"
+      ],
+      "present": false
+    },
+    {
+      "token": "S-300",
+      "stem": "2099-S-300-GROUND FLOOR FRAMING PLAN",
+      "modules": [
+        "structure.sections"
+      ],
+      "present": true
+    },
+    {
+      "token": "S-301",
+      "stem": "",
+      "modules": [
+        "structure.sections"
+      ],
+      "present": false
+    },
+    {
+      "token": "101-B",
+      "stem": "",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": false
+    },
+    {
+      "token": "102-B",
+      "stem": "",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": false
+    },
+    {
+      "token": "103-B",
+      "stem": "",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": false
+    },
+    {
+      "token": "104-B",
+      "stem": "",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": false
+    },
+    {
+      "token": "2099-S-303A-GROUND FLOOR TOP X-DIR REINFORECMENT PLAN",
+      "stem": "2099-S-303A-GROUND FLOOR TOP X-DIR REINFORECMENT PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    },
+    {
+      "token": "2099-S-306A-1ST FLOOR REINFORCEMENT PLAN",
+      "stem": "2099-S-306A-1ST FLOOR REINFORCEMENT PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    }
+  ]
+}

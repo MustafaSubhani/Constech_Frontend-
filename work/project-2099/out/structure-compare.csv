@@ -1,0 +1,29 @@
+item,bill,ours,difference,pct,note
+column_m3,,0.000,,,"column mark on each floor, from that floor up to the next, stopping at the beam on the floor above"
+column_m2,,0.000,,,column perimeter times that height
+wall_m3,,0.000,,,Sum of shear and core wall concrete from plan marks and S-202 thickness
+shear_wall_m3,,0.000,,,W2 and W3 plan outlines times storey height; concrete scaled from S-202 bar detail thickness (e.g. 400 mm) over 200 mm plan symbol
+core_wall_m3,,0.000,,,W1 plan outlines times storey height; concrete scaled from S-202 detail thickness over 200 mm plan symbol
+lift_pit_wall_m3,,0.000,,,lift pit hatch annulus times wall height from section (1500 mm when 2000 mm is total pit depth including slab build-up)
+tank_wall_m3,,0.000,,,larger hatch annulus at the lift pit note times ground-to-first-floor height
+shear_wall_m2,,0.000,,,
+core_wall_m2,,0.000,,,
+lift_pit_wall_m2,,0.000,,,
+tank_wall_m2,,0.000,,,
+upstand_m3,,0.000,,,"200 RC upstand labels on the nearest slab or beam edge; terrace run split between neighbours; concrete depth includes 125 mm slab zone, formwork to the 550 mm upstand face"
+upstand_m2,,0.000,,,two sides plus the soffit of that strip
+grade_beam_m3,,0.000,,,"label size times the paired edges, extended to the column centre where the line stops short"
+grade_beam_m2,,0.000,,,two sides plus the soffit; the section shows the beam bottom above the blinding
+boundary_beam_m3,,0.000,,,B(200X550) on the ground floor. S-300 schedules mark B as the boundary wall beam. The concrete bill has no line for it
+boundary_beam_m2,,0.000,,,two sides plus the soffit of that section
+beam_m3,,0.000,,,label width times depth below the suspended slab soffit on paired edges; concrete within the slab thickness is counted in suspended slab
+beam_m2,,0.000,,,two sides plus the soffit of the stem below the slab (slab-zone faces counted on suspended slab m2)
+neck_m3,,0.000,,,from the top of each isolated footing to the underside of the ground beam; columns on the raft outline are excluded
+neck_m2,,0.000,,,column perimeter times that height
+neck_kg,,0.000,,,"foundation-to-first-floor bars over that height, plus T10 stirrups at 200 mm"
+sog_m3,,0.000,,,"outline around each slab-on-grade note, raft footprint removed"
+sog_m2,,0.000,,,"same area, top only; the bill has no separate soffit for slab on grade"
+sog_kg,,0.000,,,mesh note on the ground floor reinforcement plan laid over that area
+suspended_m3,,0.000,,,"outline around each thickness note, less openings (0.0 m2) and less any slab drawn inside it; bays split at slab and column lines where notes disagree; includes 0.0 m3 of framed beam within the slab thickness (monolithic zone)"
+suspended_m2,,0.000,,,"soffit of the slab outline, plus free edges and opening edges times the thickness"
+suspended_kg,,0.000,,,"mesh laid over each slab less openings, no cover deducted; a lap where a bar is longer than stock (12 m supply length (assumed; no sheet states it)); lap and hook from S-010 detail 9, class B, 35 MPa row (typed in, not read from the sheet); additional marked bars with a length and a range line add 0 kg (0 of 0; the rest have no length or no range)"

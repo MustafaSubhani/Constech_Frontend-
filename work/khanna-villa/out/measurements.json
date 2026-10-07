@@ -1,0 +1,6418 @@
+{
+  "project": "khanna-villa",
+  "version": 1,
+  "measurements": [
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-0",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-1",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-2",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-3",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-4",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-5",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-6",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-7",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-8",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-9",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-10",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-11",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-12",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-13",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-14",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-15",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-16",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-17",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-18",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-19",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-20",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC2-21",
+      "element_type": "footing",
+      "tag": "FC2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.3,
+        "blinding_m3": 0.055,
+        "formwork_m2": 1.2,
+        "rebar_kg": 33.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1000,
+        "area_m2": 1.0,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC2-22",
+      "element_type": "footing",
+      "tag": "FC2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.3,
+        "blinding_m3": 0.055,
+        "formwork_m2": 1.2,
+        "rebar_kg": 33.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1000,
+        "area_m2": 1.0,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-23",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-24",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-25",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-26",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-27",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-28",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-29",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-30",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-31",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-32",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-33",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-34",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-35",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-36",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-37",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-38",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "review",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.413,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.41,
+        "rebar_kg": 47.1
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1100,
+        "height_mm": 1250,
+        "area_m2": 1.375,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "outline 1100x1250 differs from schedule 1000x1200",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F4-39",
+      "element_type": "footing",
+      "tag": "F4",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.672,
+        "blinding_m3": 0.23,
+        "formwork_m2": 3.28,
+        "rebar_kg": 144.4
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2200,
+        "height_mm": 1900,
+        "area_m2": 4.18,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F4"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F4-40",
+      "element_type": "footing",
+      "tag": "F4",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.672,
+        "blinding_m3": 0.23,
+        "formwork_m2": 3.28,
+        "rebar_kg": 144.4
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2200,
+        "height_mm": 1900,
+        "area_m2": 4.18,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F4"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F5-41",
+      "element_type": "footing",
+      "tag": "F5",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.92,
+        "blinding_m3": 0.263,
+        "formwork_m2": 3.52,
+        "rebar_kg": 169.5
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2400,
+        "height_mm": 2000,
+        "area_m2": 4.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F5"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F5-42",
+      "element_type": "footing",
+      "tag": "F5",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.92,
+        "blinding_m3": 0.263,
+        "formwork_m2": 3.52,
+        "rebar_kg": 169.5
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2400,
+        "height_mm": 2000,
+        "area_m2": 4.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F5"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F6-43",
+      "element_type": "footing",
+      "tag": "F6",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 2.464,
+        "blinding_m3": 0.334,
+        "formwork_m2": 4.0,
+        "rebar_kg": 265.3
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2200,
+        "height_mm": 2800,
+        "area_m2": 6.16,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F6"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F6-44",
+      "element_type": "footing",
+      "tag": "F6",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 2.464,
+        "blinding_m3": 0.334,
+        "formwork_m2": 4.0,
+        "rebar_kg": 265.3
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2800,
+        "height_mm": 2200,
+        "area_m2": 6.16,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F6"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F4-45",
+      "element_type": "footing",
+      "tag": "F4",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.672,
+        "blinding_m3": 0.23,
+        "formwork_m2": 3.28,
+        "rebar_kg": 144.4
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1900,
+        "height_mm": 2200,
+        "area_m2": 4.18,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F4"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F7-46",
+      "element_type": "footing",
+      "tag": "F7",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.565,
+        "blinding_m3": 0.384,
+        "formwork_m2": 5.4,
+        "rebar_kg": 297.6
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2300,
+        "height_mm": 3100,
+        "area_m2": 7.13,
+        "depth_mm": 500
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F7"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F6-47",
+      "element_type": "footing",
+      "tag": "F6",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 2.464,
+        "blinding_m3": 0.334,
+        "formwork_m2": 4.0,
+        "rebar_kg": 265.3
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2800,
+        "height_mm": 2200,
+        "area_m2": 6.16,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F6"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F6-48",
+      "element_type": "footing",
+      "tag": "F6",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 2.464,
+        "blinding_m3": 0.334,
+        "formwork_m2": 4.0,
+        "rebar_kg": 265.3
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2800,
+        "height_mm": 2200,
+        "area_m2": 6.16,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F6"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F7-49",
+      "element_type": "footing",
+      "tag": "F7",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.565,
+        "blinding_m3": 0.384,
+        "formwork_m2": 5.4,
+        "rebar_kg": 297.6
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 3100,
+        "height_mm": 2300,
+        "area_m2": 7.13,
+        "depth_mm": 500
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F7"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F7-50",
+      "element_type": "footing",
+      "tag": "F7",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.565,
+        "blinding_m3": 0.384,
+        "formwork_m2": 5.4,
+        "rebar_kg": 297.6
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 3100,
+        "height_mm": 2300,
+        "area_m2": 7.13,
+        "depth_mm": 500
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F7"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F7-51",
+      "element_type": "footing",
+      "tag": "F7",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.565,
+        "blinding_m3": 0.384,
+        "formwork_m2": 5.4,
+        "rebar_kg": 297.6
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 3100,
+        "height_mm": 2300,
+        "area_m2": 7.13,
+        "depth_mm": 500
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F7"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F3-52",
+      "element_type": "footing",
+      "tag": "F3",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.714,
+        "blinding_m3": 0.135,
+        "formwork_m2": 1.86,
+        "rebar_kg": 69.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1700,
+        "height_mm": 1400,
+        "area_m2": 2.38,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F3"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F3-53",
+      "element_type": "footing",
+      "tag": "F3",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.714,
+        "blinding_m3": 0.135,
+        "formwork_m2": 1.86,
+        "rebar_kg": 69.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1400,
+        "height_mm": 1700,
+        "area_m2": 2.38,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F3"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F2-54",
+      "element_type": "footing",
+      "tag": "F2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.663,
+        "blinding_m3": 0.126,
+        "formwork_m2": 1.8,
+        "rebar_kg": 61.0
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1700,
+        "height_mm": 1300,
+        "area_m2": 2.21,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F2-55",
+      "element_type": "footing",
+      "tag": "F2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.663,
+        "blinding_m3": 0.126,
+        "formwork_m2": 1.8,
+        "rebar_kg": 61.0
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1700,
+        "height_mm": 1300,
+        "area_m2": 2.21,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F5-56",
+      "element_type": "footing",
+      "tag": "F5",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.92,
+        "blinding_m3": 0.263,
+        "formwork_m2": 3.52,
+        "rebar_kg": 169.5
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2400,
+        "height_mm": 2000,
+        "area_m2": 4.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F5"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F5-57",
+      "element_type": "footing",
+      "tag": "F5",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.92,
+        "blinding_m3": 0.263,
+        "formwork_m2": 3.52,
+        "rebar_kg": 169.5
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2400,
+        "height_mm": 2000,
+        "area_m2": 4.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F5"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC2-58",
+      "element_type": "footing",
+      "tag": "FC2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.3,
+        "blinding_m3": 0.055,
+        "formwork_m2": 1.2,
+        "rebar_kg": 33.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1000,
+        "area_m2": 1.0,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F1-59",
+      "element_type": "footing",
+      "tag": "F1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "blinding_m3": 0.104,
+        "formwork_m2": 1.62,
+        "rebar_kg": 50.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1500,
+        "height_mm": 1200,
+        "area_m2": 1.8,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F1-60",
+      "element_type": "footing",
+      "tag": "F1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "blinding_m3": 0.104,
+        "formwork_m2": 1.62,
+        "rebar_kg": 50.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1500,
+        "height_mm": 1200,
+        "area_m2": 1.8,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F1-61",
+      "element_type": "footing",
+      "tag": "F1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "blinding_m3": 0.104,
+        "formwork_m2": 1.62,
+        "rebar_kg": 50.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1500,
+        "height_mm": 1200,
+        "area_m2": 1.8,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-CF2-62",
+      "element_type": "footing",
+      "tag": "CF2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.12,
+        "blinding_m3": 0.42,
+        "formwork_m2": 4.72,
+        "rebar_kg": 278.1
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2000,
+        "height_mm": 3900,
+        "area_m2": 7.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag CF2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-CF3-63",
+      "element_type": "footing",
+      "tag": "CF3",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "review",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 6.004,
+        "blinding_m3": "",
+        "formwork_m2": 6.72,
+        "rebar_kg": ""
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 4600,
+        "height_mm": 3800,
+        "area_m2": 15.009,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag CF3"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "plan size, depth 400 mm from the other CF footings; bars left out",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-CF1-64",
+      "element_type": "footing",
+      "tag": "CF1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.736,
+        "blinding_m3": 0.24,
+        "formwork_m2": 3.6,
+        "rebar_kg": 149.8
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1400,
+        "height_mm": 3100,
+        "area_m2": 4.34,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag CF1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-65",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F1-66",
+      "element_type": "footing",
+      "tag": "F1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "blinding_m3": 0.104,
+        "formwork_m2": 1.62,
+        "rebar_kg": 50.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1500,
+        "height_mm": 1200,
+        "area_m2": 1.8,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-MISSED-67",
+      "element_type": "footing",
+      "tag": "MISSED",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "blocked",
+      "confidence": "low",
+      "quantities": {
+        "concrete_m3": "",
+        "blinding_m3": "",
+        "formwork_m2": "",
+        "rebar_kg": ""
+      },
+      "formula": "",
+      "inputs": {
+        "width_mm": 6076,
+        "height_mm": 250,
+        "area_m2": 1.519,
+        "depth_mm": null
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "missed": true
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-MISSED-68",
+      "element_type": "footing",
+      "tag": "MISSED",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "blocked",
+      "confidence": "low",
+      "quantities": {
+        "concrete_m3": "",
+        "blinding_m3": "",
+        "formwork_m2": "",
+        "rebar_kg": ""
+      },
+      "formula": "",
+      "inputs": {
+        "width_mm": 250,
+        "height_mm": 4235,
+        "area_m2": 1.059,
+        "depth_mm": null
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "missed": true
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-MISSED-69",
+      "element_type": "footing",
+      "tag": "MISSED",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "blocked",
+      "confidence": "low",
+      "quantities": {
+        "concrete_m3": "",
+        "blinding_m3": "",
+        "formwork_m2": "",
+        "rebar_kg": ""
+      },
+      "formula": "",
+      "inputs": {
+        "width_mm": 960,
+        "height_mm": 960,
+        "area_m2": 0.922,
+        "depth_mm": null
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label S-301",
+      "missed": true
+    },
+    {
+      "id": "raft-269-S-100-FOUNDATIONS-0",
+      "element_type": "raft",
+      "tag": "RAFT",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 34.827,
+        "formwork_m2": 21.899,
+        "rebar_kg": 2927.9
+      },
+      "formula": "area_m2 * thickness_mm / 1000",
+      "inputs": {
+        "area_m2": 69.654,
+        "thickness_mm": 500.0,
+        "note_text": "RAFT THK = 500mm"
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "RAFT THK = 500mm"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "raft-269-S-100-FOUNDATIONS-1",
+      "element_type": "raft",
+      "tag": "RAFT",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 30.401,
+        "formwork_m2": 19.117,
+        "rebar_kg": 2610.0
+      },
+      "formula": "area_m2 * thickness_mm / 1000",
+      "inputs": {
+        "area_m2": 50.668,
+        "thickness_mm": 600.0,
+        "note_text": "RAFT THK = 600mm"
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "RAFT THK = 600mm"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "columns-269-S-101-A-GROUND FLOOR PLAN-ground",
+      "element_type": "column_storey",
+      "tag": "ground",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 16.49592612762825,
+        "formwork_m2": 190.73140800211166
+      },
+      "formula": "plan hatch area \u00d7 storey height; perimeter \u00d7 height for formwork",
+      "inputs": {
+        "storey_height_m": 3.5,
+        "column_area_m2": 4.713121750750928,
+        "floor": "ground"
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "column_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "walls-269-S-101-A-GROUND FLOOR PLAN-ground",
+      "element_type": "wall_storey",
+      "tag": "ground",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 7.425126163297644
+      },
+      "formula": "W-mark outline area \u00d7 storey height",
+      "inputs": {
+        "storey_height_m": 3.5,
+        "wall_area_m2": 2.1214646180850414
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "wall_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "columns-269-S-102-A-FIRST FLOOR PLAN-first",
+      "element_type": "column_storey",
+      "tag": "first",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 15.543258022327844,
+        "formwork_m2": 179.47851763225347
+      },
+      "formula": "plan hatch area \u00d7 storey height; perimeter \u00d7 height for formwork",
+      "inputs": {
+        "storey_height_m": 3.1000000000000005,
+        "column_area_m2": 5.013954200750916,
+        "floor": "first"
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "column_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "walls-269-S-102-A-FIRST FLOOR PLAN-first",
+      "element_type": "wall_storey",
+      "tag": "first",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 6.422815757284935
+      },
+      "formula": "W-mark outline area \u00d7 storey height",
+      "inputs": {
+        "storey_height_m": 3.1000000000000005,
+        "wall_area_m2": 2.0718760507370755
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "wall_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "columns-269-S-103-A-ROOF FLOOR PLAN-roof",
+      "element_type": "column_storey",
+      "tag": "roof",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 10.188217796695536,
+        "formwork_m2": 119.88509102841512
+      },
+      "formula": "plan hatch area \u00d7 storey height; perimeter \u00d7 height for formwork",
+      "inputs": {
+        "storey_height_m": 3.019999999999999,
+        "column_area_m2": 3.37358205188594,
+        "floor": "roof"
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+          "detail": "column_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "walls-269-S-103-A-ROOF FLOOR PLAN-roof",
+      "element_type": "wall_storey",
+      "tag": "roof",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 6.257205334801768
+      },
+      "formula": "W-mark outline area \u00d7 storey height",
+      "inputs": {
+        "storey_height_m": 3.019999999999999,
+        "wall_area_m2": 2.071922296291977
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+          "detail": "wall_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-0",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-1",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-2",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-3",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-4",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-5",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-6",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-7",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-8",
+      "element_type": "grade_beam",
+      "tag": "250x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 600
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-9",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-10",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-11",
+      "element_type": "grade_beam",
+      "tag": "250x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 600
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-12",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-13",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-14",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-15",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-16",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-17",
+      "element_type": "grade_beam",
+      "tag": "250x670",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 670
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-18",
+      "element_type": "grade_beam",
+      "tag": "250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-19",
+      "element_type": "grade_beam",
+      "tag": "300x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 820
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-20",
+      "element_type": "grade_beam",
+      "tag": "300x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 820
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-21",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-22",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-23",
+      "element_type": "grade_beam",
+      "tag": "250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-24",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-25",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-26",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-27",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-28",
+      "element_type": "grade_beam",
+      "tag": "250x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 600
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-29",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-30",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-31",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-32",
+      "element_type": "grade_beam",
+      "tag": "250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-33",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-34",
+      "element_type": "grade_beam",
+      "tag": "250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-35",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-36",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-37",
+      "element_type": "grade_beam",
+      "tag": "300x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 820
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-38",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-39",
+      "element_type": "grade_beam",
+      "tag": "300x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 600
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-40",
+      "element_type": "grade_beam",
+      "tag": "250x670",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 670
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-41",
+      "element_type": "grade_beam",
+      "tag": "300x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 600
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-42",
+      "element_type": "grade_beam",
+      "tag": "300x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 600
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-43",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-44",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-45",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-46",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-47",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-48",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-49",
+      "element_type": "grade_beam",
+      "tag": "250x670",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 670
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-50",
+      "element_type": "grade_beam",
+      "tag": "250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-51",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-52",
+      "element_type": "grade_beam",
+      "tag": "250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-53",
+      "element_type": "grade_beam",
+      "tag": "250x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {},
+      "formula": "label size \u00d7 paired edges (see structure totals)",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 600
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-101-A-GROUND FLOOR PLAN-0",
+      "element_type": "suspended_slab",
+      "tag": "200mm",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 9.832473925219597,
+        "area_m2": 49.16236962609799
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 49.16236962609799,
+        "thickness_mm": 200
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-101-A-GROUND FLOOR PLAN-1",
+      "element_type": "slab_on_grade",
+      "tag": "120mm",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 8.0110592496,
+        "area_m2": 66.75882708
+      },
+      "formula": "outline less raft \u00d7 thickness",
+      "inputs": {
+        "area_m2": 66.75882708,
+        "thickness_mm": 120
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "slab_on_grade"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-101-A-GROUND FLOOR PLAN-2",
+      "element_type": "slab_on_grade",
+      "tag": "120mm",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 50.4221171806655,
+        "area_m2": 420.1843098388792
+      },
+      "formula": "outline less raft \u00d7 thickness",
+      "inputs": {
+        "area_m2": 420.1843098388792,
+        "thickness_mm": 120
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "slab_on_grade"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-102-A-FIRST FLOOR PLAN-0",
+      "element_type": "suspended_slab",
+      "tag": "200mm",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 99.06090066781428,
+        "area_m2": 495.3045033390714
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 495.3045033390714,
+        "thickness_mm": 200
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-102-A-FIRST FLOOR PLAN-1",
+      "element_type": "suspended_slab",
+      "tag": "180mm",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 5.730193685678509,
+        "area_m2": 31.83440936488061
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 31.83440936488061,
+        "thickness_mm": 180
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-102-A-FIRST FLOOR PLAN-2",
+      "element_type": "suspended_slab",
+      "tag": "200mm",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 13.351765416000001,
+        "area_m2": 66.75882708
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 66.75882708,
+        "thickness_mm": 200
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-103-A-ROOF FLOOR PLAN-0",
+      "element_type": "suspended_slab",
+      "tag": "275mm",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 103.4703294367325,
+        "area_m2": 376.2557434063
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 376.2557434063,
+        "thickness_mm": 275
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-103-A-ROOF FLOOR PLAN-1",
+      "element_type": "suspended_slab",
+      "tag": "250mm",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 35.90758565214428,
+        "area_m2": 143.6303426085771
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 143.6303426085771,
+        "thickness_mm": 250
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-104-A-UPPER ROOF FLOOR PLAN-0",
+      "element_type": "suspended_slab",
+      "tag": "220mm",
+      "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 8.162918555672778,
+        "area_m2": 37.10417525305809
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 37.10417525305809,
+        "thickness_mm": 220
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-104-A-UPPER ROOF FLOOR PLAN-1",
+      "element_type": "suspended_slab",
+      "tag": "220mm",
+      "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 11.607919865667254,
+        "area_m2": 52.763272116669334
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 52.763272116669334,
+        "thickness_mm": 220
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-104-A-UPPER ROOF FLOOR PLAN-2",
+      "element_type": "suspended_slab",
+      "tag": "220mm",
+      "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 3.406156113466742,
+        "area_m2": 15.48252778848519
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 15.48252778848519,
+        "thickness_mm": 220
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "sog-rebar-total",
+      "element_type": "sog_steel",
+      "tag": "TOTAL",
+      "sheet": "101-B",
+      "status": "review",
+      "confidence": "medium",
+      "quantities": {
+        "rebar_kg": 2995.9
+      },
+      "formula": "sum of element records",
+      "inputs": {},
+      "sources": [
+        {
+          "role": "engine_total",
+          "sheet": "101-B",
+          "detail": "sog_steel"
+        }
+      ],
+      "note": "mesh note on the ground floor reinforcement plan laid over that area; 130 laps on T10 counted but not priced (no lap length for T10)",
+      "missed": false,
+      "rebar_basis": "estimated",
+      "rebar_flags": [
+        "mesh_from_reinf_plan",
+        "no_cover_deducted",
+        "unpriced_laps_or_hooks"
+      ]
+    },
+    {
+      "id": "suspended-rebar-total",
+      "element_type": "suspended_steel",
+      "tag": "TOTAL",
+      "sheet": "suspended_slabs",
+      "status": "review",
+      "confidence": "medium",
+      "quantities": {
+        "rebar_kg": 26236.7
+      },
+      "formula": "sum of element records",
+      "inputs": {},
+      "sources": [
+        {
+          "role": "engine_total",
+          "sheet": "suspended_slabs",
+          "detail": "suspended_steel"
+        }
+      ],
+      "note": "T12@200 top and bottom laid over each slab less openings, no cover deducted; a lap where a bar is longer than stock (12 m supply length (assumed; no sheet states it)); lap and hook from S-010 detail 9, class B, 35 MPa row (typed in, not read from the sheet); additional marked bars with a length and a range line add 3465 kg (17 of 46; the rest have no length or no range)",
+      "missed": false,
+      "rebar_basis": "estimated",
+      "rebar_flags": [
+        "mesh_from_reinf_plan",
+        "no_cover_deducted",
+        "class_b_lap_from_typical_detail",
+        "partial_marked_bars"
+      ]
+    },
+    {
+      "id": "columns-269-S-101-A-GROUND FLOOR PLAN-ground",
+      "element_type": "column_storey",
+      "tag": "ground",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 16.49592612762825,
+        "formwork_m2": 190.73140800211166
+      },
+      "formula": "plan hatch area \u00d7 storey height; perimeter \u00d7 height for formwork",
+      "inputs": {
+        "storey_height_m": 3.5,
+        "column_area_m2": 4.713121750750928,
+        "floor": "ground"
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "column_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "walls-269-S-101-A-GROUND FLOOR PLAN-ground",
+      "element_type": "wall_storey",
+      "tag": "ground",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 7.425126163297644
+      },
+      "formula": "W-mark outline area \u00d7 storey height",
+      "inputs": {
+        "storey_height_m": 3.5,
+        "wall_area_m2": 2.1214646180850414
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "wall_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "columns-269-S-102-A-FIRST FLOOR PLAN-first",
+      "element_type": "column_storey",
+      "tag": "first",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 15.543258022327844,
+        "formwork_m2": 179.47851763225347
+      },
+      "formula": "plan hatch area \u00d7 storey height; perimeter \u00d7 height for formwork",
+      "inputs": {
+        "storey_height_m": 3.1000000000000005,
+        "column_area_m2": 5.013954200750916,
+        "floor": "first"
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "column_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "walls-269-S-102-A-FIRST FLOOR PLAN-first",
+      "element_type": "wall_storey",
+      "tag": "first",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 6.422815757284935
+      },
+      "formula": "W-mark outline area \u00d7 storey height",
+      "inputs": {
+        "storey_height_m": 3.1000000000000005,
+        "wall_area_m2": 2.0718760507370755
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "wall_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "columns-269-S-103-A-ROOF FLOOR PLAN-roof",
+      "element_type": "column_storey",
+      "tag": "roof",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 10.188217796695536,
+        "formwork_m2": 119.88509102841512
+      },
+      "formula": "plan hatch area \u00d7 storey height; perimeter \u00d7 height for formwork",
+      "inputs": {
+        "storey_height_m": 3.019999999999999,
+        "column_area_m2": 3.37358205188594,
+        "floor": "roof"
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+          "detail": "column_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "walls-269-S-103-A-ROOF FLOOR PLAN-roof",
+      "element_type": "wall_storey",
+      "tag": "roof",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 6.257205334801768
+      },
+      "formula": "W-mark outline area \u00d7 storey height",
+      "inputs": {
+        "storey_height_m": 3.019999999999999,
+        "wall_area_m2": 2.071922296291977
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+          "detail": "wall_storey"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-0",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 1.15,
+        "formwork_m2": 12.07
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 11.5
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-1",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 1.155,
+        "formwork_m2": 12.13
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 11.55
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-2",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.495,
+        "formwork_m2": 5.2
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 4.95
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-3",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.885,
+        "formwork_m2": 9.29
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 8.85
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-4",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.305,
+        "formwork_m2": 3.2
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 3.05
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-5",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 1.652,
+        "formwork_m2": 17.35
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 16.52
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-6",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.65,
+        "formwork_m2": 6.83
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 6.5
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-7",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.878,
+        "formwork_m2": 9.21
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 8.78
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-8",
+      "element_type": "grade_beam",
+      "tag": "GB 250x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 1.268,
+        "formwork_m2": 12.25
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 600,
+        "length_m": 8.45
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-9",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.555,
+        "formwork_m2": 5.83
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 5.55
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-10",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.695,
+        "formwork_m2": 7.3
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 6.95
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-11",
+      "element_type": "grade_beam",
+      "tag": "GB 250x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 5.048,
+        "formwork_m2": 48.79
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 600,
+        "length_m": 33.65
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-12",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "formwork_m2": 5.67
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 5.4
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-13",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.698,
+        "formwork_m2": 7.32
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 6.98
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-14",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.957,
+        "formwork_m2": 10.05
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 9.57
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-15",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.698,
+        "formwork_m2": 7.32
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 6.98
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-16",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.957,
+        "formwork_m2": 10.05
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 9.57
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-17",
+      "element_type": "grade_beam",
+      "tag": "GB 250x670",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.255,
+        "formwork_m2": 2.42
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 670,
+        "length_m": 1.53
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-18",
+      "element_type": "grade_beam",
+      "tag": "GB 250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 1.496,
+        "formwork_m2": 13.8
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820,
+        "length_m": 7.3
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-19",
+      "element_type": "grade_beam",
+      "tag": "GB 300x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 1.009,
+        "formwork_m2": 7.95
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 820,
+        "length_m": 4.1
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-20",
+      "element_type": "grade_beam",
+      "tag": "GB 300x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 2.503,
+        "formwork_m2": 19.74
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 820,
+        "length_m": 10.17
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-21",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.55,
+        "formwork_m2": 5.77
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 5.5
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-22",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.485,
+        "formwork_m2": 5.09
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 4.85
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-23",
+      "element_type": "grade_beam",
+      "tag": "GB 250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 1.814,
+        "formwork_m2": 16.72
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820,
+        "length_m": 8.85
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-24",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.52,
+        "formwork_m2": 5.46
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 5.2
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-25",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.48,
+        "formwork_m2": 5.04
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 4.8
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-26",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.785,
+        "formwork_m2": 8.24
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 7.85
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-27",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.995,
+        "formwork_m2": 10.45
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 9.95
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-28",
+      "element_type": "grade_beam",
+      "tag": "GB 250x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.404,
+        "formwork_m2": 3.91
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 600,
+        "length_m": 2.7
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-29",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.14,
+        "formwork_m2": 1.47
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 1.4
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-30",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.27,
+        "formwork_m2": 2.84
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 2.7
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-31",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.35,
+        "formwork_m2": 3.67
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 3.5
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-32",
+      "element_type": "grade_beam",
+      "tag": "GB 250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 1.421,
+        "formwork_m2": 13.1
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820,
+        "length_m": 6.93
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-33",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.172,
+        "formwork_m2": 1.81
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 1.72
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-34",
+      "element_type": "grade_beam",
+      "tag": "GB 250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.215,
+        "formwork_m2": 1.98
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820,
+        "length_m": 1.05
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-35",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.49,
+        "formwork_m2": 5.14
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 4.9
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-36",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.49,
+        "formwork_m2": 5.14
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 4.9
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-37",
+      "element_type": "grade_beam",
+      "tag": "GB 300x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.264,
+        "formwork_m2": 2.08
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 820,
+        "length_m": 1.07
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-38",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.317,
+        "formwork_m2": 3.33
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 3.17
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-39",
+      "element_type": "grade_beam",
+      "tag": "GB 300x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.954,
+        "formwork_m2": 7.95
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 600,
+        "length_m": 5.3
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-40",
+      "element_type": "grade_beam",
+      "tag": "GB 250x670",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.218,
+        "formwork_m2": 2.07
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 670,
+        "length_m": 1.3
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-41",
+      "element_type": "grade_beam",
+      "tag": "GB 300x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.99,
+        "formwork_m2": 8.25
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 600,
+        "length_m": 5.5
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-42",
+      "element_type": "grade_beam",
+      "tag": "GB 300x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.801,
+        "formwork_m2": 6.67
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 300,
+        "depth_mm": 600,
+        "length_m": 4.45
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-43",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.27,
+        "formwork_m2": 2.83
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 2.7
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-44",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.222,
+        "formwork_m2": 2.33
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 2.22
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-45",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.198,
+        "formwork_m2": 2.07
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 1.98
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-46",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.53,
+        "formwork_m2": 5.57
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 5.3
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-47",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.445,
+        "formwork_m2": 4.67
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 4.45
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-48",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.148,
+        "formwork_m2": 1.55
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 1.48
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-49",
+      "element_type": "grade_beam",
+      "tag": "GB 250x670",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.385,
+        "formwork_m2": 3.66
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 670,
+        "length_m": 2.3
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-50",
+      "element_type": "grade_beam",
+      "tag": "GB 250x820",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.379,
+        "formwork_m2": 3.5
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 820,
+        "length_m": 1.85
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-51",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.305,
+        "formwork_m2": 3.2
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 3.05
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-52",
+      "element_type": "grade_beam",
+      "tag": "GB 250x400",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.282,
+        "formwork_m2": 2.96
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 400,
+        "length_m": 2.82
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "grade-beam-269-S-101-A-GROUND FLOOR PLAN-53",
+      "element_type": "grade_beam",
+      "tag": "GB 250x600",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.195,
+        "formwork_m2": 1.88
+      },
+      "formula": "length \u00d7 width \u00d7 depth; formwork: (2D + W) \u00d7 length",
+      "inputs": {
+        "width_mm": 250,
+        "depth_mm": 600,
+        "length_m": 1.3
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "grade_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-101-A-GROUND FLOOR PLAN-0",
+      "element_type": "suspended_slab",
+      "tag": "200mm",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 9.832473925219597,
+        "area_m2": 49.16236962609799
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 49.16236962609799,
+        "thickness_mm": 200
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-101-A-GROUND FLOOR PLAN-1",
+      "element_type": "slab_on_grade",
+      "tag": "120mm",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 8.0110592496,
+        "area_m2": 66.75882708
+      },
+      "formula": "outline less raft \u00d7 thickness",
+      "inputs": {
+        "area_m2": 66.75882708,
+        "thickness_mm": 120
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "slab_on_grade"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-101-A-GROUND FLOOR PLAN-2",
+      "element_type": "slab_on_grade",
+      "tag": "120mm",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 50.4221171806655,
+        "area_m2": 420.1843098388792
+      },
+      "formula": "outline less raft \u00d7 thickness",
+      "inputs": {
+        "area_m2": 420.1843098388792,
+        "thickness_mm": 120
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "slab_on_grade"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-102-A-FIRST FLOOR PLAN-0",
+      "element_type": "suspended_slab",
+      "tag": "200mm",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 99.06090066781428,
+        "area_m2": 495.3045033390714
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 495.3045033390714,
+        "thickness_mm": 200
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-102-A-FIRST FLOOR PLAN-1",
+      "element_type": "suspended_slab",
+      "tag": "180mm",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 5.730193685678509,
+        "area_m2": 31.83440936488061
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 31.83440936488061,
+        "thickness_mm": 180
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-102-A-FIRST FLOOR PLAN-2",
+      "element_type": "suspended_slab",
+      "tag": "200mm",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 13.351765416000001,
+        "area_m2": 66.75882708
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 66.75882708,
+        "thickness_mm": 200
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-103-A-ROOF FLOOR PLAN-0",
+      "element_type": "suspended_slab",
+      "tag": "275mm",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 103.4703294367325,
+        "area_m2": 376.2557434063
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 376.2557434063,
+        "thickness_mm": 275
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-103-A-ROOF FLOOR PLAN-1",
+      "element_type": "suspended_slab",
+      "tag": "250mm",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 35.90758565214428,
+        "area_m2": 143.6303426085771
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 143.6303426085771,
+        "thickness_mm": 250
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-104-A-UPPER ROOF FLOOR PLAN-0",
+      "element_type": "suspended_slab",
+      "tag": "220mm",
+      "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 8.162918555672778,
+        "area_m2": 37.10417525305809
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 37.10417525305809,
+        "thickness_mm": 220
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-104-A-UPPER ROOF FLOOR PLAN-1",
+      "element_type": "suspended_slab",
+      "tag": "220mm",
+      "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 11.607919865667254,
+        "area_m2": 52.763272116669334
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 52.763272116669334,
+        "thickness_mm": 220
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "slab-269-S-104-A-UPPER ROOF FLOOR PLAN-2",
+      "element_type": "suspended_slab",
+      "tag": "220mm",
+      "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 3.406156113466742,
+        "area_m2": 15.48252778848519
+      },
+      "formula": "bay outline \u00d7 thickness",
+      "inputs": {
+        "area_m2": 15.48252778848519,
+        "thickness_mm": 220
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+          "detail": "suspended_slab"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "sog-rebar-total",
+      "element_type": "sog_steel",
+      "tag": "TOTAL",
+      "sheet": "101-B",
+      "status": "review",
+      "confidence": "medium",
+      "quantities": {
+        "rebar_kg": 2995.9
+      },
+      "formula": "sum of element records",
+      "inputs": {},
+      "sources": [
+        {
+          "role": "engine_total",
+          "sheet": "101-B",
+          "detail": "sog_steel"
+        }
+      ],
+      "note": "mesh note on the ground floor reinforcement plan laid over that area; 130 laps on T10 counted but not priced (no lap length for T10)",
+      "missed": false,
+      "rebar_basis": "estimated",
+      "rebar_flags": [
+        "mesh_from_reinf_plan",
+        "no_cover_deducted",
+        "unpriced_laps_or_hooks"
+      ]
+    },
+    {
+      "id": "suspended-rebar-total",
+      "element_type": "suspended_steel",
+      "tag": "TOTAL",
+      "sheet": "suspended_slabs",
+      "status": "review",
+      "confidence": "medium",
+      "quantities": {
+        "rebar_kg": 26236.7
+      },
+      "formula": "sum of element records",
+      "inputs": {},
+      "sources": [
+        {
+          "role": "engine_total",
+          "sheet": "suspended_slabs",
+          "detail": "suspended_steel"
+        }
+      ],
+      "note": "T12@200 top and bottom laid over each slab less openings, no cover deducted; a lap where a bar is longer than stock (12 m supply length (assumed; no sheet states it)); lap and hook from S-010 detail 9, class B, 35 MPa row (typed in, not read from the sheet); additional marked bars with a length and a range line add 3465 kg (17 of 46; the rest have no length or no range)",
+      "missed": false,
+      "rebar_basis": "estimated",
+      "rebar_flags": [
+        "mesh_from_reinf_plan",
+        "no_cover_deducted",
+        "class_b_lap_from_typical_detail",
+        "partial_marked_bars"
+      ]
+    },
+    {
+      "id": "column-necks-total",
+      "element_type": "column_neck",
+      "tag": "NECKS",
+      "sheet": null,
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 9.685923624966048,
+        "formwork_m2": 121.51945978168938,
+        "rebar_kg": 1569.0217764245942
+      },
+      "formula": "column outline \u00d7 neck height (foundations to ground beam)",
+      "inputs": {
+        "height_m": 2.4800000000000004,
+        "concrete_m3": 9.685923624966048
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": null,
+          "detail": "column_neck"
+        }
+      ],
+      "note": "from the top of each isolated footing to the underside of the ground beam; columns on the raft outline are excluded",
+      "missed": false
+    },
+    {
+      "id": "framed-beams-total",
+      "element_type": "beam",
+      "tag": "BEAMS",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 112.18117986093208,
+        "formwork_m2": 845.256246818583
+      },
+      "formula": "label width \u00d7 full depth on paired edges across framed levels",
+      "inputs": {
+        "concrete_m3": 112.18117986093208,
+        "formwork_m2": 845.256246818583,
+        "count": 63
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "beam"
+        }
+      ],
+      "note": "label width times full depth on paired edges (bill-style capping line); 39.2 m3 of that full depth lies in the slab zone and is also counted in suspended slab",
+      "missed": false
+    },
+    {
+      "id": "boundary-beams-total",
+      "element_type": "boundary_beam",
+      "tag": "BOUNDARY_BEAM",
+      "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 12.17805439401472,
+        "formwork_m2": 143.92246102017396
+      },
+      "formula": "B(200X550) on ground floor outline",
+      "inputs": {
+        "concrete_m3": 12.17805439401472,
+        "formwork_m2": 143.92246102017396
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-101-A-GROUND FLOOR PLAN",
+          "detail": "boundary_beam"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "tank-walls-total",
+      "element_type": "tank_wall",
+      "tag": "TANK_WALL",
+      "sheet": null,
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 31.341939719999893,
+        "formwork_m2": 254.93380079999997
+      },
+      "formula": "larger hatch annulus at lift pit note \u00d7 ground-to-first height",
+      "inputs": {
+        "concrete_m3": 31.341939719999893,
+        "formwork_m2": 254.93380079999997
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": null,
+          "detail": "tank_wall"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "lift-pit-walls-total",
+      "element_type": "lift_pit_wall",
+      "tag": "LIFT_PIT",
+      "sheet": null,
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 2.9814355330409557,
+        "formwork_m2": 26.851299000243472
+      },
+      "formula": "lift pit hatch annulus \u00d7 wall height from section (1500 mm)",
+      "inputs": {
+        "concrete_m3": 2.9814355330409557,
+        "formwork_m2": 26.851299000243472
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": null,
+          "detail": "lift_pit_wall"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "upstands-total",
+      "element_type": "upstand",
+      "tag": "UPSTAND",
+      "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+      "status": "auto",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 10.003490821123838,
+        "formwork_m2": 96.32991161082217
+      },
+      "formula": "200 RC upstand labels on nearest slab/beam edge",
+      "inputs": {
+        "concrete_m3": 10.003490821123838,
+        "formwork_m2": 96.32991161082217,
+        "count": 9
+      },
+      "sources": [
+        {
+          "role": "plan",
+          "sheet": "269-S-102-A-FIRST FLOOR PLAN",
+          "detail": "upstand"
+        }
+      ],
+      "note": "",
+      "missed": false
+    }
+  ],
+  "review_queue": [
+    {
+      "id": "review-269-S-100-FOUNDATIONS-FC1",
+      "kind": "quantity_review",
+      "severity": "info",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "FC1",
+      "message": "outline 1100x1250 differs from schedule 1000x1200",
+      "measurement_id": "footing-269-S-100-FOUNDATIONS-FC1"
+    },
+    {
+      "id": "review-269-S-100-FOUNDATIONS-CF3",
+      "kind": "quantity_review",
+      "severity": "info",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "CF3",
+      "message": "plan size, depth 400 mm from the other CF footings; bars left out",
+      "measurement_id": "footing-269-S-100-FOUNDATIONS-CF3"
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-6076-250",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "measurement_id": null
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-250-4235",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "measurement_id": null
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-960-960",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label S-301",
+      "measurement_id": null
+    },
+    {
+      "id": "slab-ambiguous-269-S-103-A-ROOF FLOOR PLAN-roof-376",
+      "kind": "slab_thickness",
+      "severity": "warning",
+      "sheet": "269-S-103-A-ROOF FLOOR PLAN",
+      "tag": "200-275mm",
+      "message": "roof bay ~376 m2: notes disagree (200-275 mm); engine used 275 mm",
+      "measurement_id": "slab-269-S-103-A-ROOF FLOOR PLAN"
+    }
+  ],
+  "sheet_alignment": [
+    {
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "ok",
+      "residual_pt": 0.03,
+      "anchor": "C"
+    }
+  ]
+}

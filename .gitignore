@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node (dwg dump)
+backend/dwg_dump/node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Frontend is its own repo (submodule)
+frontend/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.cursor/
+
+# Original delivery zips (~5GB) — use local backup or release assets; see data/README.md
+data/archives/
+
+# Large generated caches (keep in work/out per project)
+*.log

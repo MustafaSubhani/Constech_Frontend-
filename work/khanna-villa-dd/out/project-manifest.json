@@ -1,0 +1,856 @@
+{
+  "project": "khanna-villa-dd",
+  "project_path": "D:\\Constech\\work\\khanna-villa-dd",
+  "scan_mode": "full",
+  "drawing_count": 29,
+  "dwg_count": 29,
+  "pdf_only_count": 0,
+  "bill_workbook": "Bill No. 2 - Main Villa.xlsx",
+  "rules_from_notes": {
+    "blinding_mm": 50,
+    "blinding_source": "269-S-001-GENERAL NOTES - (SHEET 1 OF 2)"
+  },
+  "sheets": [
+    {
+      "stem": "269-S-000 - DRAWING LIST",
+      "role": "other",
+      "floor": "",
+      "sheet_no": "000",
+      "variant": "",
+      "file": "269-S-000 - DRAWING LIST.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-000 - DRAWING LIST.dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-000",
+      "text_entity_count": 63,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-001-GENERAL NOTES - (SHEET 1 OF 2)",
+      "role": "general_notes",
+      "floor": "",
+      "sheet_no": "001",
+      "variant": "GENERAL",
+      "file": "269-S-001-GENERAL NOTES - (SHEET 1 OF 2).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-001-GENERAL NOTES - (SHEET 1 OF 2).dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-001",
+      "text_entity_count": 120,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "rules.general_notes"
+      ]
+    },
+    {
+      "stem": "269-S-002-GENERAL NOTES - (SHEET 2 OF 2)",
+      "role": "general_notes",
+      "floor": "",
+      "sheet_no": "002",
+      "variant": "GENERAL",
+      "file": "269-S-002-GENERAL NOTES - (SHEET 2 OF 2).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-002-GENERAL NOTES - (SHEET 2 OF 2).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "footing_schedule_table"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-002",
+      "text_entity_count": 4,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "foundations.schedule",
+        "rules.general_notes"
+      ]
+    },
+    {
+      "stem": "269-S-010-TYPICAL DETAILS - (SHEET 1 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "010",
+      "variant": "TYPICAL",
+      "file": "269-S-010-TYPICAL DETAILS - (SHEET 1 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-010-TYPICAL DETAILS - (SHEET 1 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "footing_schedule_table"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-010",
+      "text_entity_count": 653,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "foundations.schedule"
+      ]
+    },
+    {
+      "stem": "269-S-011-TYPICAL DETAILS - (SHEET 2 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "011",
+      "variant": "TYPICAL",
+      "file": "269-S-011-TYPICAL DETAILS - (SHEET 2 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-011-TYPICAL DETAILS - (SHEET 2 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-011",
+      "text_entity_count": 295,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-012-TYPICAL DETAILS - (SHEET 3 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "012",
+      "variant": "TYPICAL",
+      "file": "269-S-012-TYPICAL DETAILS - (SHEET 3 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-012-TYPICAL DETAILS - (SHEET 3 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-012",
+      "text_entity_count": 144,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-013-TYPICAL DETAILS - (SHEET 4 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "013",
+      "variant": "TYPICAL",
+      "file": "269-S-013-TYPICAL DETAILS - (SHEET 4 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-013-TYPICAL DETAILS - (SHEET 4 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-013",
+      "text_entity_count": 225,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-014-TYPICAL DETAILS - (SHEET 5 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "014",
+      "variant": "TYPICAL",
+      "file": "269-S-014-TYPICAL DETAILS - (SHEET 5 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-014-TYPICAL DETAILS - (SHEET 5 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "raft_thk_notes",
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-014",
+      "text_entity_count": 353,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-015-TYPICAL DETAILS - (SHEET 6 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "015",
+      "variant": "TYPICAL",
+      "file": "269-S-015-TYPICAL DETAILS - (SHEET 6 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-015-TYPICAL DETAILS - (SHEET 6 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-015",
+      "text_entity_count": 171,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-016-TYPICAL DETAILS - (SHEET 7 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "016",
+      "variant": "TYPICAL",
+      "file": "269-S-016-TYPICAL DETAILS - (SHEET 7 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-016-TYPICAL DETAILS - (SHEET 7 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-016",
+      "text_entity_count": 294,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-017-TYPICAL DETAILS - (SHEET 8 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "017",
+      "variant": "TYPICAL",
+      "file": "269-S-017-TYPICAL DETAILS - (SHEET 8 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-017-TYPICAL DETAILS - (SHEET 8 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_other"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-017",
+      "text_entity_count": 141,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-018-TYPICAL DETAILS - (SHEET 9 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "018",
+      "variant": "TYPICAL",
+      "file": "269-S-018-TYPICAL DETAILS - (SHEET 9 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-018-TYPICAL DETAILS - (SHEET 9 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-018",
+      "text_entity_count": 171,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-019-TYPICAL DETAILS - (SHEET 10 OF 10)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "019",
+      "variant": "TYPICAL",
+      "file": "269-S-019-TYPICAL DETAILS - (SHEET 10 OF 10).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-019-TYPICAL DETAILS - (SHEET 10 OF 10).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "pile_cap_schedule_title",
+        "slab_thickness_text"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-019",
+      "text_entity_count": 99,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "foundations.pile_caps"
+      ]
+    },
+    {
+      "stem": "269-S-100-FOUNDATIONS",
+      "role": "foundation_plan",
+      "floor": "",
+      "sheet_no": "100",
+      "variant": "FOUNDATIONS",
+      "file": "269-S-100-FOUNDATIONS.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-100-FOUNDATIONS.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_sized",
+        "closed_slab_polylines",
+        "footing_schedule_table",
+        "lift_pit_note",
+        "raft_thk_notes",
+        "size_table_cells",
+        "ssl_spot_levels",
+        "wall_marks"
+      ],
+      "ssl_levels": [
+        -4.3,
+        -3.1
+      ],
+      "level_marks": [
+        -4.3,
+        -3.1
+      ],
+      "title": "S-301",
+      "text_entity_count": 290,
+      "needs_ocr": false,
+      "closed_slab_polylines": 4,
+      "modules": [
+        "foundations.layout",
+        "foundations.schedule"
+      ]
+    },
+    {
+      "stem": "269-S-101-A-GROUND FLOOR PLAN",
+      "role": "floor_plan",
+      "floor": "ground",
+      "sheet_no": "101",
+      "variant": "A",
+      "file": "269-S-101-A-GROUND FLOOR PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-101-A-GROUND FLOOR PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_sized",
+        "closed_slab_polylines",
+        "slab_thk_notes",
+        "ssl_spot_levels",
+        "wall_marks"
+      ],
+      "ssl_levels": [
+        -0.15,
+        0.2,
+        0.5
+      ],
+      "level_marks": [
+        -0.15,
+        0.2,
+        0.5
+      ],
+      "title": "S-301",
+      "text_entity_count": 229,
+      "needs_ocr": false,
+      "closed_slab_polylines": 66,
+      "modules": [
+        "structure.beams",
+        "structure.columns",
+        "structure.slabs",
+        "structure.walls"
+      ]
+    },
+    {
+      "stem": "269-S-101-B-GROUND FLOOR REINF PLAN",
+      "role": "reinforcement_plan",
+      "floor": "ground",
+      "sheet_no": "101",
+      "variant": "B",
+      "file": "269-S-101-B-GROUND FLOOR REINF PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-101-B-GROUND FLOOR REINF PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-101-B",
+      "text_entity_count": 15,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.rebar"
+      ]
+    },
+    {
+      "stem": "269-S-102-A-FIRST FLOOR PLAN",
+      "role": "floor_plan",
+      "floor": "first",
+      "sheet_no": "102",
+      "variant": "A",
+      "file": "269-S-102-A-FIRST FLOOR PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-102-A-FIRST FLOOR PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_sized",
+        "closed_slab_polylines",
+        "slab_thk_notes",
+        "ssl_spot_levels",
+        "wall_marks"
+      ],
+      "ssl_levels": [
+        2.95,
+        3.88,
+        3.9,
+        4.1,
+        4.4
+      ],
+      "level_marks": [
+        2.95,
+        3.88,
+        3.9,
+        4.1,
+        4.4
+      ],
+      "title": "S-301",
+      "text_entity_count": 177,
+      "needs_ocr": false,
+      "closed_slab_polylines": 11,
+      "modules": [
+        "structure.beams",
+        "structure.columns",
+        "structure.slabs",
+        "structure.walls"
+      ]
+    },
+    {
+      "stem": "269-S-102-B-FIRST FLOOR REINF PLAN",
+      "role": "reinforcement_plan",
+      "floor": "first",
+      "sheet_no": "102",
+      "variant": "B",
+      "file": "269-S-102-B-FIRST FLOOR REINF PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-102-B-FIRST FLOOR REINF PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-102-B",
+      "text_entity_count": 48,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.rebar"
+      ]
+    },
+    {
+      "stem": "269-S-103-A-ROOF FLOOR PLAN",
+      "role": "floor_plan",
+      "floor": "roof",
+      "sheet_no": "103",
+      "variant": "A",
+      "file": "269-S-103-A-ROOF FLOOR PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-103-A-ROOF FLOOR PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_sized",
+        "closed_slab_polylines",
+        "slab_thk_notes",
+        "ssl_spot_levels",
+        "wall_marks"
+      ],
+      "ssl_levels": [
+        8.3
+      ],
+      "level_marks": [
+        8.3
+      ],
+      "title": "S-400",
+      "text_entity_count": 113,
+      "needs_ocr": false,
+      "closed_slab_polylines": 11,
+      "modules": [
+        "structure.beams",
+        "structure.columns",
+        "structure.slabs",
+        "structure.walls"
+      ]
+    },
+    {
+      "stem": "269-S-103-B-ROOF FLOOR REINF PLAN",
+      "role": "reinforcement_plan",
+      "floor": "roof",
+      "sheet_no": "103",
+      "variant": "B",
+      "file": "269-S-103-B-ROOF FLOOR REINF PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-103-B-ROOF FLOOR REINF PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-103-B",
+      "text_entity_count": 59,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.rebar"
+      ]
+    },
+    {
+      "stem": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "role": "floor_plan",
+      "floor": "upper",
+      "sheet_no": "104",
+      "variant": "A",
+      "file": "269-S-104-A-UPPER ROOF FLOOR PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-104-A-UPPER ROOF FLOOR PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_sized",
+        "closed_slab_polylines",
+        "slab_thk_notes",
+        "ssl_spot_levels"
+      ],
+      "ssl_levels": [
+        10.87,
+        11.92
+      ],
+      "level_marks": [
+        10.87,
+        11.92
+      ],
+      "title": "S-301",
+      "text_entity_count": 53,
+      "needs_ocr": false,
+      "closed_slab_polylines": 9,
+      "modules": [
+        "structure.beams",
+        "structure.columns",
+        "structure.slabs"
+      ]
+    },
+    {
+      "stem": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN",
+      "role": "reinforcement_plan",
+      "floor": "upper",
+      "sheet_no": "104",
+      "variant": "B",
+      "file": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-104-B-UPPER ROOF FLOOR REINF PLAN.dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-104-B",
+      "text_entity_count": 13,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.rebar"
+      ]
+    },
+    {
+      "stem": "269-S-105-LOADING PLANS",
+      "role": "loading_plan",
+      "floor": "",
+      "sheet_no": "105",
+      "variant": "LOADING",
+      "file": "269-S-105-LOADING PLANS.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-105-LOADING PLANS.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "closed_slab_polylines"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-105",
+      "text_entity_count": 69,
+      "needs_ocr": false,
+      "closed_slab_polylines": 14,
+      "modules": []
+    },
+    {
+      "stem": "269-S-200-BEAMS SCHEDULE",
+      "role": "beam_schedule",
+      "floor": "",
+      "sheet_no": "200",
+      "variant": "BEAMS",
+      "file": "269-S-200-BEAMS SCHEDULE.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-200-BEAMS SCHEDULE.dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-200",
+      "text_entity_count": 803,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": [
+        "structure.beam_schedule"
+      ]
+    },
+    {
+      "stem": "269-S-201-COLUMNS REINF. DETAILS",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "201",
+      "variant": "COLUMNS",
+      "file": "269-S-201-COLUMNS REINF. DETAILS.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-201-COLUMNS REINF. DETAILS.dwg",
+      "source_format": "dwg",
+      "signals": [],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-201",
+      "text_entity_count": 95,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-202-CORE & SHEAR WALLS REINF. DETAILS",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "202",
+      "variant": "CORE",
+      "file": "269-S-202-CORE & SHEAR WALLS REINF. DETAILS.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-202-CORE & SHEAR WALLS REINF. DETAILS.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "wall_marks"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-202",
+      "text_entity_count": 82,
+      "needs_ocr": false,
+      "closed_slab_polylines": 0,
+      "modules": []
+    },
+    {
+      "stem": "269-S-300-SECTIONS DETAILS - (SHEET 1 OF 2)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "300",
+      "variant": "SECTIONS",
+      "file": "269-S-300-SECTIONS DETAILS - (SHEET 1 OF 2).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-300-SECTIONS DETAILS - (SHEET 1 OF 2).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "closed_slab_polylines"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-300",
+      "text_entity_count": 160,
+      "needs_ocr": false,
+      "closed_slab_polylines": 23,
+      "modules": []
+    },
+    {
+      "stem": "269-S-301-SECTIONS DETAILS - (SHEET 2 OF 2)",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "301",
+      "variant": "SECTIONS",
+      "file": "269-S-301-SECTIONS DETAILS - (SHEET 2 OF 2).dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-301-SECTIONS DETAILS - (SHEET 2 OF 2).dwg",
+      "source_format": "dwg",
+      "signals": [
+        "closed_slab_polylines",
+        "lift_pit_note"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-301",
+      "text_entity_count": 91,
+      "needs_ocr": false,
+      "closed_slab_polylines": 2,
+      "modules": []
+    },
+    {
+      "stem": "269-S-400-STAIR CASE DETAILS",
+      "role": "typical_detail",
+      "floor": "",
+      "sheet_no": "400",
+      "variant": "STAIR",
+      "file": "269-S-400-STAIR CASE DETAILS.dwg",
+      "path": "D:\\Constech\\work\\khanna-villa-dd\\dwg\\269-S-400-STAIR CASE DETAILS.dwg",
+      "source_format": "dwg",
+      "signals": [
+        "beam_labels_sized",
+        "closed_slab_polylines"
+      ],
+      "ssl_levels": [],
+      "level_marks": [],
+      "title": "269-S-400",
+      "text_entity_count": 102,
+      "needs_ocr": false,
+      "closed_slab_polylines": 274,
+      "modules": []
+    }
+  ],
+  "plan_reinf_pairs": [
+    {
+      "plan": "269-S-100-FOUNDATIONS",
+      "reinf": "269-S-101-B-GROUND FLOOR REINF PLAN",
+      "floor": "ground",
+      "confidence": "medium"
+    },
+    {
+      "plan": "269-S-101-A-GROUND FLOOR PLAN",
+      "reinf": "269-S-102-B-FIRST FLOOR REINF PLAN",
+      "floor": "ground",
+      "confidence": "medium"
+    },
+    {
+      "plan": "269-S-102-A-FIRST FLOOR PLAN",
+      "reinf": "269-S-103-B-ROOF FLOOR REINF PLAN",
+      "floor": "first",
+      "confidence": "medium"
+    },
+    {
+      "plan": "269-S-103-A-ROOF FLOOR PLAN",
+      "reinf": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN",
+      "floor": "roof",
+      "confidence": "medium"
+    },
+    {
+      "plan": "269-S-104-A-UPPER ROOF FLOOR PLAN",
+      "reinf": "",
+      "floor": "",
+      "confidence": "none"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "footings_isolated",
+      "status": "ready",
+      "reason": "Footing schedule table found on at least one sheet"
+    },
+    {
+      "id": "storey_heights_ssl",
+      "status": "ready",
+      "reason": "SSL spot levels found on plan sheets"
+    },
+    {
+      "id": "slabs_villa_style",
+      "status": "ready",
+      "reason": "SLAB THK notes and closed S-SLAB outlines"
+    },
+    {
+      "id": "beams_sized_labels",
+      "status": "ready",
+      "reason": "Beam labels with section size, e.g. GB1(250X400)"
+    },
+    {
+      "id": "walls",
+      "status": "ready",
+      "reason": "Wall marks on plans"
+    },
+    {
+      "id": "blinding",
+      "status": "ready",
+      "reason": "269-S-001-GENERAL NOTES - (SHEET 1 OF 2)"
+    }
+  ],
+  "project_files": {
+    "file_count": 31,
+    "drawing_prefixes": [
+      "269"
+    ],
+    "has_bill_workbook": true,
+    "has_courtyard_workbook": true
+  },
+  "sheet_joins": [
+    {
+      "token": "FOUNDATION",
+      "stem": "269-S-100-FOUNDATIONS",
+      "modules": [
+        "foundations.layout"
+      ],
+      "present": true
+    },
+    {
+      "token": "S-201",
+      "stem": "269-S-201-COLUMNS REINF. DETAILS",
+      "modules": [
+        "structure.column_schedule"
+      ],
+      "present": true
+    },
+    {
+      "token": "S-202",
+      "stem": "269-S-202-CORE & SHEAR WALLS REINF. DETAILS",
+      "modules": [
+        "structure.wall_schedule"
+      ],
+      "present": true
+    },
+    {
+      "token": "S-300",
+      "stem": "269-S-300-SECTIONS DETAILS - (SHEET 1 OF 2)",
+      "modules": [
+        "structure.sections"
+      ],
+      "present": true
+    },
+    {
+      "token": "S-301",
+      "stem": "269-S-301-SECTIONS DETAILS - (SHEET 2 OF 2)",
+      "modules": [
+        "structure.sections"
+      ],
+      "present": true
+    },
+    {
+      "token": "101-B",
+      "stem": "269-S-101-B-GROUND FLOOR REINF PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    },
+    {
+      "token": "102-B",
+      "stem": "269-S-102-B-FIRST FLOOR REINF PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    },
+    {
+      "token": "103-B",
+      "stem": "269-S-103-B-ROOF FLOOR REINF PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    },
+    {
+      "token": "104-B",
+      "stem": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    },
+    {
+      "token": "269-S-101-B-GROUND FLOOR REINF PLAN",
+      "stem": "269-S-101-B-GROUND FLOOR REINF PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    },
+    {
+      "token": "269-S-102-B-FIRST FLOOR REINF PLAN",
+      "stem": "269-S-102-B-FIRST FLOOR REINF PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    },
+    {
+      "token": "269-S-103-B-ROOF FLOOR REINF PLAN",
+      "stem": "269-S-103-B-ROOF FLOOR REINF PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    },
+    {
+      "token": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN",
+      "stem": "269-S-104-B-UPPER ROOF FLOOR REINF PLAN",
+      "modules": [
+        "structure.rebar"
+      ],
+      "present": true
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "project": "khanna-villa-dd",
+  "items": [
+    {
+      "id": "review-269-S-100-FOUNDATIONS-FC1",
+      "kind": "quantity_review",
+      "severity": "info",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "FC1",
+      "message": "outline 1100x1250 differs from schedule 1000x1200",
+      "measurement_id": "footing-269-S-100-FOUNDATIONS-FC1"
+    },
+    {
+      "id": "review-269-S-100-FOUNDATIONS-CF3",
+      "kind": "quantity_review",
+      "severity": "info",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "CF3",
+      "message": "plan size, depth 400 mm from the other CF footings; bars left out",
+      "measurement_id": "footing-269-S-100-FOUNDATIONS-CF3"
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-6076-250",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "measurement_id": null
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-250-4235",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "measurement_id": null
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-960-960",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label S-301",
+      "measurement_id": null
+    }
+  ]
+}

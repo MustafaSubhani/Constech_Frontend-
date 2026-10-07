@@ -1,0 +1,3072 @@
+{
+  "project": "khanna-villa-dd",
+  "version": 1,
+  "measurements": [
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-0",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-1",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-2",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-3",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-4",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-5",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-6",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-7",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-8",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-9",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-10",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-11",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-12",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1002,
+        "height_mm": 1202,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-13",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-14",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-15",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-16",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-17",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-18",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-19",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-20",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1202,
+        "height_mm": 1002,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC2-21",
+      "element_type": "footing",
+      "tag": "FC2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.3,
+        "blinding_m3": 0.055,
+        "formwork_m2": 1.2,
+        "rebar_kg": 33.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1000,
+        "area_m2": 1.0,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC2-22",
+      "element_type": "footing",
+      "tag": "FC2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.3,
+        "blinding_m3": 0.055,
+        "formwork_m2": 1.2,
+        "rebar_kg": 33.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1000,
+        "area_m2": 1.0,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-23",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-24",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-25",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-26",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-27",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-28",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-29",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-30",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-31",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-32",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-33",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-34",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-35",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-36",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-37",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-38",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "review",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 0.413,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.41,
+        "rebar_kg": 47.1
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1100,
+        "height_mm": 1250,
+        "area_m2": 1.375,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "outline 1100x1250 differs from schedule 1000x1200",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F4-39",
+      "element_type": "footing",
+      "tag": "F4",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.672,
+        "blinding_m3": 0.23,
+        "formwork_m2": 3.28,
+        "rebar_kg": 144.4
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2200,
+        "height_mm": 1900,
+        "area_m2": 4.18,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F4"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F4-40",
+      "element_type": "footing",
+      "tag": "F4",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.672,
+        "blinding_m3": 0.23,
+        "formwork_m2": 3.28,
+        "rebar_kg": 144.4
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2200,
+        "height_mm": 1900,
+        "area_m2": 4.18,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F4"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F5-41",
+      "element_type": "footing",
+      "tag": "F5",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.92,
+        "blinding_m3": 0.263,
+        "formwork_m2": 3.52,
+        "rebar_kg": 169.5
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2400,
+        "height_mm": 2000,
+        "area_m2": 4.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F5"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F5-42",
+      "element_type": "footing",
+      "tag": "F5",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.92,
+        "blinding_m3": 0.263,
+        "formwork_m2": 3.52,
+        "rebar_kg": 169.5
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2400,
+        "height_mm": 2000,
+        "area_m2": 4.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F5"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F6-43",
+      "element_type": "footing",
+      "tag": "F6",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 2.464,
+        "blinding_m3": 0.334,
+        "formwork_m2": 4.0,
+        "rebar_kg": 265.3
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2200,
+        "height_mm": 2800,
+        "area_m2": 6.16,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F6"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F6-44",
+      "element_type": "footing",
+      "tag": "F6",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 2.464,
+        "blinding_m3": 0.334,
+        "formwork_m2": 4.0,
+        "rebar_kg": 265.3
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2800,
+        "height_mm": 2200,
+        "area_m2": 6.16,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F6"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F4-45",
+      "element_type": "footing",
+      "tag": "F4",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.672,
+        "blinding_m3": 0.23,
+        "formwork_m2": 3.28,
+        "rebar_kg": 144.4
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1900,
+        "height_mm": 2200,
+        "area_m2": 4.18,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F4"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F7-46",
+      "element_type": "footing",
+      "tag": "F7",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.565,
+        "blinding_m3": 0.384,
+        "formwork_m2": 5.4,
+        "rebar_kg": 297.6
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2300,
+        "height_mm": 3100,
+        "area_m2": 7.13,
+        "depth_mm": 500
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F7"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F6-47",
+      "element_type": "footing",
+      "tag": "F6",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 2.464,
+        "blinding_m3": 0.334,
+        "formwork_m2": 4.0,
+        "rebar_kg": 265.3
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2800,
+        "height_mm": 2200,
+        "area_m2": 6.16,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F6"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F6-48",
+      "element_type": "footing",
+      "tag": "F6",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 2.464,
+        "blinding_m3": 0.334,
+        "formwork_m2": 4.0,
+        "rebar_kg": 265.3
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2800,
+        "height_mm": 2200,
+        "area_m2": 6.16,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F6"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F7-49",
+      "element_type": "footing",
+      "tag": "F7",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.565,
+        "blinding_m3": 0.384,
+        "formwork_m2": 5.4,
+        "rebar_kg": 297.6
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 3100,
+        "height_mm": 2300,
+        "area_m2": 7.13,
+        "depth_mm": 500
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F7"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F7-50",
+      "element_type": "footing",
+      "tag": "F7",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.565,
+        "blinding_m3": 0.384,
+        "formwork_m2": 5.4,
+        "rebar_kg": 297.6
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 3100,
+        "height_mm": 2300,
+        "area_m2": 7.13,
+        "depth_mm": 500
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F7"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F7-51",
+      "element_type": "footing",
+      "tag": "F7",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.565,
+        "blinding_m3": 0.384,
+        "formwork_m2": 5.4,
+        "rebar_kg": 297.6
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 3100,
+        "height_mm": 2300,
+        "area_m2": 7.13,
+        "depth_mm": 500
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F7"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F3-52",
+      "element_type": "footing",
+      "tag": "F3",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.714,
+        "blinding_m3": 0.135,
+        "formwork_m2": 1.86,
+        "rebar_kg": 69.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1700,
+        "height_mm": 1400,
+        "area_m2": 2.38,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F3"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F3-53",
+      "element_type": "footing",
+      "tag": "F3",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.714,
+        "blinding_m3": 0.135,
+        "formwork_m2": 1.86,
+        "rebar_kg": 69.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1400,
+        "height_mm": 1700,
+        "area_m2": 2.38,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F3"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F2-54",
+      "element_type": "footing",
+      "tag": "F2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.663,
+        "blinding_m3": 0.126,
+        "formwork_m2": 1.8,
+        "rebar_kg": 61.0
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1700,
+        "height_mm": 1300,
+        "area_m2": 2.21,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F2-55",
+      "element_type": "footing",
+      "tag": "F2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.663,
+        "blinding_m3": 0.126,
+        "formwork_m2": 1.8,
+        "rebar_kg": 61.0
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1700,
+        "height_mm": 1300,
+        "area_m2": 2.21,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F5-56",
+      "element_type": "footing",
+      "tag": "F5",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.92,
+        "blinding_m3": 0.263,
+        "formwork_m2": 3.52,
+        "rebar_kg": 169.5
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2400,
+        "height_mm": 2000,
+        "area_m2": 4.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F5"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F5-57",
+      "element_type": "footing",
+      "tag": "F5",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.92,
+        "blinding_m3": 0.263,
+        "formwork_m2": 3.52,
+        "rebar_kg": 169.5
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2400,
+        "height_mm": 2000,
+        "area_m2": 4.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F5"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "insert"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC2-58",
+      "element_type": "footing",
+      "tag": "FC2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.3,
+        "blinding_m3": 0.055,
+        "formwork_m2": 1.2,
+        "rebar_kg": 33.2
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1000,
+        "area_m2": 1.0,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F1-59",
+      "element_type": "footing",
+      "tag": "F1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "blinding_m3": 0.104,
+        "formwork_m2": 1.62,
+        "rebar_kg": 50.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1500,
+        "height_mm": 1200,
+        "area_m2": 1.8,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F1-60",
+      "element_type": "footing",
+      "tag": "F1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "blinding_m3": 0.104,
+        "formwork_m2": 1.62,
+        "rebar_kg": 50.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1500,
+        "height_mm": 1200,
+        "area_m2": 1.8,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F1-61",
+      "element_type": "footing",
+      "tag": "F1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "blinding_m3": 0.104,
+        "formwork_m2": 1.62,
+        "rebar_kg": 50.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1500,
+        "height_mm": 1200,
+        "area_m2": 1.8,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-CF2-62",
+      "element_type": "footing",
+      "tag": "CF2",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 3.12,
+        "blinding_m3": 0.42,
+        "formwork_m2": 4.72,
+        "rebar_kg": 278.1
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 2000,
+        "height_mm": 3900,
+        "area_m2": 7.8,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag CF2"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-CF3-63",
+      "element_type": "footing",
+      "tag": "CF3",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "review",
+      "confidence": "medium",
+      "quantities": {
+        "concrete_m3": 6.004,
+        "blinding_m3": "",
+        "formwork_m2": 6.72,
+        "rebar_kg": ""
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 4600,
+        "height_mm": 3800,
+        "area_m2": 15.009,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag CF3"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "plan size, depth 400 mm from the other CF footings; bars left out",
+      "missed": false,
+      "rebar_basis": "missing",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-CF1-64",
+      "element_type": "footing",
+      "tag": "CF1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 1.736,
+        "blinding_m3": 0.24,
+        "formwork_m2": 3.6,
+        "rebar_kg": 149.8
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1400,
+        "height_mm": 3100,
+        "area_m2": 4.34,
+        "depth_mm": 400
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag CF1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-FC1-65",
+      "element_type": "footing",
+      "tag": "FC1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.36,
+        "blinding_m3": 0.069,
+        "formwork_m2": 1.32,
+        "rebar_kg": 41.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1000,
+        "height_mm": 1200,
+        "area_m2": 1.2,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag FC1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-F1-66",
+      "element_type": "footing",
+      "tag": "F1",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 0.54,
+        "blinding_m3": 0.104,
+        "formwork_m2": 1.62,
+        "rebar_kg": 50.7
+      },
+      "formula": "area_m2 * depth_mm / 1000 (or schedule L\u00d7W\u00d7D when sizes match)",
+      "inputs": {
+        "width_mm": 1500,
+        "height_mm": 1200,
+        "area_m2": 1.8,
+        "depth_mm": 300
+      },
+      "sources": [
+        {
+          "role": "schedule",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "tag F1"
+        },
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-MISSED-67",
+      "element_type": "footing",
+      "tag": "MISSED",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "blocked",
+      "confidence": "low",
+      "quantities": {
+        "concrete_m3": "",
+        "blinding_m3": "",
+        "formwork_m2": "",
+        "rebar_kg": ""
+      },
+      "formula": "",
+      "inputs": {
+        "width_mm": 6076,
+        "height_mm": 250,
+        "area_m2": 1.519,
+        "depth_mm": null
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "missed": true,
+      "rebar_basis": "missing",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-MISSED-68",
+      "element_type": "footing",
+      "tag": "MISSED",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "blocked",
+      "confidence": "low",
+      "quantities": {
+        "concrete_m3": "",
+        "blinding_m3": "",
+        "formwork_m2": "",
+        "rebar_kg": ""
+      },
+      "formula": "",
+      "inputs": {
+        "width_mm": 250,
+        "height_mm": 4235,
+        "area_m2": 1.059,
+        "depth_mm": null
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "missed": true,
+      "rebar_basis": "missing",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "footing-269-S-100-FOUNDATIONS-MISSED-69",
+      "element_type": "footing",
+      "tag": "MISSED",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "blocked",
+      "confidence": "low",
+      "quantities": {
+        "concrete_m3": "",
+        "blinding_m3": "",
+        "formwork_m2": "",
+        "rebar_kg": ""
+      },
+      "formula": "",
+      "inputs": {
+        "width_mm": 960,
+        "height_mm": 960,
+        "area_m2": 0.922,
+        "depth_mm": null
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "model"
+        }
+      ],
+      "note": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label S-301",
+      "missed": true,
+      "rebar_basis": "missing",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars"
+      ]
+    },
+    {
+      "id": "raft-269-S-100-FOUNDATIONS-0",
+      "element_type": "raft",
+      "tag": "RAFT",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 34.827,
+        "formwork_m2": 21.899,
+        "rebar_kg": 2927.9
+      },
+      "formula": "area_m2 * thickness_mm / 1000",
+      "inputs": {
+        "area_m2": 69.654,
+        "thickness_mm": 500.0,
+        "note_text": "RAFT THK = 500mm"
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "RAFT THK = 500mm"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "raft-269-S-100-FOUNDATIONS-1",
+      "element_type": "raft",
+      "tag": "RAFT",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "concrete_m3": 30.401,
+        "formwork_m2": 19.117,
+        "rebar_kg": 2610.0
+      },
+      "formula": "area_m2 * thickness_mm / 1000",
+      "inputs": {
+        "area_m2": 50.668,
+        "thickness_mm": 600.0,
+        "note_text": "RAFT THK = 600mm"
+      },
+      "sources": [
+        {
+          "role": "plan_outline",
+          "sheet": "269-S-100-FOUNDATIONS",
+          "detail": "RAFT THK = 600mm"
+        }
+      ],
+      "note": "",
+      "missed": false
+    },
+    {
+      "id": "footing-rebar-total",
+      "element_type": "footing_steel",
+      "tag": "TOTAL",
+      "sheet": "foundations",
+      "status": "auto",
+      "confidence": "high",
+      "quantities": {
+        "rebar_kg": 5943.5
+      },
+      "formula": "sum of element records",
+      "inputs": {},
+      "sources": [
+        {
+          "role": "engine_total",
+          "sheet": "foundations",
+          "detail": "footing_steel"
+        }
+      ],
+      "note": "Footing schedule bars both ways; 75 mm cover assumed",
+      "missed": false,
+      "rebar_basis": "measured",
+      "rebar_flags": [
+        "schedule_both_ways",
+        "no_laps",
+        "no_bends",
+        "no_starter_bars",
+        "assumed_cover"
+      ]
+    }
+  ],
+  "review_queue": [
+    {
+      "id": "review-269-S-100-FOUNDATIONS-FC1",
+      "kind": "quantity_review",
+      "severity": "info",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "FC1",
+      "message": "outline 1100x1250 differs from schedule 1000x1200",
+      "measurement_id": "footing-269-S-100-FOUNDATIONS-FC1"
+    },
+    {
+      "id": "review-269-S-100-FOUNDATIONS-CF3",
+      "kind": "quantity_review",
+      "severity": "info",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "CF3",
+      "message": "plan size, depth 400 mm from the other CF footings; bars left out",
+      "measurement_id": "footing-269-S-100-FOUNDATIONS-CF3"
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-6076-250",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "measurement_id": null
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-250-4235",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label SB1(250X400)",
+      "measurement_id": null
+    },
+    {
+      "id": "missed-269-S-100-FOUNDATIONS-960-960",
+      "kind": "missed_outline",
+      "severity": "warning",
+      "sheet": "269-S-100-FOUNDATIONS",
+      "tag": "MISSED",
+      "message": "missed: outline was not tied to a schedule tag, so it is not in the total; nearest label S-301",
+      "measurement_id": null
+    }
+  ],
+  "sheet_alignment": [
+    {
+      "sheet": "269-S-100-FOUNDATIONS",
+      "status": "no_pdf",
+      "residual_pt": null,
+      "anchor": ""
+    }
+  ]
+}
