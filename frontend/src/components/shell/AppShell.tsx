@@ -5,7 +5,7 @@ import {
   ChevronRight,
   Download,
   FolderKanban,
-  Keyboard,
+  ArrowLeftRight,
   Layers,
   LogOut,
   Monitor,
@@ -17,10 +17,11 @@ import {
   Settings,
   Sparkles,
   Sun,
+  UserRound,
 } from "lucide-react";
 import { api } from "../../api/client";
 import type { PipelineStatus } from "../../types";
-import { updateSettings, useSettings, type ThemePref } from "../../lib/settings";
+import { updateSettings, useSettings } from "../../lib/settings";
 import { Logo } from "../brand/Logo";
 import { Menu } from "../ui/Menu";
 import { CommandPalette } from "./CommandPalette";
@@ -184,9 +185,17 @@ export function AppShell() {
             <RailLink to="/settings" icon={Settings} label="Settings" collapsed={collapsed} />
             <Menu
               align="left"
+              placement="up"
               width={230}
-              trigger={({ toggle }) => (
-                <button type="button" className="rail-user" onClick={toggle} aria-label="Account menu">
+              trigger={({ open, toggle }) => (
+                <button
+                  type="button"
+                  className="rail-user"
+                  onClick={toggle}
+                  aria-label="Account menu"
+                  aria-haspopup="menu"
+                  aria-expanded={open}
+                >
                   <span className="avatar">{initials(user?.name ?? "")}</span>
                   <span className="who">
                     <strong>{user?.name ?? "Quantity surveyor"}</strong>
@@ -197,44 +206,41 @@ export function AppShell() {
             >
               {(close) => (
                 <>
-                  <div className="menu-label">Theme</div>
-                  {(["system", "light", "dark"] as ThemePref[]).map((pref) => (
-                    <button
-                      key={pref}
-                      type="button"
-                      role="menuitemradio"
-                      aria-checked={settings.theme === pref}
-                      className="menu-item"
-                      onClick={() => {
-                        updateSettings({ theme: pref });
-                        close();
-                      }}
-                    >
-                      {pref === "system" ? <Monitor size={15} /> : pref === "light" ? <Sun size={15} /> : <Moon size={15} />}
-                      {pref === "system" ? "Match system" : pref === "light" ? "Light" : "Dark"}
-                    </button>
-                  ))}
-                  <div className="menu-sep" />
                   <button
                     type="button"
+                    role="menuitem"
                     className="menu-item"
                     onClick={() => {
-                      setShortcutsOpen(true);
                       close();
+                      navigate("/settings#account");
                     }}
                   >
-                    <Keyboard size={15} /> Keyboard shortcuts <span className="menu-meta">?</span>
+                    <UserRound size={15} /> Account settings
                   </button>
                   <button
                     type="button"
+                    role="menuitem"
                     className="menu-item"
+                    onClick={async () => {
+                      close();
+                      await api.logout();
+                      navigate("/login", { replace: true, state: { switchAccount: true } });
+                    }}
+                  >
+                    <ArrowLeftRight size={15} /> Switch account
+                  </button>
+                  <div className="menu-sep" />
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className="menu-item danger"
                     onClick={async () => {
                       close();
                       await api.logout();
                       navigate("/login", { replace: true });
                     }}
                   >
-                    <LogOut size={15} /> Sign out
+                    <LogOut size={15} /> Log out
                   </button>
                 </>
               )}

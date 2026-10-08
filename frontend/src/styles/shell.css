@@ -34,8 +34,11 @@ html[data-theme="dark"] .rail-item:hover { background: rgba(255, 255, 255, 0.05)
 .rail-project-head .place { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .rail-foot { flex: none; padding: 8px 10px 12px; display: flex; flex-direction: column; gap: 1px; }
-.rail-user { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: var(--r-md); width: 100%; text-align: left; }
+.rail-foot .menu-anchor { display: flex; width: 100%; min-width: 0; }
+.rail-user { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: var(--r-md); width: 100%; text-align: left; border: 1px solid transparent; transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease); }
 .rail-user:hover { background: rgba(17, 17, 24, 0.045); }
+.rail-user[aria-expanded="true"] { background: var(--surface-2); border-color: var(--brand-line); box-shadow: var(--shadow-card); }
+html[data-theme="dark"] .rail-user:hover { background: rgba(255, 255, 255, 0.05); }
 .avatar { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--brand-soft); color: var(--brand-text); font-size: 11.5px; font-weight: 600; }
 .rail-user .who { min-width: 0; line-height: 1.25; }
 .rail-user .who strong { display: block; font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

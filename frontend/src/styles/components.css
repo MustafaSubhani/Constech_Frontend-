@@ -161,6 +161,8 @@ kbd, .kbd {
   animation: scale-in var(--dur-2) var(--ease-out) both; transform-origin: top right;
 }
 .menu.align-left { right: auto; left: 0; transform-origin: top left; }
+.menu.drop-up { top: auto; bottom: calc(100% + 6px); transform-origin: bottom right; }
+.menu.drop-up.align-left { transform-origin: bottom left; }
 .menu-item {
   width: 100%; display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 6px;
   text-align: left; font-size: 13px; color: var(--ink);

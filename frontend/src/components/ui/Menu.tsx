@@ -4,10 +4,11 @@ type Props = {
   trigger: (props: { open: boolean; toggle: () => void }) => ReactNode;
   children: (close: () => void) => ReactNode;
   align?: "left" | "right";
+  placement?: "up" | "down";
   width?: number;
 };
 
-export function Menu({ trigger, children, align = "right", width }: Props) {
+export function Menu({ trigger, children, align = "right", placement = "down", width }: Props) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -42,7 +43,11 @@ export function Menu({ trigger, children, align = "right", width }: Props) {
     <div className="menu-anchor" ref={ref}>
       {trigger({ open, toggle: () => setOpen((v) => !v) })}
       {open ? (
-        <div className={`menu${align === "left" ? " align-left" : ""}`} role="menu" style={width ? { minWidth: width } : undefined}>
+        <div
+          className={`menu${align === "left" ? " align-left" : ""}${placement === "up" ? " drop-up" : ""}`}
+          role="menu"
+          style={width ? { minWidth: width } : undefined}
+        >
           {children(() => setOpen(false))}
         </div>
       ) : null}

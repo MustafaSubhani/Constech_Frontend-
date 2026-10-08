@@ -3,6 +3,10 @@ import { useLocation } from "react-router-dom";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../api/client";
+
+function sessionUser() {
+  return api.session();
+}
 import { AssistantSettings } from "../components/assistant/AssistantSettings";
 import { CURRENCIES, updateSettings, useSettings, type ThemePref } from "../lib/settings";
 
@@ -11,6 +15,7 @@ export function SettingsPage() {
   const assistant = useQuery({ queryKey: ["assistant-status"], queryFn: api.assistantStatus });
   const assistantReady = Boolean(assistant.data?.enabled && !assistant.data.problems.length);
   const { hash } = useLocation();
+  const user = sessionUser();
   useEffect(() => {
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [hash]);
@@ -23,6 +28,16 @@ export function SettingsPage() {
             <p>Defaults for new estimates and how projects run. Changes save as you make them.</p>
           </div>
         </header>
+
+        <section className="card settings-card" id="account">
+          <h2>Account</h2>
+          <Row title="Name" hint="Signed in on this device.">
+            <span className="small">{user?.name ?? "—"}</span>
+          </Row>
+          <Row title="Email">
+            <span className="small">{user?.email ?? "—"}</span>
+          </Row>
+        </section>
 
         <section className="card settings-card">
           <h2>Estimate defaults</h2>
