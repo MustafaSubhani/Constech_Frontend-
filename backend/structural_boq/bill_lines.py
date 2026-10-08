@@ -150,10 +150,8 @@ def adjust_bill_line(project, item_key, patch):
 
 def reset_bill_line(project, item_key):
     data = _load_adjustment_file(project)
+    # Only the override; whether the line is hidden is changed through set_line_hidden.
     removed = data["lines"].pop(item_key, None) is not None
-    if item_key in data["hidden"]:
-        data["hidden"].remove(item_key)
-        removed = True
     _save_adjustment_file(project, data)
     return removed
 

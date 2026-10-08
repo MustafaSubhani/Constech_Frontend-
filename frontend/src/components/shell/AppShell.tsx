@@ -1,17 +1,15 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
+  ArrowLeftRight,
   ChevronRight,
   Download,
   FolderKanban,
-  ArrowLeftRight,
   Layers,
   LogOut,
   Monitor,
   Moon,
-  PanelLeftClose,
-  PanelLeftOpen,
   ScanLine,
   Search,
   Settings,
@@ -27,9 +25,7 @@ import { Menu } from "../ui/Menu";
 import { CommandPalette } from "./CommandPalette";
 import { ShortcutsDialog } from "./ShortcutsDialog";
 import { ShellContext } from "./ShellContext";
-import { PROJECT_TABS } from "./projectTabs";
-
-const RAIL_KEY = "constech.rail.collapsed";
+import { ASSISTANT_TABS, PROJECT_TABS } from "./projectTabs";
 
 function initials(name: string) {
   return (
@@ -42,19 +38,26 @@ function initials(name: string) {
   );
 }
 
+/** A dialog, palette or open menu owns the keyboard; page shortcuts wait. */
+export function overlayOpen() {
+  return Boolean(document.querySelector(".dialog-backdrop, .palette-backdrop"));
+}
+
 export function AppShell() {
   const navigate = useNavigate();
   const location = useLocation();
   const settings = useSettings();
-  const user = api.session();
-  const [collapsed, setCollapsed] = useState(() => localStorage.getItem(RAIL_KEY) === "1");
+  const user = useSyncExternalStore(api.onSession, () => sessionStorage.getItem("constech.takeoff.session"));
+  const session = useMemo(() => (user ? api.session() : null), [user]);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
-  const [assistantOpen, setAssistantOpen] = useState(false);
+  const [assistantOpen, setAssistantOpen] = useState(() => localStorage.getItem("constech.assistant.open") === "1");
 
   const projectMatch = location.pathname.match(/^\/p\/([^/]+)(?:\/([^/]+))?/);
   const projectId = projectMatch ? decodeURIComponent(projectMatch[1]!) : null;
   const projectTab = projectMatch?.[2] ?? "";
+  // The assistant works where it can read and change things: drawings, bill, rates and inputs.
+  const assistantHere = Boolean(projectId) && ASSISTANT_TABS.has(projectTab);
 
   const summary = useQuery({
     queryKey: ["project", projectId, "summary"],
@@ -76,39 +79,44 @@ export function AppShell() {
   const missingInputs = (inputs.data?.entries ?? []).filter((e) => e.status === "missing").length;
 
   useEffect(() => {
-    localStorage.setItem(RAIL_KEY, collapsed ? "1" : "0");
-  }, [collapsed]);
-
-  useEffect(() => {
-    if (!projectId) setAssistantOpen(false);
-  }, [projectId]);
+    try {
+      localStorage.setItem("constech.assistant.open", assistantOpen ? "1" : "0");
+    } catch {
+      /* storage unavailable */
+    }
+  }, [assistantOpen]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       const typing = e.target instanceof HTMLElement && e.target.matches("input, textarea, select, [contenteditable]");
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        if (document.querySelector(".dialog-backdrop")) return;
         e.preventDefault();
         setPaletteOpen((v) => !v);
         return;
       }
-      if (typing) return;
+      if (typing || overlayOpen()) return;
       if (e.key === "?" && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
-        setShortcutsOpen((v) => !v);
-      } else if (e.key === "[" && !e.ctrlKey) {
-        setCollapsed((v) => !v);
+        setShortcutsOpen(true);
       } else if (e.altKey && projectId && /^[1-5]$/.test(e.key)) {
         e.preventDefault();
         const tab = PROJECT_TABS[Number(e.key) - 1]!;
         navigate(`/p/${encodeURIComponent(projectId)}${tab.path ? `/${tab.path}` : ""}`);
+      } else if (e.altKey && e.key.toLowerCase() === "a" && assistantHere) {
+        e.preventDefault();
+        setAssistantOpen((v) => !v);
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [navigate, projectId]);
+  }, [navigate, projectId, assistantHere]);
 
   const openPalette = useCallback(() => setPaletteOpen(true), []);
-  const shell = useMemo(() => ({ assistantOpen, setAssistantOpen, openPalette }), [assistantOpen, openPalette]);
+  const shell = useMemo(
+    () => ({ assistantOpen: assistantOpen && assistantHere, setAssistantOpen, openPalette, assistantAvailable: assistantHere }),
+    [assistantOpen, assistantHere, openPalette],
+  );
 
   const crumbs = useMemo(() => {
     const list: { label: string; to?: string }[] = [];
@@ -125,126 +133,105 @@ export function AppShell() {
     return list;
   }, [location.pathname, projectId, projectTab, summary.data?.name]);
 
-  const themeIcon = settings.theme === "dark" ? Moon : settings.theme === "light" ? Sun : Monitor;
-  const ThemeIcon = themeIcon;
+  const ThemeIcon = settings.theme === "dark" ? Moon : settings.theme === "light" ? Sun : Monitor;
   const base = projectId ? `/p/${encodeURIComponent(projectId)}` : "";
 
   return (
     <ShellContext.Provider value={shell}>
-      <div className={`app${collapsed ? " rail-collapsed" : ""}`}>
+      <div className="app">
+        {/* The rail is a slim icon bar; hovering or tabbing into it opens it over the page. */}
         <aside className="rail" aria-label="Main navigation">
-          <div className="rail-brand">
-            <button type="button" className="brand-link" onClick={() => navigate("/projects")} aria-label="All projects">
-              <Logo height={24} />
-            </button>
-            <button
-              type="button"
-              className="rail-toggle"
-              onClick={() => setCollapsed((v) => !v)}
-              aria-label={collapsed ? "Expand side bar" : "Collapse side bar"}
-              title={collapsed ? "Expand  [" : "Collapse  ["}
-            >
-              <span className="mark">
-                <Logo variant="mark" height={24} />
-              </span>
-              <span className="icon">{collapsed ? <PanelLeftOpen size={17} /> : <PanelLeftClose size={17} />}</span>
-            </button>
-          </div>
-          <nav className="rail-scroll">
-            <div className="rail-group">
-              <div className="rail-label">Workspace</div>
-              <RailLink to="/projects" icon={FolderKanban} label="Projects" collapsed={collapsed} end={false} active={!projectId && location.pathname.startsWith("/projects")} />
-              <RailLink to="/quick" icon={ScanLine} label="Quick takeoff" collapsed={collapsed} />
-              <RailLink to="/exports" icon={Download} label="Exports" collapsed={collapsed} />
+          <div className="rail-panel">
+            <div className="rail-brand">
+              <button type="button" className="brand-link" onClick={() => navigate("/projects")} aria-label="All projects">
+                <span className="brand-mark">
+                  <Logo variant="mark" height={26} />
+                </span>
+                <span className="brand-full">
+                  <Logo height={24} />
+                </span>
+              </button>
             </div>
-            {projectId ? (
-              <div className="rail-project" key={projectId}>
-                <div className="rail-project-head" title={collapsed ? summary.data?.name : undefined}>
-                  <span className="project-dot">{initials(summary.data?.name ?? projectId)}</span>
-                  <span className="project-meta">
-                    <span className="name" title={summary.data?.name}>{summary.data?.name ?? projectId}</span>
-                    <span className="place">{summary.data?.place || "Project"}</span>
-                  </span>
-                </div>
-                {PROJECT_TABS.map((tab) => (
-                  <RailLink
-                    key={tab.path}
-                    to={tab.path ? `${base}/${tab.path}` : base}
-                    end={!tab.path}
-                    icon={tab.icon}
-                    label={tab.label}
-                    collapsed={collapsed}
-                    badge={tab.path === "inputs" && missingInputs ? missingInputs : undefined}
-                    pulse={tab.path === "pipeline" && running}
-                  />
-                ))}
+            <nav className="rail-scroll">
+              <div className="rail-group">
+                <div className="rail-label">Workspace</div>
+                <RailLink to="/projects" icon={FolderKanban} label="Projects" end={false} active={!projectId && location.pathname.startsWith("/projects")} />
+                <RailLink to="/quick" icon={ScanLine} label="Quick takeoff" />
+                <RailLink to="/exports" icon={Download} label="Exports" />
               </div>
-            ) : null}
-          </nav>
-          <div className="rail-foot">
-            <RailLink to="/settings" icon={Settings} label="Settings" collapsed={collapsed} />
-            <Menu
-              align="left"
-              placement="up"
-              width={230}
-              trigger={({ open, toggle }) => (
-                <button
-                  type="button"
-                  className="rail-user"
-                  onClick={toggle}
-                  aria-label="Account menu"
-                  aria-haspopup="menu"
-                  aria-expanded={open}
-                >
-                  <span className="avatar">{initials(user?.name ?? "")}</span>
-                  <span className="who">
-                    <strong>{user?.name ?? "Quantity surveyor"}</strong>
-                    <span>{user?.email ?? ""}</span>
-                  </span>
-                </button>
-              )}
-            >
-              {(close) => (
-                <>
-                  <button
-                    type="button"
-                    role="menuitem"
-                    className="menu-item"
-                    onClick={() => {
-                      close();
-                      navigate("/settings#account");
-                    }}
-                  >
-                    <UserRound size={15} /> Account settings
+              {projectId ? (
+                <div className="rail-group rail-project" key={projectId}>
+                  <div className="rail-project-head" title={summary.data?.name}>
+                    <span className="project-dot">{initials(summary.data?.name ?? projectId)}</span>
+                    <span className="project-meta">
+                      <span className="name">{summary.data?.name ?? projectId}</span>
+                      <span className="place">{summary.data?.place || "Project"}</span>
+                    </span>
+                  </div>
+                  {PROJECT_TABS.map((tab) => (
+                    <RailLink
+                      key={tab.path}
+                      to={tab.path ? `${base}/${tab.path}` : base}
+                      end={!tab.path}
+                      icon={tab.icon}
+                      label={tab.label}
+                      badge={tab.path === "inputs" && missingInputs ? missingInputs : undefined}
+                      pulse={tab.path === "pipeline" && running}
+                    />
+                  ))}
+                </div>
+              ) : null}
+            </nav>
+            <div className="rail-foot">
+              <RailLink to="/settings" icon={Settings} label="Settings" />
+              <Menu
+                align="left"
+                placement="up"
+                width={240}
+                trigger={({ open, toggle }) => (
+                  <button type="button" className="rail-user" onClick={toggle} aria-label="Account menu" aria-haspopup="menu" aria-expanded={open}>
+                    <span className="avatar">{initials(session?.name ?? "")}</span>
+                    <span className="who">
+                      <strong>{session?.name || "Quantity surveyor"}</strong>
+                      <span>{session?.email ?? ""}</span>
+                    </span>
                   </button>
-                  <button
-                    type="button"
-                    role="menuitem"
-                    className="menu-item"
-                    onClick={async () => {
-                      close();
-                      await api.logout();
-                      navigate("/login", { replace: true, state: { switchAccount: true } });
-                    }}
-                  >
-                    <ArrowLeftRight size={15} /> Switch account
-                  </button>
-                  <div className="menu-sep" />
-                  <button
-                    type="button"
-                    role="menuitem"
-                    className="menu-item danger"
-                    onClick={async () => {
-                      close();
-                      await api.logout();
-                      navigate("/login", { replace: true });
-                    }}
-                  >
-                    <LogOut size={15} /> Log out
-                  </button>
-                </>
-              )}
-            </Menu>
+                )}
+              >
+                {(close) => (
+                  <>
+                    <button type="button" role="menuitem" className="menu-item" onClick={() => (close(), navigate("/settings#account"))}>
+                      <UserRound size={15} /> Account settings
+                    </button>
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className="menu-item"
+                      onClick={async () => {
+                        close();
+                        await api.logout();
+                        navigate("/login", { replace: true, state: { switchAccount: true } });
+                      }}
+                    >
+                      <ArrowLeftRight size={15} /> Switch account
+                    </button>
+                    <div className="menu-sep" />
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className="menu-item danger"
+                      onClick={async () => {
+                        close();
+                        await api.logout();
+                        navigate("/login", { replace: true });
+                      }}
+                    >
+                      <LogOut size={15} /> Log out
+                    </button>
+                  </>
+                )}
+              </Menu>
+            </div>
           </div>
         </aside>
 
@@ -252,40 +239,45 @@ export function AppShell() {
           <header className="topbar">
             <nav className="crumbs" aria-label="Breadcrumb">
               {crumbs.map((c, i) => (
-                <span key={`${c.label}-${i}`} className="row" style={{ gap: 4, minWidth: 0 }}>
+                <span key={`${c.label}-${i}`} className="crumb">
                   {i > 0 ? <ChevronRight size={14} className="sep" /> : null}
                   {c.to ? <Link to={c.to}>{c.label}</Link> : <span className="current">{c.label}</span>}
                 </span>
               ))}
             </nav>
-            <button type="button" className="search-trigger" onClick={openPalette}>
-              <Search size={15} />
-              <span>Search sheets, lines, actions</span>
-              <kbd>Ctrl K</kbd>
-            </button>
             <div className="topbar-actions">
-              {projectId ? (
-                <button
-                  type="button"
-                  className="btn btn-ghost btn-sm"
-                  aria-pressed={assistantOpen}
-                  onClick={() => setAssistantOpen(!assistantOpen)}
-                >
-                  <Sparkles size={15} /> Assistant
-                </button>
-              ) : null}
+              <button
+                type="button"
+                className="btn btn-ghost btn-icon btn-sm"
+                onClick={openPalette}
+                aria-label="Search sheets, lines and actions"
+                data-tip="Search  Ctrl K"
+                data-tip-pos="bottom"
+              >
+                <Search size={17} />
+              </button>
               <button
                 type="button"
                 className="btn btn-ghost btn-icon btn-sm"
                 aria-label="Change theme"
-                data-tip="Theme"
+                data-tip={`Theme: ${settings.theme}`}
                 data-tip-pos="bottom"
-                onClick={() =>
-                  updateSettings({ theme: settings.theme === "system" ? "dark" : settings.theme === "dark" ? "light" : "system" })
-                }
+                onClick={() => updateSettings({ theme: settings.theme === "system" ? "dark" : settings.theme === "dark" ? "light" : "system" })}
               >
-                <ThemeIcon size={16} />
+                <ThemeIcon size={17} />
               </button>
+              {assistantHere ? (
+                <button
+                  type="button"
+                  className="btn btn-ghost btn-sm assistant-toggle"
+                  aria-pressed={assistantOpen}
+                  onClick={() => setAssistantOpen(!assistantOpen)}
+                  data-tip="Alt A"
+                  data-tip-pos="bottom"
+                >
+                  <Sparkles size={16} /> Assistant
+                </button>
+              ) : null}
             </div>
           </header>
           <div className="content">
@@ -304,7 +296,6 @@ function RailLink({
   to,
   icon: Icon,
   label,
-  collapsed,
   end = true,
   active,
   badge,
@@ -313,22 +304,20 @@ function RailLink({
   to: string;
   icon: typeof Layers;
   label: string;
-  collapsed: boolean;
   end?: boolean;
   active?: boolean;
   badge?: number;
   pulse?: boolean;
 }) {
   return (
-    <NavLink
-      to={to}
-      end={end}
-      className={({ isActive }) => `rail-item${(active ?? isActive) ? " active" : ""}`}
-      title={collapsed ? label : undefined}
-    >
-      <Icon size={17} />
+    <NavLink to={to} end={end} className={({ isActive }) => `rail-item${(active ?? isActive) ? " active" : ""}`} aria-label={label}>
+      <Icon size={18} />
       <span className="rail-text">{label}</span>
-      {badge ? <span className="rail-badge" aria-label={`${badge} missing`}>{badge}</span> : null}
+      {badge ? (
+        <span className="rail-badge" aria-label={`${badge} missing`}>
+          {badge}
+        </span>
+      ) : null}
       {pulse ? <span className="rail-pulse" aria-label="Running" /> : null}
     </NavLink>
   );

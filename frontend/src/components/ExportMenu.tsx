@@ -1,7 +1,8 @@
 import { ChevronDown, Download, FileSpreadsheet, FileText, Table2 } from "lucide-react";
 import { api, type ExportFormat, type ExportKind, type ExportView } from "../api/client";
-import { triggerDownload } from "../lib/files";
+import { downloadFile } from "../lib/files";
 import { Menu } from "./ui/Menu";
+import { useToast } from "./ui/Toast";
 
 const FORMATS: { format: ExportFormat; label: string; icon: typeof FileText }[] = [
   { format: "xlsx", label: "Excel workbook", icon: FileSpreadsheet },
@@ -22,6 +23,7 @@ type Props = {
 };
 
 export function ExportMenu({ projectId, kinds = ["bill", "rates"], disabled, label = "Export", beforeExport, view, viewLabel }: Props) {
+  const toast = useToast();
   return (
     <Menu
       width={240}
@@ -44,8 +46,13 @@ export function ExportMenu({ projectId, kinds = ["bill", "rates"], disabled, lab
                 className="menu-item"
                 onClick={async () => {
                   close();
-                  await beforeExport?.();
-                  triggerDownload(api.exportUrl(projectId, kind, format, view));
+                  try {
+                    await beforeExport?.();
+                    const name = await downloadFile(api.exportUrl(projectId, kind, format, view));
+                    toast.success(`Downloaded ${name}`);
+                  } catch (err) {
+                    toast.error((err as Error).message);
+                  }
                 }}
               >
                 <Icon size={15} /> {text}

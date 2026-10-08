@@ -44,7 +44,23 @@ export function ExportsPage() {
                 <ExportMenu projectId={p.id} disabled={!p.lines} />
               </div>
             ))}
+            {projects.isLoading
+              ? [0, 1, 2].map((i) => (
+                  <div className="card export-card" key={`sk${i}`}>
+                    <div className="grow stack" style={{ gap: 6 }}>
+                      <span className="sk sk-title" style={{ ["--delay" as string]: `${i * 120}ms` }} />
+                      <span className="sk sk-line short" />
+                    </div>
+                  </div>
+                ))
+              : null}
           </div>
+          {!projects.isLoading && !projects.data?.length ? (
+            <p className="muted small">
+              No projects yet. <Link to="/projects?new=1">Create one</Link> to generate comparisons and estimates.
+            </p>
+          ) : null}
+          {projects.error ? <div className="banner banner-bad">{(projects.error as Error).message}</div> : null}
         </section>
 
         <section className="stack" style={{ gap: 12 }}>

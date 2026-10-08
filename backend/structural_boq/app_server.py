@@ -9,7 +9,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, quote, unquote, urlparse
 
-from . import agent
+from . import accounts, agent
 from .bill_lines import (
     add_custom_line,
     adjust_bill_line,
@@ -62,6 +62,8 @@ RUN_MESSAGES = {
     "structure": "Structure measure finished. Columns, slabs, beams, and walls are ready to review.",
 }
 UPLOAD_SUFFIXES = {".dwg", ".dxf", ".pdf", ".xlsx", ".csv", ".txt", ".md"}
+REVIEW_MARKS = Path("out") / "review" / "marks.json"
+_MARKS_LOCK = threading.Lock()
 UPLOAD_TARGETS = {"bills", "rates"}
 DOWNLOAD_DIRS = ("", "out", "bills", "rates")
 EXPORT_TYPES = {
@@ -335,6 +337,38 @@ class TakeoffApp:
         return {**self.payload(project_slug(target), detail=False), "saved": saved}
 
 
+def _load_marks(project_dir):
+    path = project_dir / REVIEW_MARKS
+    if not path.is_file():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8")).get("marks") or {}
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _save_marks(project_dir, body):
+    """Shapes the QS has checked on each sheet: {sheetId: [shapeId, ...]}."""
+    sheet_id = str(body.get("sheetId") or "")
+    ids = body.get("shapeIds")
+    if not sheet_id or not isinstance(ids, list):
+        raise ApiError(400, "sheetId and shapeIds are required.")
+    with _MARKS_LOCK:
+        marks = _load_marks(project_dir)
+        current = set(marks.get(sheet_id) or [])
+        if body.get("reviewed", True):
+            current.update(str(i) for i in ids)
+        else:
+            current.difference_update(str(i) for i in ids)
+        marks[sheet_id] = sorted(current)
+        path = project_dir / REVIEW_MARKS
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_suffix(".tmp")
+        tmp.write_text(json.dumps({"marks": marks}, indent=1), encoding="utf-8")
+        accounts.replace_file(tmp, path)
+    return {"marks": marks}
+
+
 def _exports_listing(app):
     file_items = []
 
@@ -434,6 +468,19 @@ def serve_app(work_root=None, extra_projects=None, port=8780):
             self._send_bytes(200, data, ctype)
             return True
 
+        def _guard(self, path, method):
+            """Every API call needs a signed-in session, except signing in and the files a browser
+            loads by URL (sheet images, downloads, exports), which cannot carry a header. Requiring
+            the Authorization header also makes cross-site pages fail the CORS preflight."""
+            host = (self.headers.get("Host") or "").split(":")[0].lower()
+            if host not in ("127.0.0.1", "localhost", "::1", "[::1]", ""):
+                raise ApiError(403, "Requests must come from this computer.")
+            if path in ("/api/auth/login", "/api/auth/logout"):
+                return
+            if method == "GET" and re.match(r"^/api/projects/[^/]+/(sheets/[^/]+\.png|download/.+|export/[^/]+)$", path):
+                return
+            accounts.check(self._token())
+
         def _dispatch(self, routes):
             parsed = urlparse(self.path)
             path = parsed.path
@@ -444,13 +491,23 @@ def serve_app(work_root=None, extra_projects=None, port=8780):
                     continue
                 groups = [unquote(g) for g in match.groups()]
                 try:
-                    result = handler(*groups, query=query)
+                    self._guard(path, self.command)
+                    if self.command == "POST" and re.match(r"^/api/projects/[^/]+/(measurements|shapes|bill-lines|bill/|rates$|inputs$|bills/select|assistant/proposals)", path):
+                        # Project edits and assistant proposals change the same files: one at a time.
+                        with agent.proposals.LOCK:
+                            result = handler(*groups, query=query)
+                    else:
+                        result = handler(*groups, query=query)
                 except ApiError as exc:
                     return self._json(exc.code, {"message": exc.message})
                 except (FormulaError, ValueError) as exc:
                     return self._json(400, {"message": str(exc)[:500]})
                 except agent.AssistantNotConnected as exc:
                     return self._json(501, {"message": str(exc), "connected": False})
+                except agent.AssistantBusy as exc:
+                    return self._json(409, {"message": str(exc)})
+                except accounts.AuthError as exc:
+                    return self._json(exc.code, {"message": exc.message})
                 except SystemExit as exc:
                     return self._json(422, {"message": str(exc)[:500] or "The engine could not run on this project."})
                 except Exception as exc:
@@ -468,6 +525,9 @@ def serve_app(work_root=None, extra_projects=None, port=8780):
                 (r"^/api/exports$", lambda query: _exports_listing(app)),
                 (r"^/api/assistant/status$", lambda query: agent.status()),
                 (r"^/api/assistant/settings$", lambda query: agent.status()),
+                (r"^/api/assistant/usage$", lambda query: agent.usage(max(1, min(366, int((query.get("days") or ["30"])[0] or 30))))),
+                (r"^/api/account$", lambda query: accounts.profile(self._token())),
+                (r"^/api/projects/([^/]+)/review-marks$", lambda pid, query: {"marks": _load_marks(app.require_dir(pid))}),
                 (r"^/api/projects/([^/]+)$", self._get_project),
                 (r"^/api/projects/([^/]+)/pipeline$", lambda pid, query: app.pipeline_status(pid)),
                 (r"^/api/projects/([^/]+)/files$", lambda pid, query: project_files(app.require_dir(pid))),
@@ -491,6 +551,10 @@ def serve_app(work_root=None, extra_projects=None, port=8780):
             if self._static("index.html"):
                 return
             self._send_bytes(404, b"Not found", "text/plain; charset=utf-8")
+
+        def _token(self):
+            header = self.headers.get("Authorization") or ""
+            return header[7:].strip() if header.lower().startswith("bearer ") else ""
 
         def _get_project(self, pid, query):
             catalog = (query.get("catalog") or ["1"])[0].lower()
@@ -528,7 +592,9 @@ def serve_app(work_root=None, extra_projects=None, port=8780):
             elif fmt == "xlsx":
                 data = to_xlsx(table, name)
             else:
-                data = to_pdf(table, name)
+                floors = {f.get("key"): f.get("label") for f in payload.get("floors") or []}
+                scope_label = "All floors side by side" if scope == "floors" else floors.get(scope) or "Whole project"
+                data = to_pdf(table, name, {"scope": scope_label, "bill": (payload.get("billSource") or {}).get("name") if which == "bill" else ""})
             stamp = datetime.now().strftime("%Y%m%d")
             slug = re.sub(r"[^\w\-]+", "-", name).strip("-").lower()
             part = "" if scope in ("", "project") else f"-{re.sub(r'[^a-z0-9]+', '-', scope.lower()).strip('-')}"
@@ -569,8 +635,11 @@ def serve_app(work_root=None, extra_projects=None, port=8780):
         def do_POST(self):
             routes = [
                 (r"^/api/auth/login$", self._login),
-                (r"^/api/auth/logout$", lambda query: {}),
+                (r"^/api/auth/logout$", lambda query: accounts.logout(self._token()) or {}),
+                (r"^/api/account$", lambda query: accounts.update_profile(self._token(), self._body())),
+                (r"^/api/account/password$", lambda query: accounts.change_password(self._token(), self._body())),
                 (r"^/api/assistant/settings$", lambda query: agent.save_settings(self._body())),
+                (r"^/api/assistant/usage/clear$", lambda query: agent.clear_usage()),
                 (r"^/api/assistant/test$", lambda query: agent.test_connection()),
                 (r"^/api/projects$", self._create),
                 (r"^/api/projects/([^/]+)/upload$", self._upload),
@@ -593,7 +662,10 @@ def serve_app(work_root=None, extra_projects=None, port=8780):
                 (r"^/api/projects/([^/]+)/rates/import$", self._import_rates),
                 (r"^/api/projects/([^/]+)/rates$", lambda pid, query: save_rates(app.require_dir(pid), self._body())),
                 (r"^/api/projects/([^/]+)/assistant/proposals/([^/]+)/(apply|reject|undo)$", self._proposal),
+                (r"^/api/projects/([^/]+)/assistant/threads/([^/]+)/stop$", lambda pid, tid, query: agent.stop(app.require_dir(pid), tid)),
+                (r"^/api/projects/([^/]+)/assistant/threads/([^/]+)/delete$", lambda pid, tid, query: agent.remove_thread(app.require_dir(pid), tid)),
                 (r"^/api/projects/([^/]+)/assistant$", self._assistant),
+                (r"^/api/projects/([^/]+)/review-marks$", lambda pid, query: _save_marks(app.require_dir(pid), self._body())),
             ]
             if self._dispatch(routes) is not False:
                 return
@@ -602,10 +674,8 @@ def serve_app(work_root=None, extra_projects=None, port=8780):
         def _login(self, query):
             body = self._body()
             email = (body.get("email") or "").strip()
-            if not email or "@" not in email:
-                raise ApiError(400, "Enter your work email.")
-            name = display_name(email.split("@")[0])
-            return {"token": "local-dev", "user": {"email": email, "name": name}}
+            token, user = accounts.login(email, body.get("password") or "", display_name(email.split("@")[0]) if "@" in email else "")
+            return {"token": token, "user": {"email": user["email"], "name": user["name"], "hasPassword": user["hasPassword"]}}
 
         def _create(self, query):
             body = self._body()

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, PenLine, RotateCcw, Trash2, X } from "lucide-react";
+import { ArrowUpRight, Check, ChevronLeft, ChevronRight, PenLine, RotateCcw, Trash2, X } from "lucide-react";
 import type { ExpressionSpec, Measurement, Project, Shape, Sheet } from "../../types";
 import { KIND_META, STATUS_META, elementLabel } from "../../lib/kinds";
 import { QUANTITY_FIELDS, fmt, numberOrNull } from "../../lib/format";
@@ -13,6 +13,11 @@ type Props = {
   record: Measurement | undefined;
   imageUrl: string;
   editing: boolean;
+  position: { index: number; total: number };
+  reviewed: boolean;
+  onPrev: () => void;
+  onNext: () => void;
+  onToggleReviewed: () => void;
   onClose: () => void;
   onEditOutline: () => void;
   onResetOutline: () => void;
@@ -28,6 +33,11 @@ export function ElementInspector({
   record,
   imageUrl,
   editing,
+  position,
+  reviewed,
+  onPrev,
+  onNext,
+  onToggleReviewed,
   onClose,
   onEditOutline,
   onResetOutline,
@@ -44,6 +54,28 @@ export function ElementInspector({
 
   return (
     <div className="inspector-scroll" key={shape.id}>
+      <div className="insp-nav">
+        <button type="button" className="btn btn-ghost btn-icon btn-sm" onClick={onPrev} aria-label="Previous element" data-tip="Previous  K" data-tip-pos="bottom">
+          <ChevronLeft size={15} />
+        </button>
+        <span className="tnum muted small">{position.index >= 0 ? `${position.index + 1} of ${position.total}` : `${position.total} on sheet`}</span>
+        <button type="button" className="btn btn-ghost btn-icon btn-sm" onClick={onNext} aria-label="Next element" data-tip="Next  J" data-tip-pos="bottom">
+          <ChevronRight size={15} />
+        </button>
+        <div className="grow" />
+        <button
+          type="button"
+          className={`review-toggle${reviewed ? " on" : ""}`}
+          onClick={onToggleReviewed}
+          aria-pressed={reviewed}
+          title={reviewed ? "Mark as not reviewed (R)" : "Mark as reviewed and go to the next (R)"}
+        >
+          <Check size={13} strokeWidth={2.6} /> {reviewed ? "Reviewed" : "Mark reviewed"}
+        </button>
+        <button type="button" className="btn btn-ghost btn-icon btn-sm" onClick={onClose} aria-label="Close">
+          <X size={16} />
+        </button>
+      </div>
       <header className="insp-head">
         <span className="kind-swatch" style={{ background: meta.color }} />
         <div className="grow">
@@ -53,9 +85,6 @@ export function ElementInspector({
           </p>
         </div>
         {status ? <span className={`chip chip-${status.tone === "neutral" ? "outline" : status.tone}`}>{status.label}</span> : null}
-        <button type="button" className="btn btn-ghost btn-icon btn-sm" onClick={onClose} aria-label="Close">
-          <X size={16} />
-        </button>
       </header>
 
       {record?.note ? <div className="insp-note">{record.note}</div> : null}
@@ -115,7 +144,7 @@ export function ElementInspector({
       ) : null}
 
       <section className="insp-section insp-actions">
-        <button type="button" className="btn btn-secondary btn-sm" onClick={onEditOutline} disabled={editing}>
+        <button type="button" className="btn btn-secondary btn-sm" onClick={onEditOutline} disabled={editing} title="Or double-click the outline">
           <PenLine size={14} /> Adjust outline <kbd>E</kbd>
         </button>
         {shape.edited ? (

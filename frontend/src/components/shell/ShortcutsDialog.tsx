@@ -6,7 +6,6 @@ const GROUPS: { title: string; items: { label: string; keys: string[] }[] }[] = 
     items: [
       { label: "Search and jump", keys: ["Ctrl", "K"] },
       { label: "This list", keys: ["?"] },
-      { label: "Collapse the side bar", keys: ["["] },
       { label: "Close a panel or dialog", keys: ["Esc"] },
     ],
   },
@@ -18,6 +17,7 @@ const GROUPS: { title: string; items: { label: string; keys: string[] }[] }[] = 
       { label: "Rates and estimate", keys: ["Alt", "3"] },
       { label: "Schedules and inputs", keys: ["Alt", "4"] },
       { label: "Pipeline", keys: ["Alt", "5"] },
+      { label: "Open or close the assistant", keys: ["Alt", "A"] },
     ],
   },
   {
@@ -25,7 +25,12 @@ const GROUPS: { title: string; items: { label: string; keys: string[] }[] }[] = 
     items: [
       { label: "Select tool", keys: ["V"] },
       { label: "Draw a box", keys: ["B"] },
-      { label: "Edit the selected outline", keys: ["E"] },
+      { label: "Adjust the selected outline", keys: ["E"] },
+      { label: "Adjust an outline", keys: ["Double-click"] },
+      { label: "Nudge while adjusting", keys: ["Arrows"] },
+      { label: "Save the outline", keys: ["Enter"] },
+      { label: "Next / previous element", keys: ["J", "K"] },
+      { label: "Mark reviewed and go to next", keys: ["R"] },
       { label: "Fit sheet", keys: ["F"] },
       { label: "Zoom in / out", keys: ["+", "-"] },
       { label: "Pan", keys: ["Drag"] },

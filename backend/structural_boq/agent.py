@@ -1,11 +1,24 @@
-"""Facade between the HTTP server and the assistant package (off unless CONSTECH_ASSISTANT=on)."""
+"""Facade between the HTTP server and the assistant package (off until enabled in Settings)."""
 from .assistant import proposals
+from .assistant import usage as usage_ledger
 from .assistant.config import load_config, save_config, test_connection as _test
-from .assistant.harness import AssistantDisabled, list_threads, load_thread, public_thread, run_message
+from .assistant.harness import (
+    AssistantBusy,
+    AssistantDisabled,
+    cancel,
+    delete_thread,
+    list_threads,
+    load_thread,
+    public_thread,
+    run_message,
+    start_message,
+)
 
 AssistantNotConnected = AssistantDisabled
 
 INTENTS = ("chat", "discovery")
+# Pages the assistant works on; elsewhere the panel is not offered.
+PAGES = {"drawings", "bill", "rates", "inputs"}
 
 
 def status():
@@ -20,25 +33,45 @@ def test_connection():
     return _test()
 
 
+def usage(days=30):
+    return usage_ledger.summary(days)
+
+
+def clear_usage():
+    return usage_ledger.clear()
+
+
 def chat(project, payload_fn, body):
-    text = str((body or {}).get("message") or "").strip()
+    """Start an answer in the background; the browser polls the thread for progress."""
+    body = body or {}
+    text = str(body.get("message") or "").strip()
     if not text:
         raise ValueError("Write a message first")
-    task = (body or {}).get("task") or "chat"
+    task = body.get("task") or "chat"
     if task not in INTENTS:
         raise ValueError(f"Unknown task '{task}'")
-    return run_message(
-        project, payload_fn, text[:6000],
-        thread_id=(body or {}).get("threadId"),
-        context=(body or {}).get("context") or {},
+    raw_context = body.get("context") if isinstance(body.get("context"), dict) else {}
+    context = {str(k): str(v)[:200] for k, v in raw_context.items() if v not in (None, "")}
+    if context.get("page") and context["page"] not in PAGES:
+        context["page"] = "drawings"
+    thread = start_message(
+        project, payload_fn, text[:8000],
+        thread_id=body.get("threadId") or None,
+        context=context,
         task=task,
+        auto_apply=bool(body.get("autoApply")),
     )
+    return {"thread": public_thread(thread)}
+
+
+def stop(project, thread_id):
+    return cancel(project, thread_id)
 
 
 def agentic_discovery(project, payload_fn=None):
     """Runs after the rule-based pass: the assistant reviews the register and proposes corrections."""
     if not load_config().enabled:
-        raise AssistantDisabled("Assistant discovery needs the assistant enabled (CONSTECH_ASSISTANT=on).")
+        raise AssistantDisabled("Assistant discovery needs the assistant enabled in Settings.")
     return run_message(
         project, payload_fn or (lambda: {}),
         "Review this drawing set: find every schedule, the notes values and storey levels, and propose corrections.",
@@ -55,6 +88,10 @@ def thread(project, thread_id):
 
 def threads(project):
     return list_threads(project)
+
+
+def remove_thread(project, thread_id):
+    return delete_thread(project, thread_id)
 
 
 def proposal_list(project):

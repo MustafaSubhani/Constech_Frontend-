@@ -1,13 +1,24 @@
 """Assistant proposals: created by tools, reviewed by the QS, applied with an undo snapshot."""
 import json
+import os
 import re
+import threading
 import uuid
 from datetime import datetime
 from pathlib import Path
 
-from ..bill_lines import _ROLLUP, _load_adjustment_file, _save_adjustment_file, adjust_bill_line
+from ..bill_lines import (
+    _ROLLUP,
+    _load_adjustment_file,
+    _save_adjustment_file,
+    add_custom_line,
+    adjust_bill_line,
+    delete_custom_line,
+    set_line_hidden,
+)
 from ..formula import evaluate
 from ..inputs import load_inputs, save_inputs
+from ..rates import load_rates, save_rates
 from ..measurements import (
     QUANTITY_FIELDS,
     _overrides_path,
@@ -18,6 +29,13 @@ from ..measurements import (
     load_measurement_overrides,
     update_manual,
 )
+
+
+# Kinds whose values do not come from the drawings, so no drawing evidence is expected.
+NO_EVIDENCE_KINDS = {"rates", "line_visibility"}
+# Every read-modify-write of proposals.json (and of the project files a proposal changes)
+# happens under this lock, so two conversations or a click during a run cannot interleave.
+LOCK = threading.RLock()
 
 
 def _path(project):
@@ -37,7 +55,11 @@ def load_all(project):
 def _save_all(project, items):
     path = _path(project)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps({"proposals": items}, indent=2), encoding="utf-8")
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps({"proposals": items}, indent=2), encoding="utf-8")
+    from ..accounts import replace_file
+
+    replace_file(tmp, path)
 
 
 def _now():
@@ -105,7 +127,19 @@ def _num(value):
         return None
 
 
+def _line(ctx, line_id):
+    row = next((r for r in ctx.payload.get("comparison") or [] if r["id"] == line_id), None)
+    if not row:
+        raise ValueError(f"No bill line '{line_id}'. Use list_bill_lines for the ids.")
+    return row
+
+
 def create(ctx, kind, args):
+    with LOCK:
+        return _create(ctx, kind, args)
+
+
+def _create(ctx, kind, args):
     reason = (args.get("reason") or "").strip()
     if not reason:
         raise ValueError("A reason is required")
@@ -194,9 +228,80 @@ def create(ctx, kind, args):
             "before": current.get("role"), "after": args.get("role"), "impacts": [],
             "summary": f"{stem}: role {current.get('role')} to {args.get('role')} (rerun discovery to apply)",
         })
+    elif kind == "rates":
+        doc = load_rates(ctx.project)
+        changes = {}
+        impacts = []
+        for item in args.get("rates") or []:
+            row = _line(ctx, item.get("line_id"))
+            rate = _num(item.get("rate"))
+            if rate is None or rate < 0:
+                raise ValueError(f"Rate for '{row['id']}' must be a number of zero or more")
+            changes[row["id"]] = round(rate, 4)
+            qty = row.get("ours")
+            old = doc["rates"].get(row["id"])
+            impacts.append({
+                "lineId": row["id"], "label": row.get("label"), "unit": doc["currency"] or "amount",
+                "before": round(qty * old, 2) if qty is not None and old is not None else None,
+                "after": round(qty * rate, 2) if qty is not None else None,
+                "bill": None,
+            })
+        patch = {"rates": changes}
+        if args.get("markup_percent") is not None:
+            markup = _num(args.get("markup_percent"))
+            if markup is None or not 0 <= markup <= 100:
+                raise ValueError("markup_percent must be between 0 and 100")
+            patch["markupPercent"] = markup
+        if args.get("currency"):
+            patch["currency"] = str(args["currency"]).strip().upper()[:8]
+        if not changes and len(patch) == 1:
+            raise ValueError("Give at least one rate, a markup or a currency")
+        parts = []
+        if changes:
+            parts.append(f"{len(changes)} rate{'' if len(changes) == 1 else 's'}")
+        if "markupPercent" in patch:
+            parts.append(f"overheads and profit {patch['markupPercent']:g}%")
+        if "currency" in patch:
+            parts.append(f"currency {patch['currency']}")
+        proposal.update({
+            "target": {"lines": ", ".join(changes) or "estimate"},
+            "patch": patch,
+            "before": None, "after": None,
+            "impacts": impacts,
+            "summary": "Set " + ", ".join(parts),
+        })
+    elif kind == "line_visibility":
+        row = _line(ctx, args.get("line_id"))
+        hidden = bool(args.get("hidden", True))
+        proposal.update({
+            "target": {"lineId": row["id"], "label": row.get("label")},
+            "patch": {"hidden": hidden},
+            "before": "hidden" if row.get("hidden") else "shown", "after": "hidden" if hidden else "shown",
+            "impacts": [],
+            "summary": f"{'Hide' if hidden else 'Show'} bill line {row.get('label')}",
+        })
+    elif kind == "custom_line":
+        label = (args.get("label") or "").strip()
+        if not label:
+            raise ValueError("label is required")
+        spec = args.get("formula") or {}
+        after = round(evaluate(spec.get("expression"), spec.get("variables") or {}), 4) if spec.get("expression") else None
+        unit = (args.get("unit") or "").strip()[:12]
+        proposal.update({
+            "target": {"label": label, "section": (args.get("section") or "Custom").strip()[:60] or "Custom", "unit": unit, "floor": (args.get("floor") or "").strip()[:40]},
+            "patch": {"expression": spec.get("expression") or "", "variables": spec.get("variables") or {}, "bill": _num(args.get("bill"))},
+            "before": None, "after": after,
+            "impacts": [{"lineId": "new", "label": label, "unit": unit, "before": None, "after": after, "bill": _num(args.get("bill"))}],
+            "summary": f"Add bill line {label}" + (f": {after:g} {unit}" if after is not None else ""),
+        })
     else:
         raise ValueError(f"Unknown proposal kind '{kind}'")
     items = load_all(ctx.project)
+    # The same change asked for twice (a retry, or a second message) stays one card.
+    for existing in items:
+        if (existing.get("status") == "pending" and existing.get("kind") == kind
+                and existing.get("target") == proposal.get("target") and existing.get("patch") == proposal.get("patch")):
+            return {**existing, "duplicate": True}
     items.append(proposal)
     _save_all(ctx.project, items)
     return proposal
@@ -242,6 +347,11 @@ def _save_sheet_roles(project, roles):
 
 
 def apply(project, proposal_id):
+    with LOCK:
+        return _apply(project, proposal_id)
+
+
+def _apply(project, proposal_id):
     items = load_all(project)
     p = next((x for x in items if x["id"] == proposal_id), None)
     if not p:
@@ -284,19 +394,71 @@ def apply(project, proposal_id):
         p["undo"] = {"role": roles.get(target["sheet"])}
         roles[target["sheet"]] = {"role": patch["role"], "floor": patch.get("floor") or "", "reason": reason}
         _save_sheet_roles(project, roles)
+    elif kind == "rates":
+        doc = load_rates(project)
+        p["undo"] = {
+            "rates": {k: doc["rates"].get(k) for k in (patch.get("rates") or {})},
+            "markupPercent": doc.get("markupPercent"),
+            "currency": doc.get("currency"),
+        }
+        body = {"rates": {**doc["rates"], **(patch.get("rates") or {})}}
+        for key in ("markupPercent", "currency"):
+            if key in patch:
+                body[key] = patch[key]
+        save_rates(project, body)
+    elif kind == "line_visibility":
+        p["undo"] = {"hidden": target["lineId"] in (_load_adjustment_file(project).get("hidden") or [])}
+        set_line_hidden(project, target["lineId"], patch["hidden"])
+    elif kind == "custom_line":
+        line = add_custom_line(project, {
+            "label": target.get("label"), "section": target.get("section"), "unit": target.get("unit"),
+            "floor": target.get("floor"), "bill": patch.get("bill"),
+            "expression": patch.get("expression") or None, "variables": patch.get("variables") or {},
+            "note": reason,
+        })
+        p["undo"] = {"created": line["id"]}
     p["status"] = "applied"
     p["applied"] = _now()
     _save_all(project, items)
     return p
 
 
+def _check_unchanged(project, p):
+    """Undo restores what was there before; refuse when the value was changed again since."""
+    kind, target, patch = p["kind"], p.get("target") or {}, p.get("patch") or {}
+    later = None
+    if kind == "rates":
+        doc = load_rates(project)
+        moved = [k for k, v in (patch.get("rates") or {}).items() if doc["rates"].get(k) != v]
+        if "markupPercent" in patch and doc.get("markupPercent") != patch["markupPercent"]:
+            moved.append("overheads and profit")
+        if moved:
+            later = ", ".join(moved[:4])
+    elif kind == "line_visibility":
+        hidden = target["lineId"] in (_load_adjustment_file(project).get("hidden") or [])
+        if hidden != bool(patch.get("hidden")):
+            later = target.get("label") or target["lineId"]
+    elif kind == "bill_override":
+        line = _load_adjustment_file(project)["lines"].get(target["lineId"]) or {}
+        if line.get("expression") != patch.get("expression"):
+            later = target.get("label") or target["lineId"]
+    if later:
+        raise ValueError(f"Changed again since this was applied ({later}). Undoing would overwrite that change; edit it by hand instead.")
+
+
 def undo(project, proposal_id):
+    with LOCK:
+        return _undo(project, proposal_id)
+
+
+def _undo(project, proposal_id):
     items = load_all(project)
     p = next((x for x in items if x["id"] == proposal_id), None)
     if not p or p["status"] != "applied":
         raise ValueError("Only applied proposals can be undone")
     snap, target = p.get("undo") or {}, p.get("target") or {}
     kind = p["kind"]
+    _check_unchanged(project, p)
     if kind in ("measurement_change", "exclude"):
         if "manual" in snap:
             _restore_manual(project, snap["manual"])
@@ -320,6 +482,24 @@ def undo(project, proposal_id):
         else:
             roles[target["sheet"]] = snap["role"]
         _save_sheet_roles(project, roles)
+    elif kind == "rates":
+        doc = load_rates(project)
+        rates = dict(doc["rates"])
+        for key, old in (snap.get("rates") or {}).items():
+            if old is None:
+                rates.pop(key, None)
+            else:
+                rates[key] = old
+        body = {"rates": rates}
+        if "markupPercent" in (p.get("patch") or {}):
+            body["markupPercent"] = snap.get("markupPercent") or 0
+        if "currency" in (p.get("patch") or {}):
+            body["currency"] = snap.get("currency") or ""
+        save_rates(project, body)
+    elif kind == "line_visibility":
+        set_line_hidden(project, target["lineId"], bool(snap.get("hidden")))
+    elif kind == "custom_line":
+        delete_custom_line(project, snap.get("created"))
     p["status"] = "undone"
     p["undone"] = _now()
     _save_all(project, items)
@@ -327,6 +507,11 @@ def undo(project, proposal_id):
 
 
 def reject(project, proposal_id):
+    with LOCK:
+        return _reject(project, proposal_id)
+
+
+def _reject(project, proposal_id):
     items = load_all(project)
     p = next((x for x in items if x["id"] == proposal_id), None)
     if not p or p["status"] != "pending":

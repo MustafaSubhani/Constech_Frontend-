@@ -24,13 +24,21 @@ export function Dialog({ open, onClose, title, description, size = "md", childre
     if (!open) return;
     lastFocus.current = document.activeElement as HTMLElement;
     const frame = requestAnimationFrame(() => {
-      const target = ref.current?.querySelector<HTMLElement>("[data-autofocus], input, select, textarea, button:not(.dialog-x)");
+      const root = ref.current;
+      const target =
+        root?.querySelector<HTMLElement>("[data-autofocus]") ??
+        root?.querySelector<HTMLElement>("input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not(.dialog-x):not([disabled])");
       target?.focus();
     });
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape" && dismissable) {
-        e.stopPropagation();
-        closeRef.current();
+      // Only the top-most dialog answers the keyboard.
+      const dialogs = document.querySelectorAll(".dialog");
+      if (dialogs[dialogs.length - 1] !== ref.current) return;
+      if (e.key === "Escape") {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        if (dismissable) closeRef.current();
+        return;
       }
       if (e.key === "Tab" && ref.current) {
         const items = [...ref.current.querySelectorAll<HTMLElement>("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])")].filter(

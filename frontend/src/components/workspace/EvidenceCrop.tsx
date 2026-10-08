@@ -9,7 +9,7 @@ type Props = {
   onClick?: () => void;
 };
 
-/** The exact region of the sheet a value was read from, cut out of the sheet raster with the read text outlined. */
+/** The region of the sheet a value was read from, cut out of the sheet raster and centred on the read text. */
 export function EvidenceCrop({ imageUrl, sheetWidth, sheetHeight, box, maxHeight = 150, onClick }: Props) {
   const ref = useRef<HTMLButtonElement>(null);
   const [width, setWidth] = useState(300);
@@ -62,10 +62,6 @@ export function EvidenceCrop({ imageUrl, sheetWidth, sheetHeight, box, maxHeight
         alt=""
         draggable={false}
         style={{ width: imgW * scale, height: imgH * scale, left: offsetX - cx0 * scale, top: -cy0 * scale }}
-      />
-      <span
-        className="evi-hl"
-        style={{ left: offsetX + (bx0 - cx0) * scale, top: (by0 - cy0) * scale, width: bw * scale, height: bh * scale }}
       />
     </button>
   );

@@ -23,9 +23,11 @@ export function Menu({ trigger, children, align = "right", placement = "down", w
         setOpen(false);
       }
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-        const items = [...(ref.current?.querySelectorAll<HTMLElement>(".menu-item:not(:disabled)") ?? [])];
-        if (!items.length) return;
+        // The open menu owns the arrow keys; page shortcuts (row selection) must not see them.
+        e.stopPropagation();
         e.preventDefault();
+        const items = [...(ref.current?.querySelectorAll<HTMLElement>("button.menu-item:not(:disabled)") ?? [])];
+        if (!items.length) return;
         const idx = items.indexOf(document.activeElement as HTMLElement);
         const next = e.key === "ArrowDown" ? (idx + 1) % items.length : (idx - 1 + items.length) % items.length;
         items[next]!.focus();

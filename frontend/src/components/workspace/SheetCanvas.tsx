@@ -16,20 +16,39 @@ type Props = {
   tool: "select" | "draw";
   editing: { id: string; points: Pt[] } | null;
   onEditPoints: (points: Pt[]) => void;
+  onEditStart?: (id: string) => void;
   onDrawn: (points: Pt[]) => void;
   highlightIds?: Set<string> | null;
+  reviewedIds?: Set<string>;
   focus?: CanvasFocus | null;
   revealKey: number;
 };
 
 type Drag =
   | { mode: "pan"; sx: number; sy: number; ox: number; oy: number; moved: boolean; shapeId: string | null }
-  | { mode: "vertex"; index: number }
+  | { mode: "vertex"; index: number; origin: Pt[]; rect: boolean }
+  | { mode: "edge"; index: number; origin: Pt[]; start: Pt }
+  | { mode: "insert"; index: number; origin: Pt[]; sx: number; sy: number }
   | { mode: "move"; start: Pt; origin: Pt[] }
   | { mode: "draw"; start: Pt };
 
 const MIN = 0.08;
 const MAX = 6;
+
+/** Four points whose sides alternate horizontal and vertical. */
+export function isAxisRect(points: Pt[]) {
+  if (points.length !== 4) return false;
+  const eq = (a: number, b: number) => Math.abs(a - b) < 0.6;
+  const sides = points.map((p, i) => {
+    const q = points[(i + 1) % 4]!;
+    return eq(p[1], q[1]) ? "h" : eq(p[0], q[0]) ? "v" : "x";
+  });
+  return (sides.join("") === "hvhv" || sides.join("") === "vhvh");
+}
+
+function round(n: number) {
+  return Math.round(n * 10) / 10;
+}
 
 export function SheetCanvas({
   imageUrl,
@@ -41,8 +60,10 @@ export function SheetCanvas({
   tool,
   editing,
   onEditPoints,
+  onEditStart,
   onDrawn,
   highlightIds,
+  reviewedIds,
   focus,
   revealKey,
 }: Props) {
@@ -54,6 +75,8 @@ export function SheetCanvas({
   const [drawRect, setDrawRect] = useState<[Pt, Pt] | null>(null);
   const [focusBox, setFocusBox] = useState<[number, number, number, number] | null>(null);
   const [panning, setPanning] = useState(false);
+  const editRef = useRef(editing);
+  editRef.current = editing;
 
   // The view produced by the last whole-sheet fit; while it is unchanged, resizes refit the sheet.
   const fittedView = useRef<typeof view | null>(null);
@@ -127,15 +150,25 @@ export function SheetCanvas({
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.target instanceof HTMLElement && e.target.matches("input, textarea, select")) return;
-      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.target instanceof HTMLElement && e.target.matches("input, textarea, select, [contenteditable]")) return;
+      if (e.ctrlKey || e.metaKey || e.altKey || document.querySelector(".dialog-backdrop, .palette-backdrop, .menu")) return;
+      const current = editRef.current;
+      if (current && e.key.startsWith("Arrow")) {
+        // Nudge the outline being adjusted: one screen pixel, or ten with Shift.
+        e.preventDefault();
+        const stepPx = (e.shiftKey ? 10 : 1) / (viewRef.current.scale || 1);
+        const dx = e.key === "ArrowLeft" ? -stepPx : e.key === "ArrowRight" ? stepPx : 0;
+        const dy = e.key === "ArrowUp" ? -stepPx : e.key === "ArrowDown" ? stepPx : 0;
+        onEditPoints(current.points.map(([x, y]) => [round(x + dx), round(y + dy)]));
+        return;
+      }
       if (e.key === "f" || e.key === "F") fit();
       else if (e.key === "+" || e.key === "=") zoomAt(1.25);
       else if (e.key === "-") zoomAt(0.8);
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [fit, zoomAt]);
+  }, [fit, zoomAt, onEditPoints]);
 
   useEffect(() => {
     if (!focus) return;
@@ -165,11 +198,18 @@ export function SheetCanvas({
     if (e.button !== 0 && e.button !== 1) return;
     const target = e.target as Element;
     const handle = target.closest("[data-handle]");
+    const edge = target.closest("[data-edge]");
     const polygon = target.closest("[data-shape]");
     const shapeId = polygon?.getAttribute("data-shape") ?? null;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     if (editing && handle && e.button === 0) {
-      drag.current = { mode: "vertex", index: Number(handle.getAttribute("data-handle")) };
+      drag.current = { mode: "vertex", index: Number(handle.getAttribute("data-handle")), origin: editing.points, rect: isAxisRect(editing.points) };
+    } else if (editing && edge && e.button === 0) {
+      const index = Number(edge.getAttribute("data-edge"));
+      const start = toSheet(e.clientX, e.clientY);
+      if (isAxisRect(editing.points)) drag.current = { mode: "edge", index, origin: editing.points, start };
+      // On other shapes, dragging the middle of a side adds a corner there (a click alone changes nothing).
+      else drag.current = { mode: "insert", index, origin: editing.points, sx: e.clientX, sy: e.clientY };
     } else if (editing && shapeId === editing.id && e.button === 0) {
       drag.current = { mode: "move", start: toSheet(e.clientX, e.clientY), origin: editing.points };
     } else if (tool === "draw" && e.button === 0) {
@@ -192,9 +232,46 @@ export function SheetCanvas({
         setPanning(true);
       }
       if (d.moved) setView((v) => ({ ...v, x: d.ox + dx, y: d.oy + dy }));
+    } else if (d.mode === "insert") {
+      if (Math.hypot(e.clientX - d.sx, e.clientY - d.sy) < 4) return;
+      const [x, y] = toSheet(e.clientX, e.clientY).map(round) as Pt;
+      const points = [...d.origin];
+      points.splice(d.index + 1, 0, [x, y]);
+      onEditPoints(points);
+      drag.current = { mode: "vertex", index: d.index + 1, origin: points, rect: false };
     } else if (d.mode === "vertex" && editing) {
+      const [x, y] = toSheet(e.clientX, e.clientY).map(round) as Pt;
+      if (d.rect) {
+        // Keep a rectangle a rectangle: the two neighbouring corners follow along their shared side.
+        const o = d.origin;
+        const i = d.index;
+        const prev = (i + 3) % 4;
+        const next = (i + 1) % 4;
+        const pts = o.map((p) => [p[0], p[1]] as Pt);
+        pts[i] = [x, y];
+        if (Math.abs(o[prev]![0] - o[i]![0]) < 0.6) pts[prev]![0] = x;
+        else pts[prev]![1] = y;
+        if (Math.abs(o[next]![0] - o[i]![0]) < 0.6) pts[next]![0] = x;
+        else pts[next]![1] = y;
+        onEditPoints(pts);
+      } else onEditPoints(editing.points.map((pt, i) => (i === d.index ? [x, y] : pt)));
+    } else if (d.mode === "edge") {
       const p = toSheet(e.clientX, e.clientY);
-      onEditPoints(editing.points.map((pt, i) => (i === d.index ? [round(p[0]), round(p[1])] : pt)));
+      const o = d.origin;
+      const a = d.index;
+      const b = (a + 1) % 4;
+      const horizontal = Math.abs(o[a]![1] - o[b]![1]) < 0.6;
+      const pts = o.map((q) => [q[0], q[1]] as Pt);
+      if (horizontal) {
+        const y = round(o[a]![1] + p[1] - d.start[1]);
+        pts[a]![1] = y;
+        pts[b]![1] = y;
+      } else {
+        const x = round(o[a]![0] + p[0] - d.start[0]);
+        pts[a]![0] = x;
+        pts[b]![0] = x;
+      }
+      onEditPoints(pts);
     } else if (d.mode === "move") {
       const p = toSheet(e.clientX, e.clientY);
       const dx = p[0] - d.start[0];
@@ -228,6 +305,7 @@ export function SheetCanvas({
   const scale = view.scale || 1;
   const kindIndex = (kind: string) => Math.max(0, KIND_ORDER.indexOf(kind));
   const cursor = editing ? "default" : tool === "draw" ? "crosshair" : panning ? "grabbing" : "grab";
+  const editRect = editing ? isAxisRect(editing.points) : false;
 
   return (
     <div
@@ -238,6 +316,10 @@ export function SheetCanvas({
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
+      onDoubleClick={(e) => {
+        const id = (e.target as Element).closest("[data-shape]")?.getAttribute("data-shape");
+        if (id && !editing && tool === "select" && onEditStart) onEditStart(id);
+      }}
     >
       <div className="canvas-world" style={{ transform: `translate(${view.x}px, ${view.y}px) scale(${scale})` }}>
         <div className="canvas-sheet" style={{ width, height }}>
@@ -264,6 +346,7 @@ export function SheetCanvas({
                       faded ? "faded" : "",
                       isEditing ? "editing" : "",
                       shape.manual ? "manual" : "",
+                      reviewedIds?.has(shape.id) && !selected && !isEditing ? "reviewed" : "",
                     ]
                       .filter(Boolean)
                       .join(" ")}
@@ -277,6 +360,27 @@ export function SheetCanvas({
                 );
               })}
             </g>
+            {editing
+              ? editing.points.map(([x, y], i) => {
+                  const [nx, ny] = editing.points[(i + 1) % editing.points.length]!;
+                  const mx = (x + nx) / 2;
+                  const my = (y + ny) / 2;
+                  const horizontal = Math.abs(y - ny) < 0.6;
+                  return (
+                    <rect
+                      key={`e${i}`}
+                      data-edge={i}
+                      className={`edge-handle${editRect ? (horizontal ? " ns" : " ew") : " add"}`}
+                      x={mx - (editRect && horizontal ? 9 : 4) / scale}
+                      y={my - (editRect && !horizontal ? 9 : 4) / scale}
+                      width={(editRect && horizontal ? 18 : 8) / scale}
+                      height={(editRect && !horizontal ? 18 : 8) / scale}
+                      rx={2 / scale}
+                      strokeWidth={1.25 / scale}
+                    />
+                  );
+                })
+              : null}
             {editing
               ? editing.points.map(([x, y], i) => (
                   <circle key={i} data-handle={i} className="handle" cx={x} cy={y} r={5.5 / scale} strokeWidth={1.5 / scale} />
@@ -292,18 +396,12 @@ export function SheetCanvas({
               />
             ) : null}
             {focusBox ? (
-              <rect
-                className="focus-box"
-                x={focusBox[0]}
-                y={focusBox[1]}
-                width={focusBox[2] - focusBox[0]}
-                height={focusBox[3] - focusBox[1]}
-              />
+              <rect className="focus-box" x={focusBox[0]} y={focusBox[1]} width={focusBox[2] - focusBox[0]} height={focusBox[3] - focusBox[1]} />
             ) : null}
           </svg>
         </div>
       </div>
-      <div className="canvas-zoom" onPointerDown={(e) => e.stopPropagation()}>
+      <div className="canvas-zoom" onPointerDown={(e) => e.stopPropagation()} onDoubleClick={(e) => e.stopPropagation()}>
         <button type="button" className="btn btn-ghost btn-icon btn-sm" onClick={() => zoomAt(0.8)} aria-label="Zoom out">
           <Minus size={15} />
         </button>
@@ -318,8 +416,4 @@ export function SheetCanvas({
       </div>
     </div>
   );
-}
-
-function round(n: number) {
-  return Math.round(n * 10) / 10;
 }

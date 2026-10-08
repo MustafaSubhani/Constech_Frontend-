@@ -5,34 +5,13 @@
 html[data-theme="dark"] .logo-full, .logo-full.on-dark { filter: brightness(0) invert(1); }
 html[data-theme="dark"] .logo-mark img, .logo-mark.on-dark img { filter: brightness(0) invert(0.92); }
 
-/* Isometric frame */
-.iso { display: flex; flex-direction: column; align-items: center; gap: 18px; width: 100%; }
-.iso-svg { width: 100%; height: auto; overflow: visible; }
-.iso-part { animation: iso-drop 520ms var(--ease-out) both; --top: #ffffff; --left: #e3dcf2; --right: #c9bce6; --edge: rgba(43, 2, 102, 0.35); }
-.iso-part polygon { stroke: var(--edge); stroke-width: 0.6; stroke-linejoin: round; transition: fill 400ms var(--ease); }
-.iso-part .f-top { fill: var(--top); }
-.iso-part .f-left { fill: var(--left); }
-.iso-part .f-right { fill: var(--right); }
-.iso-footing { animation-name: iso-rise; }
-.iso-part.lit { --top: #c6f0e3; --left: #6fcfb2; --right: #3fae90; --edge: rgba(18, 98, 78, 0.6); }
-@keyframes iso-drop { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
-@keyframes iso-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-.iso.on-brand .iso-part { --top: rgba(255, 255, 255, 0.95); --left: rgba(255, 255, 255, 0.62); --right: rgba(255, 255, 255, 0.4); --edge: rgba(255, 255, 255, 0.85); }
-.iso.on-brand .iso-part.lit { --top: #b8f0de; --left: #63d1b0; --right: #34a989; --edge: #d8fff3; }
-html[data-theme="dark"] .iso:not(.on-brand) .iso-part { --top: #3a3150; --left: #2a2340; --right: #211b33; --edge: rgba(197, 178, 247, 0.4); }
-html[data-theme="dark"] .iso:not(.on-brand) .iso-part.lit { --top: #2f7d69; --left: #24604f; --right: #1b4a3d; --edge: rgba(120, 230, 200, 0.6); }
-
+/* Building frame caption */
 .iso-caption { display: flex; flex-direction: column; align-items: center; gap: 10px; min-height: 40px; }
 .iso-steps { display: flex; gap: 6px; }
 .iso-steps span { width: 18px; height: 3px; border-radius: 2px; background: currentColor; opacity: 0.22; transition: opacity var(--dur-3) var(--ease), width var(--dur-3) var(--ease); }
 .iso-steps span.done { opacity: 0.5; }
 .iso-steps span.on { opacity: 1; width: 30px; }
-.iso-caption-text { font-size: 13.5px; font-weight: 500; animation: rise-in var(--dur-3) var(--ease-out) both; }
-
-@media (prefers-reduced-motion: reduce) {
-  .iso-part { animation: none; }
-}
+.iso-caption-text { font-size: 14.5px; font-weight: 500; animation: rise-in var(--dur-3) var(--ease-out) both; }
 
 /* 3D frame */
 .b3d { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
@@ -48,8 +27,7 @@ html[data-theme="dark"] .iso:not(.on-brand) .iso-part.lit { --top: #2f7d69; --le
 }
 .loader.out { opacity: 0; visibility: hidden; }
 .loader-inner { display: flex; flex-direction: column; align-items: center; gap: 22px; width: 280px; animation: fade-in var(--dur-3) var(--ease) both; }
-.loader .iso { width: 180px; }
-.loader-status { font-size: 13px; color: var(--muted); min-height: 20px; text-align: center; }
+.loader-status { font-size: 14px; color: var(--muted); min-height: 20px; text-align: center; }
 .loader .progress { width: 160px; }
 
 /* Sign in */
@@ -70,22 +48,20 @@ html[data-theme="dark"] .iso:not(.on-brand) .iso-part.lit { --top: #2f7d69; --le
   padding: 32px 36px; background: var(--brand); color: #fff;
 }
 html[data-theme="dark"] .login-art { background: #22104d; }
-.login-art .iso { flex: 1; justify-content: center; max-width: 420px; margin: 0 auto; width: 100%; }
-.login-art .iso-caption { color: rgba(255, 255, 255, 0.92); }
-.login-art-head h1 { color: #fff; font-size: 24px; line-height: 1.25; margin-top: 28px; font-weight: 600; max-width: 340px; }
-.login-art-foot { font-size: 12px; color: rgba(255, 255, 255, 0.6); }
+.login-art-head h1 { color: #fff; font-size: 25px; line-height: 1.25; margin-top: 28px; font-weight: 600; max-width: 340px; }
+.login-art-foot { font-size: 13px; color: rgba(255, 255, 255, 0.6); }
 
 .login-form { display: flex; flex-direction: column; justify-content: center; padding: 48px 56px; gap: 22px; }
-.login-form h2 { font-size: 22px; }
-.login-form .lede { color: var(--muted); font-size: 13.5px; margin-top: 4px; }
+.login-form h2 { font-size: 23px; }
+.login-form .lede { color: var(--muted); font-size: 14.5px; margin-top: 4px; }
 .login-form form { display: flex; flex-direction: column; gap: 14px; }
 .login-form .input { height: 42px; }
 .login-form .btn-primary { height: 42px; margin-top: 6px; }
 .login-form.shake form { animation: shake 360ms var(--ease); }
-.login-note { font-size: 12px; color: var(--muted); }
+.login-note { font-size: 13px; color: var(--muted); }
 .password-wrap { position: relative; }
 .password-wrap .input { padding-right: 56px; }
-.password-wrap button { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; font-weight: 500; color: var(--brand-text); }
+.password-wrap button { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 500; color: var(--brand-text); }
 @keyframes shake { 0%, 100% { transform: none; } 25% { transform: translateX(-6px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-3px); } }
 
 @media (max-width: 860px) {

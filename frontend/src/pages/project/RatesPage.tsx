@@ -1,4 +1,5 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowDown, ArrowUp, Check, Coins, Eraser, FileUp } from "lucide-react";
 import { api } from "../../api/client";
@@ -40,15 +41,26 @@ export function RatesPage() {
   const loaded = useRef(false);
   const dirty = useRef(false);
   const timer = useRef(0);
+  const inflight = useRef<Promise<void> | null>(null);
 
+  // Follow the saved rates whenever nothing typed here is waiting to save, so a change made by the
+  // assistant (or in another tab) shows up, and a later save here cannot write the old values back.
   useEffect(() => {
-    if (!doc.data || loaded.current) return;
+    if (!doc.data) return;
+    const first = !loaded.current;
+    if (!first && (dirty.current || inflight.current)) return;
     loaded.current = true;
     const d = doc.data;
-    setRates(Object.fromEntries(Object.entries(d.rates).map(([k, v]) => [k, String(v)])));
-    if (d.currency) {
-      setCurrency(d.currency);
-      setMarkup(String(d.markupPercent));
+    setRates((current) => {
+      const next = Object.fromEntries(Object.entries(d.rates).map(([k, v]) => [k, String(v)]));
+      // Keep what is typed when it means the same number ("12.50" and 12.5), and on the first load
+      // keep anything typed before the saved rates arrived.
+      for (const [k, v] of Object.entries(current)) if ((next[k] != null && Number(v) === Number(next[k])) || (first && dirty.current)) next[k] = v;
+      return next;
+    });
+    if (d.currency || !first) {
+      if (d.currency) setCurrency(d.currency);
+      setMarkup((m) => (Number(m) === d.markupPercent ? m : String(d.markupPercent)));
     }
     setSource(d.source ?? "");
   }, [doc.data]);
@@ -64,17 +76,32 @@ export function RatesPage() {
 
   const flush = useCallback(async () => {
     window.clearTimeout(timer.current);
+    // Never save before the saved rates have loaded: a save replaces the whole rate list.
+    if (!loaded.current) return;
+    // Saves run one at a time, and an export waits for every one in flight.
+    while (inflight.current) await inflight.current;
     if (!dirty.current) return;
     dirty.current = false;
     setSaveState("saving");
+    const body = payload();
+    const run = (async () => {
+      try {
+        const saved = await api.saveRates(projectId, body);
+        qc.setQueryData(["rates", projectId], saved);
+        setSaveState(dirty.current ? "idle" : "saved");
+      } catch (err) {
+        dirty.current = true;
+        setSaveState("error");
+        toast.error((err as Error).message);
+      }
+    })();
+    inflight.current = run;
     try {
-      const saved = await api.saveRates(projectId, payload());
-      qc.setQueryData(["rates", projectId], saved);
-      setSaveState("saved");
-    } catch (err) {
-      setSaveState("error");
-      toast.error((err as Error).message);
+      await run;
+    } finally {
+      if (inflight.current === run) inflight.current = null;
     }
+    while (inflight.current) await inflight.current;
   }, [payload, projectId, qc, toast]);
 
   useEffect(() => {
@@ -94,6 +121,17 @@ export function RatesPage() {
   };
 
   const allLines = useMemo(() => project.comparison.filter((r) => !r.hidden && r.ours != null), [project.comparison]);
+  const importLines = useMemo(() => project.comparison.filter((r) => !r.hidden), [project.comparison]);
+  const [params] = useSearchParams();
+  const focusLine = params.get("line");
+  const tableRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!focusLine) return;
+    const frame = requestAnimationFrame(() =>
+      tableRef.current?.querySelector(`[data-row="${CSS.escape(focusLine)}"]`)?.scrollIntoView({ block: "center", behavior: "smooth" }),
+    );
+    return () => cancelAnimationFrame(frame);
+  }, [focusLine]);
   const rateOf = useCallback(
     (id: string): number | null => {
       const raw = rates[id];
@@ -167,19 +205,7 @@ export function RatesPage() {
     [lines, amountOf],
   );
 
-  if (!allLines.length) {
-    return (
-      <div className="page-scroll">
-        <div className="empty-state" style={{ paddingTop: 96 }}>
-          <span className="empty-icon">
-            <Coins size={20} />
-          </span>
-          <h3>No measured quantities to price</h3>
-          <p>Run the pipeline or add bill lines by hand; their quantities appear here for pricing.</p>
-        </div>
-      </div>
-    );
-  }
+  const empty = !allLines.length;
 
   const toggleSort = (key: SortKey) =>
     setSort((s) => (s.key !== key ? { key, dir: key === "label" ? 1 : -1 } : s.dir === -1 ? { key, dir: 1 } : { key: "default", dir: 1 }));
@@ -208,7 +234,7 @@ export function RatesPage() {
       onClick={(e) => e.stopPropagation()}
       onChange={(e) => {
         touch();
-        const value = e.target.value.replace(/[^\d.]/g, "");
+        const value = e.target.value.replace(/[^\d.]/g, "").replace(/(\..*)\./g, "$1");
         setRates((r) => ({ ...r, [l.id]: value }));
       }}
       aria-label={`Rate for ${l.label}`}
@@ -305,7 +331,16 @@ export function RatesPage() {
           <p className="scope-note">{UNSPLIT_HINT}</p>
         ) : null}
 
-        <div className="rates-table">
+        <div className="rates-table" ref={tableRef}>
+          {empty ? (
+            <div className="empty-state page-empty">
+              <span className="empty-icon">
+                <Coins size={20} />
+              </span>
+              <h3>No measured quantities to price</h3>
+              <p>Run the pipeline or add bill lines by hand; their quantities appear here for pricing.</p>
+            </div>
+          ) : (
           <table className="data-table">
             <thead>
               <tr>
@@ -351,7 +386,12 @@ export function RatesPage() {
                               </td>
                             );
                           })}
-                          <td className="num">{money(items.reduce((sum, l) => sum + (amountOf(l) ?? 0), 0), currency) || ""}</td>
+                          <td className="num">
+                            {(() => {
+                              const sub = items.reduce((sum, l) => sum + (amountOf(l) ?? 0), 0);
+                              return sub ? money(sub, "", 0) : "";
+                            })()}
+                          </td>
                         </>
                       ) : (
                         <>
@@ -367,7 +407,7 @@ export function RatesPage() {
                     </tr>
                   ) : null}
                   {items.map((l) => (
-                    <tr key={l.id} className={amountOf(l) != null ? "priced" : ""}>
+                    <tr key={l.id} data-row={l.id} className={[amountOf(l) != null ? "priced" : "", focusLine === l.id ? "flash" : ""].join(" ").trim()}>
                       <td className="truncate" style={{ maxWidth: 380 }}>
                         {l.label}
                         {!grouped ? <span className="faint small" style={{ marginLeft: 8 }}>{l.section}</span> : null}
@@ -425,6 +465,7 @@ export function RatesPage() {
               </tfoot>
             ) : null}
           </table>
+          )}
         </div>
       </div>
 
@@ -437,7 +478,7 @@ export function RatesPage() {
             </span>
           </div>
           <div className="progress" style={{ marginTop: 8 }}>
-            <span style={{ width: `${(rated / allLines.length) * 100}%` }} />
+            <span style={{ width: `${allLines.length ? (rated / allLines.length) * 100 : 0}%` }} />
           </div>
         </section>
         <section className="totals">
@@ -448,7 +489,7 @@ export function RatesPage() {
           </div>
           <div className="summary-row">
             <label htmlFor="markup">Overheads and profit</label>
-            <div className="input-group" style={{ width: 92 }}>
+            <div className="input-group has-suffix" style={{ width: 92 }}>
               <input
                 id="markup"
                 className="input input-sm input-num"
@@ -461,7 +502,6 @@ export function RatesPage() {
                   touch();
                   setMarkup(e.target.value);
                 }}
-                style={{ paddingRight: 24 }}
               />
               <span className="input-suffix">%</span>
             </div>
@@ -538,7 +578,7 @@ export function RatesPage() {
       <RatesImportDialog
         open={importOpen}
         projectId={projectId}
-        lines={allLines}
+        lines={importLines}
         currency={currency}
         onClose={() => setImportOpen(false)}
         onApply={(imported, file) => {

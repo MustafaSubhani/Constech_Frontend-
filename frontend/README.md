@@ -35,13 +35,14 @@ Then start the backend app; it serves `dist/` automatically.
 | Path | Role |
 |------|------|
 | `src/styles/tokens.css` | Colour, radius and motion tokens for light and dark. Every transition uses `--dur-*` and `--ease*`. |
-| `src/components/shell/` | Left rail, top bar, command palette (`Ctrl K`), shortcuts (`?`) |
+| `src/components/shell/` | Left rail (an icon bar that opens on hover or keyboard focus), top bar, command palette (`Ctrl K`), shortcuts (`?`) |
 | `src/components/ui/` | Dialog, menu, toast, confirm, dropzone |
 | `src/components/brand/` | Logo and the isometric frame used on sign-in and the loader |
 | `src/components/workspace/` | Sheet canvas (select, draw, reshape), inspector, evidence crops |
 | `src/components/formula/` | Formula editor that renders expressions as maths and edits dimensions as variables |
 | `src/components/pipeline/` | Staged pipeline view shown when a project opens |
-| `src/assistant/`, `src/components/assistant/` | Assistant contract and docked panel (not connected) |
+| `src/components/assistant/` | Assistant panel (Drawings, Bill, Rates, Inputs only): runs in the background and is polled for live steps and streamed text, can be stopped, reviews or applies changes, moves the workspace to what it is talking about |
+| `src/components/settings/` | Account (name, password), token usage |
 | `src/pages/project/` | Drawings, bill comparison, rates, schedules and inputs, pipeline |
 | `src/lib/formula.ts` | Same formula grammar as `backend/structural_boq/formula.py`, for live previews |
 

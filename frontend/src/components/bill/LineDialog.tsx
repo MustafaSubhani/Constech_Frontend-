@@ -45,12 +45,20 @@ export function LineDialog({ open, sections, floors = [], line, onClose, onSave 
   const result = useMemo(() => evaluate(expression, variables), [expression, variables]);
   const sectionOptions = useMemo(() => [...new Set([...sections, "Custom"])], [sections]);
 
+  const billText = bill.replace(/[,\s]/g, "");
+  const billValue = billText === "" ? null : Number(billText);
+  const billInvalid = billValue != null && !Number.isFinite(billValue);
+
   async function save() {
     if (!label.trim() || !result.ok) return;
+    if (billInvalid) {
+      setError("The bill quantity must be a number.");
+      return;
+    }
     setBusy(true);
     setError("");
     try {
-      await onSave({ label: label.trim(), section, unit, floor, bill: bill.trim() === "" ? null : Number(bill), expression, variables });
+      await onSave({ label: label.trim(), section, unit, floor, bill: billValue, expression, variables });
       onClose();
     } catch (err) {
       setError((err as Error).message);
@@ -101,7 +109,7 @@ export function LineDialog({ open, sections, floors = [], line, onClose, onSave 
         </label>
         <label className="field">
           <span className="field-label">Bill quantity</span>
-          <input className="input input-num" inputMode="decimal" value={bill} onChange={(e) => setBill(e.target.value)} placeholder="Optional" />
+          <input className={`input input-num${billInvalid ? " invalid" : ""}`} inputMode="decimal" value={bill} onChange={(e) => setBill(e.target.value)} placeholder="Optional" aria-invalid={billInvalid} />
         </label>
       </div>
       {floors.some((f) => f.key !== "unsplit") ? (

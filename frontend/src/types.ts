@@ -257,7 +257,7 @@ export type RatesImport = {
   unmatched: number[];
 };
 
-export type User = { email: string; name: string; token: string };
+export type User = { email: string; name: string; token: string; hasPassword?: boolean };
 
 export type ExportItem = {
   projectId: string;
@@ -300,6 +300,12 @@ export type AssistantSettingsPatch = Partial<{
   clearKey: boolean;
 }>;
 
+export type WorkspaceAction =
+  | { type: "element"; sheet: string; shape: string }
+  | { type: "sheet"; sheet: string }
+  | { type: "bill_line"; line: string }
+  | { type: "rates"; line?: string };
+
 export type TranscriptItem = {
   role: "user" | "assistant" | "tool" | "notice";
   text?: string;
@@ -307,24 +313,71 @@ export type TranscriptItem = {
   summary?: string;
   error?: boolean;
   proposalId?: string;
+  action?: WorkspaceAction;
   tone?: "error" | "warn";
   at: string;
 };
 
-export type AssistantThread = { id: string; created: string; updated: string; provider: string; model: string; task: string; transcript: TranscriptItem[] };
+export type TokenUsage = {
+  input: number;
+  output: number;
+  cache_read: number;
+  cache_write: number;
+  calls: number;
+  cost: number;
+  priced: boolean;
+};
+
+export type AssistantRun = {
+  id: string;
+  status: "running" | "done" | "error" | "cancelled" | "interrupted";
+  startedAt: string;
+  endedAt?: string;
+  partial: string;
+  step: string;
+  autoApply?: boolean;
+  changed?: boolean;
+};
+
+export type AssistantThread = {
+  id: string;
+  created: string;
+  updated: string;
+  provider: string;
+  model: string;
+  task: string;
+  title?: string;
+  transcript: TranscriptItem[];
+  run?: AssistantRun | null;
+  running: boolean;
+  usage?: TokenUsage;
+};
+
+export type ThreadSummary = { id: string; title: string; updated: string; task?: string; messages?: number };
+
+export type UsageSummary = {
+  days: number;
+  totals: { today: TokenUsage; period: TokenUsage; all: TokenUsage };
+  byDay: (TokenUsage & { day: string })[];
+  byProject: (TokenUsage & { project: string })[];
+  byModel: (TokenUsage & { model: string })[];
+  ledger: string;
+};
+
+export type Account = { email: string; name: string; hasPassword: boolean; updated?: string };
 
 export type ProposalImpact = { lineId: string; label: string; unit: string; before: number | null; after: number | null; bill: number | null };
 
 export type Proposal = {
   id: string;
   threadId: string;
-  kind: "measurement_change" | "exclude" | "new_element" | "bill_override" | "project_input" | "sheet_role";
+  kind: "measurement_change" | "exclude" | "new_element" | "bill_override" | "project_input" | "sheet_role" | "rates" | "line_visibility" | "custom_line";
   status: "pending" | "applied" | "rejected" | "undone";
   reason: string;
   summary: string;
   evidence: { sheet: string; text: string; verified: boolean; check: string }[];
   target: Record<string, string>;
-  before?: number | string | null;
+  before?: number | string | Record<string, number | null> | null;
   after?: number | string | Record<string, number> | null;
   impacts: ProposalImpact[];
   created: string;

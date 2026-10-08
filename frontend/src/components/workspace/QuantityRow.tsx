@@ -31,6 +31,8 @@ export function QuantityRow({ field, value, engineValue, stored, inputs, onSave,
       await onSave(spec, reason.trim());
       setEditing(false);
       setReason("");
+    } catch {
+      /* the caller already showed the error; keep the editor open */
     } finally {
       setBusy(false);
     }

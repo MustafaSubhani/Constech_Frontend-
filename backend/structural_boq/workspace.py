@@ -265,7 +265,126 @@ def _fit_cloud(page, dump):
     return best[1:]
 
 
+def _pdf_vertices(page):
+    """End points of every vector segment the PDF draws (lines, rectangles, quads, curves)."""
+    points = []
+    for drawing in page.get_drawings():
+        for item in drawing.get("items") or ():
+            op = item[0]
+            if op == "l":
+                points += [(item[1].x, item[1].y), (item[2].x, item[2].y)]
+            elif op == "re":
+                r = item[1]
+                points += [(r.x0, r.y0), (r.x1, r.y0), (r.x1, r.y1), (r.x0, r.y1)]
+            elif op == "qu":
+                q = item[1]
+                points += [(q.ul.x, q.ul.y), (q.ur.x, q.ur.y), (q.lr.x, q.lr.y), (q.ll.x, q.ll.y)]
+            elif op == "c":
+                points += [(item[1].x, item[1].y), (item[4].x, item[4].y)]
+    return points
+
+
+def _dwg_vertices(dump, limit=6000):
+    verts = []
+    for entity in dump.get("entities") or ():
+        if entity.get("kind") == "polyline" and entity.get("source", "model") == "model":
+            verts.extend(entity.get("vertices") or ())
+    if len(verts) > limit:
+        step = len(verts) / limit
+        verts = [verts[int(i * step)] for i in range(limit)]
+    return verts
+
+
+def _refine_fit(page, dump, fit):
+    """Tighten a label-based fit against the drawn geometry.
+
+    The label fit pairs DWG text insertion points with PDF word centres. Those are not the
+    same point on a glyph (the insertion point is usually the baseline start), so every
+    outline lands a few points off the printed line work. Here each DWG outline vertex is
+    snapped to the nearest PDF vector end point; the median offset is applied with a
+    shrinking search radius, then scale is refined by least squares on the close pairs.
+    The refined fit is kept only when most outlines agree with it.
+    """
+    if not fit:
+        return fit
+    verts = _dwg_vertices(dump)
+    if len(verts) < 12:
+        return fit
+    try:
+        pdf_points = _pdf_vertices(page)
+    except Exception:
+        return fit
+    if len(pdf_points) < 12 or abs(fit[0]) < 1e-9 or abs(fit[2]) < 1e-9:
+        return fit
+    # Very dense line work (hatching) is thinned: the medians need a sample, not every point.
+    if len(pdf_points) > 120_000:
+        step = len(pdf_points) / 120_000
+        pdf_points = [pdf_points[int(i * step)] for i in range(120_000)]
+    cell = 3.0
+    grid = defaultdict(list)
+    for px, py in pdf_points:
+        grid[(int(px // cell), int(py // cell))].append((px, py))
+
+    def nearest(x, y, radius):
+        reach = int(radius // cell) + 1
+        gx, gy = int(x // cell), int(y // cell)
+        best = None
+        for i in range(gx - reach, gx + reach + 1):
+            for j in range(gy - reach, gy + reach + 1):
+                for px, py in grid.get((i, j), ()):
+                    d = (px - x) ** 2 + (py - y) ** 2
+                    if d <= radius * radius and (best is None or d < best[0]):
+                        best = (d, px, py)
+        return best
+
+    ax, bx, ay, by = fit[:4]
+    need = max(12, int(len(verts) * 0.25))
+    pairs = []
+    for radius in (12.0, 6.0, 3.0, 1.5):
+        pairs = []
+        for x, y in verts:
+            qx, qy = ax * x + bx, ay * y + by
+            hit = nearest(qx, qy, radius)
+            if hit:
+                pairs.append((x, y, hit[1], hit[2]))
+        if len(pairs) < need:
+            return fit
+        dxs = sorted(px - (ax * x + bx) for x, _y, px, _py in pairs)
+        dys = sorted(py - (ay * y + by) for _x, y, _px, py in pairs)
+        bx += dxs[len(dxs) // 2]
+        by += dys[len(dys) // 2]
+    # Scale from the close pairs, guarded: a label fit's scale is already near right.
+    if len(pairs) >= need:
+        sx, tx = _axis_fit([p[0] for p in pairs], [p[2] for p in pairs])
+        sy, ty = _axis_fit([p[1] for p in pairs], [p[3] for p in pairs])
+        if abs(ax) > 1e-9 and abs(ay) > 1e-9 and abs(sx / ax - 1) < 0.01 and abs(sy / ay - 1) < 0.01:
+            ax, bx, ay, by = sx, tx, sy, ty
+    errors = sorted(((ax * x + bx - px) ** 2 + (ay * y + by - py) ** 2) ** 0.5 for x, y, px, py in pairs)
+    residual = errors[len(errors) // 2] if errors else fit[4]
+    if residual > 1.5:
+        return fit
+
+    # Control: the same outlines shifted by a few points should mostly miss the line work. If
+    # they hit nearly as often, the page is so dense that any offset "matches" and the refined
+    # fit means nothing.
+    def hits(dx, dy):
+        return sum(1 for x, y in verts if nearest(ax * x + bx + dx, ay * y + by + dy, 1.5))
+
+    real = hits(0, 0)
+    control = max(hits(7, 0), hits(0, 7), hits(-7, -7))
+    if real < need or control > real * 0.5:
+        return fit
+    # The vector match only tightens a fit the labels already found; it never rescues a failed one.
+    reported = fit[4] if fit[4] > FIT_RESIDUAL_OK_PT else min(residual, fit[4])
+    return (ax, bx, ay, by, reported, fit[5] if len(fit) > 5 else "vectors")
+
+
 def _fit_sheet(page, dump):
+    """Label fit, then refined against the PDF's vector line work."""
+    return _refine_fit(page, dump, _fit_sheet_labels(page, dump))
+
+
+def _fit_sheet_labels(page, dump):
     """Line the DWG up with the PDF.
 
     Whole labels are tried first. If the PDF has split a label into words,
@@ -738,8 +857,12 @@ def build_catalog(project, on_sheet=None):
         page = doc[0]
         fit = _fit_sheet(page, dump)
         image = cache / f"{stem}.png"
-        width, height = _ensure_sheet_raster(page, image, pdf.stat().st_mtime)
+        raster_w, raster_h = _ensure_sheet_raster(page, image, pdf.stat().st_mtime)
         width, height = int(page.rect.width * ZOOM), int(page.rect.height * ZOOM)
+        # Use the raster's own pixel size so the image is never stretched under the outlines
+        # (outline points are page points times ZOOM, which is exactly the raster's pixel grid).
+        if abs(raster_w - width) <= 2 and abs(raster_h - height) <= 2:
+            width, height = raster_w, raster_h
         words = page.get_text("words")
         doc.close()
         fit_ok = fit is not None and fit[4] <= FIT_RESIDUAL_OK_PT
@@ -751,8 +874,18 @@ def build_catalog(project, on_sheet=None):
             shapes = _plan_shapes(dump, fit, ZOOM, stem, loc) if fit_ok else []
         else:
             shapes = []
-        if not shapes and not fit_ok:
-            continue
+        # Outlines whose middle falls off the printed page (legend symbols, model-space notes)
+        # cannot be seen or reviewed on the sheet; they stay in the measurements but are not drawn.
+        def _on_page(shape):
+            xs = [p[0] for p in shape["points"]]
+            ys = [p[1] for p in shape["points"]]
+            cx, cy = (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
+            return 0 <= cx <= width and 0 <= cy <= height
+
+        off_page = [s for s in shapes if s.get("points") and not _on_page(s)]
+        if off_page:
+            print(f"    {len(off_page)} outline(s) off the printed page not drawn: {', '.join(s['label'].split()[0] for s in off_page[:6])}", flush=True)
+            shapes = [s for s in shapes if s not in off_page]
         if not shapes:
             continue
         for shape in shapes:

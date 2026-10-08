@@ -11,14 +11,15 @@ type Props = {
   onFiles: (files: File[]) => void;
   onReject?: (names: string[]) => void;
   large?: boolean;
+  disabled?: boolean;
 };
 
-export function Dropzone({ accept, multiple = true, title, hint, onFiles, onReject, large }: Props) {
+export function Dropzone({ accept, multiple = true, title, hint, onFiles, onReject, large, disabled = false }: Props) {
   const input = useRef<HTMLInputElement>(null);
   const [active, setActive] = useState(false);
 
   function take(list: FileList | null) {
-    if (!list?.length) return;
+    if (disabled || !list?.length) return;
     const all = [...list];
     const ok = all.filter((f) => acceptsFile(f.name, accept));
     const rejected = all.filter((f) => !acceptsFile(f.name, accept)).map((f) => f.name);
@@ -28,12 +29,12 @@ export function Dropzone({ accept, multiple = true, title, hint, onFiles, onReje
 
   return (
     <div
-      className={`dropzone${active ? " active" : ""}`}
-      style={large ? { padding: "48px 24px" } : undefined}
+      className={`dropzone${active ? " active" : ""}${large ? " large" : ""}${disabled ? " disabled" : ""}`}
       role="button"
-      tabIndex={0}
-      onClick={() => input.current?.click()}
-      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), input.current?.click())}
+      tabIndex={disabled ? -1 : 0}
+      aria-disabled={disabled}
+      onClick={() => !disabled && input.current?.click()}
+      onKeyDown={(e) => !disabled && (e.key === "Enter" || e.key === " ") && (e.preventDefault(), input.current?.click())}
       onDragOver={(e) => {
         e.preventDefault();
         setActive(true);

@@ -189,7 +189,7 @@ export function ProjectLayout() {
       <div className="project-main" key={projectId}>
         <Outlet />
       </div>
-      {assistantOpen ? <AssistantPanel projectId={projectId} onClose={() => setAssistantOpen(false)} /> : null}
+      {assistantOpen ? <AssistantPanel key={projectId} projectId={projectId} onClose={() => setAssistantOpen(false)} /> : null}
     </ProjectContext.Provider>
   );
 }

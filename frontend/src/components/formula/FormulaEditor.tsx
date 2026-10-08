@@ -132,6 +132,11 @@ export function FormulaEditor({ label, unit, digits = 3, expression, variables, 
   const removeVar = (name: string) => {
     const next = { ...variables };
     delete next[name];
+    setDrafts((d) => {
+      const rest = { ...d };
+      delete rest[name];
+      return rest;
+    });
     onChange(expression, next);
   };
 

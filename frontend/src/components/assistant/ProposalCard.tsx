@@ -13,7 +13,13 @@ const KIND_LABEL: Record<Proposal["kind"], string> = {
   bill_override: "Bill line override",
   project_input: "Project input",
   sheet_role: "Sheet role",
+  rates: "Rates",
+  line_visibility: "Bill line visibility",
+  custom_line: "New bill line",
 };
+
+/** Commercial or housekeeping changes: no drawing text is expected behind them. */
+const NO_EVIDENCE = new Set<Proposal["kind"]>(["rates", "line_visibility"]);
 
 function value(v: unknown) {
   if (v == null || v === "") return "none";
@@ -27,7 +33,8 @@ export function ProposalCard({ proposal, projectId, compact = false }: { proposa
   const qc = useQueryClient();
   const toast = useToast();
   const [busy, setBusy] = useState(false);
-  const unverified = proposal.evidence.some((e) => !e.verified) || proposal.evidence.length === 0;
+  const needsEvidence = !NO_EVIDENCE.has(proposal.kind);
+  const unverified = needsEvidence && (proposal.evidence.some((e) => !e.verified) || proposal.evidence.length === 0);
 
   async function act(action: "apply" | "reject" | "undo") {
     setBusy(true);
@@ -37,6 +44,7 @@ export function ProposalCard({ proposal, projectId, compact = false }: { proposa
         qc.invalidateQueries({ queryKey: ["proposals", projectId] }),
         qc.invalidateQueries({ queryKey: ["project", projectId] }),
         qc.invalidateQueries({ queryKey: ["inputs", projectId] }),
+        qc.invalidateQueries({ queryKey: ["rates", projectId] }),
       ]);
       toast.show(action === "apply" ? "Change applied" : action === "undo" ? "Change undone" : "Proposal rejected", "success");
     } catch (err) {
@@ -64,7 +72,7 @@ export function ProposalCard({ proposal, projectId, compact = false }: { proposa
         ) : null}
       </div>
       <p className="proposal-summary">{proposal.summary}</p>
-      {proposal.before !== undefined && proposal.after !== undefined && proposal.kind !== "sheet_role" ? (
+      {proposal.before != null && proposal.after != null && typeof proposal.before !== "object" && proposal.kind !== "sheet_role" ? (
         <div className="proposal-diff">
           <span className="was">{value(proposal.before)}</span>
           <ArrowRight size={13} />
@@ -85,7 +93,7 @@ export function ProposalCard({ proposal, projectId, compact = false }: { proposa
         </div>
       ) : null}
       <p className="proposal-reason">{proposal.reason}</p>
-      <ul className="proposal-evidence">
+      {needsEvidence || proposal.evidence.length ? <ul className="proposal-evidence">
         {proposal.evidence.map((e, i) => (
           <li key={i} className={e.verified ? "ok" : "warn"} title={e.check}>
             {e.verified ? <Check size={12} strokeWidth={3} /> : <AlertTriangle size={12} />}
@@ -99,7 +107,7 @@ export function ProposalCard({ proposal, projectId, compact = false }: { proposa
             <AlertTriangle size={12} /> No evidence given
           </li>
         ) : null}
-      </ul>
+      </ul> : null}
       {unverified && proposal.status === "pending" ? <p className="proposal-warning">Some cited text was not found on the drawings. Check before accepting.</p> : null}
       {proposal.status === "pending" ? (
         <div className="proposal-actions">

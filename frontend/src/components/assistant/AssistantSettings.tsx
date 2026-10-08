@@ -4,6 +4,7 @@ import { CheckCircle2, KeyRound, PlugZap, XCircle } from "lucide-react";
 import { api } from "../../api/client";
 import type { AssistantProvider, AssistantStatus } from "../../types";
 import { useToast } from "../ui/Toast";
+import { SectionHead } from "../settings/parts";
 
 const PROVIDERS: { value: AssistantProvider; label: string; hint: string }[] = [
   { value: "anthropic", label: "Claude", hint: "Anthropic API" },
@@ -34,8 +35,8 @@ export function AssistantSettings() {
   if (!form) {
     return (
       <section className="card settings-card" id="assistant">
-        <h2>Assistant</h2>
-        <p className="muted small" style={{ padding: "8px 0 16px" }}>
+        <SectionHead title="Assistant" />
+        <p className="muted small" style={{ padding: "0 0 16px" }}>
           {status.error ? (status.error as Error).message : "Loading"}
         </p>
       </section>
@@ -94,11 +95,11 @@ export function AssistantSettings() {
 
   return (
     <section className="card settings-card" id="assistant">
-      <h2>Assistant</h2>
+      <SectionHead title="Assistant" hint="Reads your projects with tools and makes changes you can review or undo. Off until you switch it on." />
       <div className="settings-row">
         <div className="grow">
           <h3>Enable the assistant</h3>
-          <p>Reads the project with tools and proposes changes you accept or reject. Off until you switch it on.</p>
+          <p>Available on Drawings, Bill comparison, Rates and Schedules and inputs.</p>
         </div>
         <label className="switch">
           <input type="checkbox" checked={form.enabled} disabled={locked("enabled")} onChange={(e) => set({ enabled: e.target.checked })} />
@@ -132,8 +133,7 @@ export function AssistantSettings() {
           <p>The model id the provider expects.</p>
         </div>
         <input
-          className="input"
-          style={{ width: 280 }}
+          className="input field-lg"
           value={form.model}
           placeholder={MODEL_HINTS[form.provider]}
           disabled={locked("model")}
@@ -148,8 +148,7 @@ export function AssistantSettings() {
             <p>{form.provider === "openai_compatible" ? "The OpenAI-compatible endpoint of your local server." : "Leave empty for the standard OpenAI endpoint."}</p>
           </div>
           <input
-            className="input"
-            style={{ width: 280 }}
+            className="input field-lg"
             value={form.baseUrl}
             placeholder={form.provider === "openai_compatible" ? "http://localhost:11434/v1" : "https://api.openai.com/v1"}
             disabled={locked("base_url")}
@@ -168,7 +167,7 @@ export function AssistantSettings() {
           </p>
         </div>
         <div className="row" style={{ gap: 6 }}>
-          <div className="input-group" style={{ width: 280 }}>
+          <div className="input-group field-lg">
             <KeyRound size={15} />
             <input
               className="input"

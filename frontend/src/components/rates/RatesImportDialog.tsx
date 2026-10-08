@@ -79,7 +79,14 @@ export function RatesImportDialog({ open, projectId, lines, currency, onClose, o
               Apply {included.length} rates
             </button>
           </>
-        ) : undefined
+        ) : (
+          <>
+            <span className="grow">Nothing changes until you apply the matches.</span>
+            <button type="button" className="btn btn-secondary" onClick={onClose} disabled={busy}>
+              Cancel
+            </button>
+          </>
+        )
       }
     >
       {error ? <div className="banner banner-bad">{error}</div> : null}
@@ -88,6 +95,7 @@ export function RatesImportDialog({ open, projectId, lines, currency, onClose, o
           <Dropzone
             accept=".xlsx,.csv"
             multiple={false}
+            disabled={busy}
             title={busy ? "Reading the sheet" : "Drop a rates sheet"}
             hint="XLSX or CSV with Description, Unit and Rate columns. An Item column with line keys matches exactly."
             onFiles={upload}

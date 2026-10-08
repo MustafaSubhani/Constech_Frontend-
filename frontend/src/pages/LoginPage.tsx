@@ -85,7 +85,7 @@ export function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="button" onClick={() => setShowPassword((v) => !v)}>
+                <button type="button" onClick={() => setShowPassword((v) => !v)} aria-label={showPassword ? "Hide password" : "Show password"}>
                   {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
@@ -97,7 +97,7 @@ export function LoginPage() {
             </button>
           </form>
           <p className="login-note">
-            Preview sign-in: any work email is accepted until single sign-on is connected.
+            New here? Sign in with your work email, then set a password in Settings to protect the account.
           </p>
         </section>
       </div>

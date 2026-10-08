@@ -43,6 +43,8 @@ export function UploadDialog({ open, onClose, projectId, title, description, acc
         qc.invalidateQueries({ queryKey: ["inputs", projectId] }),
         qc.invalidateQueries({ queryKey: ["bills", projectId] }),
         qc.invalidateQueries({ queryKey: ["projects"] }),
+        qc.invalidateQueries({ queryKey: ["files", projectId] }),
+        qc.invalidateQueries({ queryKey: ["exports"] }),
       ]);
       toast.success(`${result.saved.length} file${result.saved.length === 1 ? "" : "s"} added`);
       onUploaded?.(result.saved);

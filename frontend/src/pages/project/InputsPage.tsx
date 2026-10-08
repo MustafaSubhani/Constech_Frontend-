@@ -37,14 +37,20 @@ export function InputsPage() {
     return t;
   }, [entries]);
 
-  async function saveValue(key: string, value: number | null) {
+  async function saveValue(key: string, value: number | null): Promise<boolean> {
+    if (value != null && !Number.isFinite(value)) {
+      toast.error("Enter a number.");
+      return false;
+    }
     try {
       await api.saveInputs(projectId, { [key]: value });
       await qc.invalidateQueries({ queryKey: ["inputs", projectId] });
       setChanged(true);
       toast.success(value == null ? "Value cleared" : "Value saved");
+      return true;
     } catch (err) {
       toast.error((err as Error).message);
+      return false;
     }
   }
 
@@ -85,7 +91,24 @@ export function InputsPage() {
           </div>
         ) : null}
 
-        {!inputs.data?.discovered && !inputs.isLoading ? (
+        {inputs.error ? (
+          <div className="banner banner-bad">
+            <AlertCircle size={16} />
+            <div className="banner-body">Could not load the inputs register: {(inputs.error as Error).message}</div>
+          </div>
+        ) : null}
+
+        {inputs.isLoading ? (
+          <div className="card input-group-card">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="input-row">
+                <span className="sk sk-line" style={{ ["--delay" as string]: `${i * 120}ms` }} />
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {!inputs.error && !inputs.data?.discovered && !inputs.isLoading ? (
           <div className="banner banner-warn">
             <AlertCircle size={16} />
             <div className="banner-body">This project has not been discovered yet, so nothing has been looked for. Run the pipeline first.</div>
@@ -133,11 +156,12 @@ function InputRow({
 }: {
   entry: InputEntry;
   onUpload: () => void;
-  onSave: (value: number | null) => Promise<void>;
+  onSave: (value: number | null) => Promise<boolean>;
   onChooseBill: () => void;
 }) {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(entry.manual?.value != null ? String(entry.manual.value) : entry.value != null ? String(entry.value) : "");
+  const valid = /^\d+(\.\d+)?$|^\d*\.\d+$/.test(value) && Number.isFinite(Number(value));
   const status = STATUS[entry.status];
   const where = entry.sheets.map((s) => s.stem || s.file).filter(Boolean);
 
@@ -170,22 +194,42 @@ function InputRow({
         </div>
         {editing ? (
           <div className="row input-edit">
-            <div className="input-group" style={{ width: 140 }}>
+            <div className="input-group has-suffix" style={{ width: 140 }}>
               <input
-                className="input input-sm input-num"
+                className={`input input-sm input-num${value && !valid ? " invalid" : ""}`}
                 inputMode="decimal"
                 value={value}
                 onChange={(e) => setValue(e.target.value.replace(/[^\d.]/g, ""))}
+                onKeyDown={async (e) => {
+                  if (e.key === "Enter" && valid && (await onSave(Number(value)))) setEditing(false);
+                  if (e.key === "Escape") setEditing(false);
+                }}
                 autoFocus
-                style={{ paddingRight: 34 }}
+                aria-invalid={Boolean(value && !valid)}
               />
               <span className="input-suffix">{entry.manual?.unit}</span>
             </div>
-            <button type="button" className="btn btn-primary btn-sm" disabled={!value} onClick={async () => (await onSave(Number(value)), setEditing(false))}>
+            <button
+              type="button"
+              className="btn btn-primary btn-sm"
+              disabled={!valid}
+              onClick={async () => {
+                if (await onSave(Number(value))) setEditing(false);
+              }}
+            >
               Save
             </button>
             {entry.status === "manual" ? (
-              <button type="button" className="btn btn-ghost btn-sm" onClick={async () => (await onSave(null), setEditing(false), setValue(""))}>
+              <button
+                type="button"
+                className="btn btn-ghost btn-sm"
+                onClick={async () => {
+                  if (await onSave(null)) {
+                    setEditing(false);
+                    setValue("");
+                  }
+                }}
+              >
                 Clear
               </button>
             ) : null}

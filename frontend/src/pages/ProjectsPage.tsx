@@ -47,13 +47,25 @@ export function ProjectsPage() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
   const [sort, setSort] = useState<Sort>("updated");
-  const [view, setView] = useState<View>(() => (localStorage.getItem("constech.projects.view") as View) || "grid");
+  const [view, setView] = useState<View>(() => {
+    try {
+      return (localStorage.getItem("constech.projects.view") as View) || "grid";
+    } catch {
+      return "grid";
+    }
+  });
   const [uploadFor, setUploadFor] = useState<ProjectSummary | null>(null);
   const newOpen = params.get("new") === "1";
 
   const { data: projects = [], isLoading, error } = useQuery({ queryKey: ["projects"], queryFn: api.listProjects });
 
-  useEffect(() => localStorage.setItem("constech.projects.view", view), [view]);
+  useEffect(() => {
+    try {
+      localStorage.setItem("constech.projects.view", view);
+    } catch {
+      /* storage unavailable */
+    }
+  }, [view]);
 
   const totals = useMemo(() => {
     const t = { sheets: 0, compared: 0, close: 0 };
@@ -68,7 +80,7 @@ export function ProjectsPage() {
   const counts = useMemo(
     () => ({
       all: projects.length,
-      progress: projects.filter((p) => !p.compared && (p.runs.discover || p.drawings > 0)).length,
+      progress: projects.filter((p) => !p.compared && p.runs.discover).length,
       compared: projects.filter((p) => p.compared > 0).length,
       new: projects.filter((p) => !p.runs.discover).length,
     }),
@@ -79,7 +91,7 @@ export function ProjectsPage() {
     const q = query.trim().toLowerCase();
     const list = projects.filter((p) => {
       if (q && !`${p.name} ${p.place} ${p.bill}`.toLowerCase().includes(q)) return false;
-      if (filter === "progress") return !p.compared && (p.runs.discover || p.drawings > 0);
+      if (filter === "progress") return !p.compared && p.runs.discover;
       if (filter === "compared") return p.compared > 0;
       if (filter === "new") return !p.runs.discover;
       return true;
@@ -234,7 +246,7 @@ export function ProjectsPage() {
                       <td style={{ width: 220 }}>
                         <MatchBar p={p} compact />
                       </td>
-                      <td className="muted truncate" style={{ maxWidth: 220 }}>{p.bill || "No bill"}</td>
+                      <td className="muted truncate" style={{ maxWidth: 220 }}>{p.bill || "No bill selected"}</td>
                       <td className="muted">{relativeTime(p.updated)}</td>
                       <td onClick={(e) => e.stopPropagation()} style={{ width: 48 }}>
                         <CardMenu p={p} onOpen={open} onUpload={() => setUploadFor(p)} />
@@ -358,7 +370,7 @@ function ProjectCard({
       role="link"
       aria-label={`Open ${p.name}`}
       onClick={() => onOpen(p)}
-      onKeyDown={(e) => e.key === "Enter" && onOpen(p)}
+      onKeyDown={(e) => e.target === e.currentTarget && (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onOpen(p))}
     >
       <header className="pc-head">
         <div className="grow">
@@ -369,7 +381,7 @@ function ProjectCard({
           {stage.step === -1 ? <span className="spinner" style={{ width: 10, height: 10 }} /> : null}
           {stage.label}
         </span>
-        <span onClick={(e) => e.stopPropagation()}>
+        <span onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
           <CardMenu p={p} onOpen={onOpen} onUpload={onUpload} />
         </span>
       </header>
@@ -387,7 +399,7 @@ function ProjectCard({
 
       <footer className="pc-foot">
         <span className="truncate" title={p.bill || undefined}>
-          <FileSpreadsheet size={13} /> {p.bill || "No bill yet"}
+          <FileSpreadsheet size={13} /> {p.bill || "No bill selected"}
         </span>
         {p.capabilities.length ? (
           <span className="coverage" title={`Discovery coverage\n${coverageTitle}`}>

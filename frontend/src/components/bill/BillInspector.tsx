@@ -15,11 +15,11 @@ type Props = {
   row: CompareRow;
   suggestions?: Proposal[];
   onClose: () => void;
-  onSaveOverride: (expression: string, variables: Record<string, number>, reason: string) => Promise<void>;
-  onResetOverride: () => Promise<void>;
-  onToggleHidden: () => Promise<void>;
+  onSaveOverride: (expression: string, variables: Record<string, number>, reason: string) => Promise<unknown>;
+  onResetOverride: () => Promise<unknown>;
+  onToggleHidden: () => Promise<unknown>;
   onEditCustom: () => void;
-  onDeleteCustom: () => Promise<void>;
+  onDeleteCustom: () => Promise<unknown>;
 };
 
 function defaultSpec(row: CompareRow) {
@@ -36,13 +36,28 @@ export function BillInspector({ project, row, suggestions = [], onClose, onSaveO
   const [spec, setSpec] = useState(() => defaultSpec(row));
   const [reason, setReason] = useState(row.adjustmentReason ?? "");
   const [busy, setBusy] = useState(false);
+  const [acting, setActing] = useState(false);
 
   useEffect(() => {
     setTab((row.placements?.length ?? 0) > 0 ? "sources" : "calc");
     setOpen(null);
+  }, [row.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // The editor follows the saved line: after an override is saved or removed it shows what is stored now.
+  useEffect(() => {
     setSpec(defaultSpec(row));
     setReason(row.adjustmentReason ?? "");
-  }, [row.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [row.id, row.lineOverride, row.expression, row.adjustmentReason]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function act(action: () => unknown) {
+    if (acting) return;
+    setActing(true);
+    try {
+      await action();
+    } finally {
+      setActing(false);
+    }
+  }
 
   const band = bandOf(row);
   const pct = pctOf(row);
@@ -289,7 +304,7 @@ export function BillInspector({ project, row, suggestions = [], onClose, onSaveO
                 <input className="input input-sm" style={{ marginTop: 10 }} placeholder="Reason (kept in the audit trail)" value={reason} onChange={(e) => setReason(e.target.value)} />
                 <div className="row" style={{ marginTop: 10, justifyContent: "flex-end" }}>
                   {row.lineOverride ? (
-                    <button type="button" className="btn btn-ghost btn-sm" onClick={onResetOverride}>
+                    <button type="button" className="btn btn-ghost btn-sm" onClick={() => act(onResetOverride)} disabled={acting}>
                       <RotateCcw size={13} /> Remove override
                     </button>
                   ) : null}
@@ -304,7 +319,7 @@ export function BillInspector({ project, row, suggestions = [], onClose, onSaveO
       </div>
 
       <footer className="insp-foot">
-        <button type="button" className="btn btn-ghost btn-sm" onClick={onToggleHidden}>
+        <button type="button" className="btn btn-ghost btn-sm" onClick={() => act(onToggleHidden)} disabled={acting}>
           {row.hidden ? <Eye size={14} /> : <EyeOff size={14} />} {row.hidden ? "Show line" : "Hide line"}
         </button>
         <span className="faint small">

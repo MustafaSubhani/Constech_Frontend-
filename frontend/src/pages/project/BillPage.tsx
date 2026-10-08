@@ -122,7 +122,8 @@ export function BillPage() {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.target instanceof HTMLElement && e.target.matches("input, textarea, select")) return;
-      if (document.querySelector(".dialog-backdrop, .palette-backdrop")) return;
+      if (document.querySelector(".dialog-backdrop, .palette-backdrop, .menu")) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
       if (e.key === "Escape" && selectedId) select(null);
       if ((e.key === "ArrowDown" || e.key === "ArrowUp") && rows.length) {
         e.preventDefault();
@@ -252,13 +253,15 @@ export function BillPage() {
   };
   const exportLabel = `${scopeLabel(scope, floors)}${sortedBy ? `, sorted by ${sortedBy.toLowerCase()}` : ", in bill order"}. Hidden lines are left out.`;
 
-  async function run(action: () => Promise<unknown>, message: string) {
+  async function run(action: () => Promise<unknown>, message: string): Promise<boolean> {
     try {
       await action();
       await refresh();
       toast.success(message);
+      return true;
     } catch (err) {
       toast.error((err as Error).message);
+      return false;
     }
   }
 
@@ -396,8 +399,7 @@ export function BillPage() {
           onDeleteCustom={async () => {
             const res = await confirm({ title: "Delete this line?", message: selected.label, confirmLabel: "Delete", tone: "danger" });
             if (!res.ok) return;
-            await run(() => api.deleteCustomLine(projectId, selected.id), "Line deleted");
-            select(null);
+            if (await run(() => api.deleteCustomLine(projectId, selected.id), "Line deleted")) select(null);
           }}
         />
       ) : null}

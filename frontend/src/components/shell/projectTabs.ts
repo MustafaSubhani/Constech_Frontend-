@@ -7,3 +7,6 @@ export const PROJECT_TABS = [
   { path: "inputs", label: "Schedules and inputs", icon: ClipboardList },
   { path: "pipeline", label: "Pipeline", icon: Workflow },
 ] as const;
+
+/** Project pages where the assistant can read and change things (the pipeline page only runs the engine). */
+export const ASSISTANT_TABS = new Set<string>(["", "bill", "rates", "inputs"]);

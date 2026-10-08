@@ -42,11 +42,12 @@ Commands: `discover`, `foundations`, `structure`, `validate`, `workspace`.
 | `bill_source.py` | Bills found in the project or uploaded to `bills/`, and the one the comparison uses. |
 | `inputs.py` | Inputs register: what the drawings supplied, what is missing, what was set by hand. |
 | `rates.py` | Saved rates and import from `.xlsx`/`.csv` with suggested matches. |
+| `accounts.py` | Local accounts: display name and a PBKDF2-hashed password per email in `~/.constech/accounts.json` (or `CONSTECH_ACCOUNTS`). Until a password is set any password signs in. |
 | `exporters.py` | Bill comparison and estimate as CSV, XLSX and PDF, for the whole project, side by side per floor or one floor, in the order sorted on screen (query `scope` is `floors` or a floor key; `sort` and `dir` follow the table). |
 | `floors.py` | Splits each line's measured quantity by storey from its element records (record inputs, then the sheet's floor; substructure as Foundations). Whatever the records do not account for is shown as "Not split by floor", never spread. |
 | `sheets.py` | Finds sheets by role, floor and content (plans per storey, reinforcement plans, schedules, sections) instead of by a project's sheet numbers. |
 | `formula.py` | Safe arithmetic for QS formulas (numbers, variables, `+ - * / ^`, `min max abs round sqrt`). |
-| `agent.py`, `assistant/` | Optional assistant (Claude, OpenAI or a local OpenAI-compatible server) with read and propose tools. It is off by default. Configure it in Settings; the configuration is kept in `~/.constech/assistant.json` (or `CONSTECH_ASSISTANT_CONFIG`), and environment variables (`CONSTECH_ASSISTANT`, `CONSTECH_LLM_PROVIDER`, `CONSTECH_LLM_MODEL`, `CONSTECH_LLM_BASE_URL`, `CONSTECH_LLM_API_KEY`) take precedence. The key never reaches the browser. Proposals change nothing until accepted, and every accepted proposal can be undone. Needs `pip install anthropic` or `pip install openai` for the chosen provider. |
+| `agent.py`, `assistant/` | Optional assistant (Claude, OpenAI or a local OpenAI-compatible server), off by default and configured in Settings (`~/.constech/assistant.json` or `CONSTECH_ASSISTANT_CONFIG`; `CONSTECH_ASSISTANT`, `CONSTECH_LLM_*` environment variables take precedence; the key never reaches the browser). A message starts a background run that the UI polls; runs can be stopped, are serialised per conversation and survive a server restart (the history is repaired). Each message carries a description of the open view (page, sheet, selected element or line, estimate). Tools read sheets, schedules, elements, bill lines and rates, and change them through proposals that the QS accepts, or that are applied at once in apply mode; every applied change can be undone. Claude requests use prompt caching, server-side clearing of old tool results and refusal fallbacks, with a retry without those features if an account or proxy rejects them. Token usage per call is kept in `~/.constech/usage.jsonl` and shown in Settings. Needs `pip install anthropic` or `pip install openai`. |
 
 ## Files the app writes in `out/`
 
@@ -62,3 +63,4 @@ Commands: `discover`, `foundations`, `structure`, `validate`, `workspace`.
 | `pipeline-state.json` | Outcome of the last run of each engine stage |
 | `sheet-roles.json` | Sheet roles confirmed by the QS (or accepted from the assistant); discovery applies them on the next run |
 | `assistant/` | Assistant threads and proposals with their undo snapshots |
+| `review/marks.json` | Outlines the QS has marked as reviewed, per sheet |

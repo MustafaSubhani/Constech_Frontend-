@@ -41,7 +41,7 @@ export function CompareSource({ projectId, source }: { projectId: string; source
           <button type="button" className="source-trigger" onClick={toggle} disabled={busy}>
             <FileSpreadsheet size={14} />
             <span className="muted">Compared against</span>
-            <strong className="truncate">{source.name || "no bill"}</strong>
+            <strong className="truncate">{source.name || "No bill selected"}</strong>
             {busy ? <span className="spinner" /> : <ChevronDown size={14} />}
           </button>
         )}
@@ -72,7 +72,7 @@ export function CompareSource({ projectId, source }: { projectId: string; source
                 </span>
               </button>
             ))}
-            {!bills.data?.candidates.length ? <div className="menu-item muted">No bill files found</div> : null}
+            {!bills.data?.candidates.length ? <div className="menu-note">No bill files found in this project.</div> : null}
             <div className="menu-sep" />
             <button
               type="button"

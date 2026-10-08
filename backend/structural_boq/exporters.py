@@ -344,11 +344,25 @@ def to_xlsx(table, project_name):
     return buffer.getvalue()
 
 
-_INK = (0.11, 0.10, 0.13)
-_MUTED = (0.42, 0.40, 0.47)
+# PDF palette (RGB 0-1), matching the app's tokens.
+_INK = (0.07, 0.07, 0.08)
+_INK2 = (0.25, 0.25, 0.28)
+_MUTED = (0.43, 0.43, 0.47)
+_FAINT = (0.64, 0.64, 0.68)
 _BRAND = (0.169, 0.008, 0.4)
-_RULE = (0.89, 0.88, 0.92)
-_BAND = (0.955, 0.945, 0.972)
+_BRAND_SOFT = (0.953, 0.941, 0.984)
+_RULE = (0.925, 0.925, 0.94)
+_ZEBRA = (0.982, 0.982, 0.986)
+_OK = (0.082, 0.478, 0.322)
+_WARN = (0.604, 0.357, 0.0)
+_BAD = (0.753, 0.149, 0.106)
+_TONES = {
+    "ok": (_OK, (0.91, 0.961, 0.933)),
+    "warn": (_WARN, (0.988, 0.953, 0.89)),
+    "bad": (_BAD, (0.992, 0.925, 0.922)),
+    "open": (_MUTED, (0.945, 0.945, 0.957)),
+}
+_PAGE_W, _PAGE_H, _MARGIN = 842, 595, 36
 
 
 def _fit_text(pymupdf, text, width, font, size):
@@ -373,113 +387,240 @@ def _wrap_header(pymupdf, label, width, size):
     return [first, _fit_text(pymupdf, rest, width, "hebo", size)] if rest else [first]
 
 
-def to_pdf(table, project_name):
-    """A4 landscape table drawn directly, with repeated headers and section bands."""
+def _tone_of_pct(value):
+    if value is None:
+        return "open"
+    magnitude = abs(value)
+    return "ok" if magnitude <= 5 else "warn" if magnitude <= 15 else "bad"
+
+
+def _tone_of_status(text):
+    text = str(text or "")
+    if text.startswith("Within 5%"):
+        return "ok"
+    if text.startswith("Within 15%"):
+        return "warn"
+    if text.startswith("Over 15%"):
+        return "bad"
+    return "open"
+
+
+def _summary_cards(table):
+    """KPI cards for the first page: variance bands for a comparison, totals for an estimate."""
+    rows = [row for row in table["rows"] if row and row[0] != "Summary"]
+    if table.get("totals"):
+        currency = table.get("currency") or ""
+        priced = sum(1 for row in rows if isinstance(row[-1], (int, float)))
+        cards = [("Priced lines", f"{priced} of {len(rows)}", None)]
+        cards += [(label, f"{currency} {_fmt(value, 'money')}".strip(), None) for label, value in table["totals"]]
+        return cards
+    kinds, header = table["kinds"], table["header"]
+    status_col = header.index("Status") if "Status" in header else None
+    pct_col = next((i for i, k in enumerate(kinds) if k == "pct"), None)
+    if status_col is None and pct_col is None:
+        return [("Lines", str(len(rows)), None)]
+    counts = {"ok": 0, "warn": 0, "bad": 0, "open": 0}
+    for row in rows:
+        tone = _tone_of_status(row[status_col]) if status_col is not None else _tone_of_pct(row[pct_col])
+        counts[tone] += 1
+    return [
+        ("Lines", str(len(rows)), None),
+        ("Within 5%", str(counts["ok"]), "ok"),
+        ("Within 15%", str(counts["warn"]), "warn"),
+        ("Over 15%", str(counts["bad"]), "bad"),
+        ("No bill value", str(counts["open"]), "open"),
+    ]
+
+
+def to_pdf(table, project_name, meta=None):
+    """A4 landscape report: branded header, summary cards, a table with repeated headers,
+    section bands (with subtotals on an estimate), coloured variance, totals and page footers."""
     import pymupdf
 
+    meta = meta or {}
     kinds = table["kinds"]
+    header = table["header"]
     grouped = table.get("grouped", True)
-    drop_basis = table["header"][-1] == "Basis"
-    # Grouped tables print the section as a band; a sorted table keeps it as a column instead.
-    columns = list(range(1 if grouped else 0, len(table["header"]) - (1 if drop_basis else 0)))
-    weights = {"text": 1.0, "num": 0.55, "money": 0.6, "pct": 0.5, "share": 0.5}
-    # Wide matrices (one column per floor) give the item column less room.
-    first_weight = 3.2 if len(columns) <= 8 else 2.2
-    width_total = 842 - 72
-    raw = [first_weight if i == 1 else (0.35 if table["header"][i] == "Unit" else weights[kinds[i]] * (1.6 if i == len(table["header"]) - 2 and drop_basis else 1)) for i in columns]
+    drop_basis = header[-1] == "Basis"
+    columns = list(range(1 if grouped else 0, len(header) - (1 if drop_basis else 0)))
+    weights = {"text": 1.0, "num": 0.55, "money": 0.62, "pct": 0.5, "share": 0.5}
+    first_weight = 3.0 if len(columns) <= 8 else 2.1
+    width_total = _PAGE_W - 2 * _MARGIN
+    item_col = 1
+    raw = []
+    for i in columns:
+        if i == item_col:
+            raw.append(first_weight)
+        elif header[i] == "Unit":
+            raw.append(0.36)
+        elif header[i] == "Status":
+            raw.append(0.85)
+        else:
+            raw.append(weights.get(kinds[i], 0.6))
     scale = width_total / sum(raw)
     widths = [w * scale for w in raw]
-    size, row_h, left = 8, 15, 36
-    # Every column fits the longest word of its header; the item column gives up the room.
-    if 1 in columns:
-        item = columns.index(1)
+    size, row_h, left = 8, 16, _MARGIN
+    if item_col in columns:
+        item = columns.index(item_col)
         for n, i in enumerate(columns):
-            longest = max(pymupdf.get_text_length(word, fontname="hebo", fontsize=size) for word in table["header"][i].split() or [""])
-            short = longest + 12 - widths[n]
+            longest = max(pymupdf.get_text_length(word, fontname="hebo", fontsize=size) for word in header[i].split() or [""])
+            short = longest + 14 - widths[n]
             if n != item and short > 0 and widths[item] - short >= 140:
                 widths[n] += short
                 widths[item] -= short
+    money_col = len(header) - 1 if kinds[-1] == "money" and table.get("totals") else None
+    generated = datetime.now().strftime("%d %b %Y, %H:%M")
 
     doc = pymupdf.open()
-    state = {"page": None, "y": 0}
+    state = {"page": None, "y": 0, "zebra": False}
 
-    def new_page(first=False):
-        page = doc.new_page(width=842, height=595)
-        state["page"] = page
-        y = 40
-        if first:
-            page.insert_text((left, y + 14), table["title"], fontname="hebo", fontsize=15, color=_BRAND)
-            page.insert_text(
-                (left, y + 30),
-                f"{project_name}  |  generated {datetime.now().strftime('%d %b %Y %H:%M')}",
-                fontname="helv", fontsize=8, color=_MUTED,
-            )
-            y += 44
-        labels = [_wrap_header(pymupdf, table["header"][i], w - 10, size) for i, w in zip(columns, widths)]
-        head_h = row_h + 2 + (10 if any(len(lines) > 1 for lines in labels) else 0)
-        page.draw_rect(pymupdf.Rect(left, y, left + width_total, y + head_h), color=None, fill=_BRAND)
+    def put(page, x, y, value, size=8, font="helv", color=_INK, align="left", width=None):
+        value = str(value)
+        if width is not None:
+            value = _fit_text(pymupdf, value, width, font, size)
+        if align == "right":
+            x -= pymupdf.get_text_length(value, fontname=font, fontsize=size)
+        elif align == "center":
+            x -= pymupdf.get_text_length(value, fontname=font, fontsize=size) / 2
+        page.insert_text((x, y), value, fontname=font, fontsize=size, color=color)
+
+    def page_header(page, first):
+        page.draw_rect(pymupdf.Rect(0, 0, _PAGE_W, 6), color=None, fill=_BRAND)
+        put(page, left, 30, "CONSTECH", 9, "hebo", _BRAND)
+        put(page, left + 62, 30, "Structural takeoff", 8, "helv", _MUTED)
+        put(page, _PAGE_W - _MARGIN, 30, project_name, 8, "hebo", _INK2, "right", 300)
+        page.draw_line((left, 40), (_PAGE_W - _MARGIN, 40), color=_RULE, width=0.8)
+        if not first:
+            put(page, left, 58, table["title"], 11, "hebo", _INK)
+            return 70
+        put(page, left, 72, table["title"], 20, "hebo", _INK)
+        facts = [("Project", project_name)]
+        if meta.get("scope"):
+            facts.append(("Scope", meta["scope"]))
+        if meta.get("bill"):
+            facts.append(("Compared against", meta["bill"]))
+        facts.append(("Generated", generated))
+        x = left
+        for label, value in facts:
+            put(page, x, 92, label.upper(), 6.5, "hebo", _FAINT)
+            shown = _fit_text(pymupdf, str(value), 230, "helv", 8.5)
+            put(page, x, 104, shown, 8.5, "helv", _INK2)
+            x += max(110, pymupdf.get_text_length(shown, fontname="helv", fontsize=8.5) + 28)
+        cards = _summary_cards(table)
+        gap = 8
+        card_w = (width_total - gap * (len(cards) - 1)) / len(cards)
+        y0 = 118
+        for n, (label, value, tone) in enumerate(cards):
+            x0 = left + n * (card_w + gap)
+            fill = _TONES[tone][1] if tone else _BRAND_SOFT
+            accent = _TONES[tone][0] if tone else _BRAND
+            page.draw_rect(pymupdf.Rect(x0, y0, x0 + card_w, y0 + 46), color=None, fill=fill, radius=0.12)
+            page.draw_rect(pymupdf.Rect(x0, y0 + 9, x0 + 2.5, y0 + 37), color=None, fill=accent)
+            put(page, x0 + 12, y0 + 17, label, 7.5, "helv", _MUTED, width=card_w - 20)
+            put(page, x0 + 12, y0 + 35, value, 14, "hebo", accent if tone else _INK, width=card_w - 20)
+        return y0 + 62
+
+    def table_head(page, y):
+        labels = [_wrap_header(pymupdf, header[i], w - 12, size) for i, w in zip(columns, widths)]
+        head_h = row_h + 4 + (10 if any(len(lines) > 1 for lines in labels) else 0)
+        page.draw_rect(pymupdf.Rect(left, y, left + width_total, y + head_h), color=None, fill=_BRAND, radius=0.08)
         x = left
         for i, w, lines in zip(columns, widths, labels):
             numeric = kinds[i] != "text"
-            for n, text in enumerate(lines):
-                tx = x + w - 5 - pymupdf.get_text_length(text, fontname="hebo", fontsize=size) if numeric else x + 5
-                page.insert_text((tx, y + 11 + n * 10), text, fontname="hebo", fontsize=size, color=(1, 1, 1))
+            for n, label in enumerate(lines):
+                put(page, x + w - 6 if numeric else x + 6, y + 12 + n * 10, label, size, "hebo", (1, 1, 1), "right" if numeric else "left")
             x += w
-        state["y"] = y + head_h
+        return y + head_h
+
+    def new_page(first=False):
+        page = doc.new_page(width=_PAGE_W, height=_PAGE_H)
+        state["page"] = page
+        state["y"] = table_head(page, page_header(page, first))
+        state["zebra"] = False
 
     def ensure_room(height):
-        if state["y"] + height > 595 - 48:
+        if state["y"] + height > _PAGE_H - 44:
             new_page()
 
-    def draw_row(values, bold=False, band=False):
+    def draw_band(label, amount=None):
+        ensure_room(row_h * 2 + 5)
+        page, y = state["page"], state["y"]
+        page.draw_rect(pymupdf.Rect(left, y + 3, left + width_total, y + row_h + 3), color=None, fill=_BRAND_SOFT)
+        put(page, left + 6, y + 14, label or "General", 8, "hebo", _BRAND)
+        if amount is not None:
+            put(page, left + width_total - 6, y + 14, _fmt(amount, "money"), 8, "hebo", _BRAND, "right")
+        state["y"] = y + row_h + 5
+        state["zebra"] = False
+
+    def draw_row(row, bold=False, fill=None):
         ensure_room(row_h)
         page, y = state["page"], state["y"]
-        if band:
-            page.draw_rect(pymupdf.Rect(left, y, left + width_total, y + row_h), color=None, fill=_BAND)
-        font = "hebo" if bold else "helv"
+        if fill or state["zebra"]:
+            page.draw_rect(pymupdf.Rect(left, y, left + width_total, y + row_h), color=None, fill=fill or _ZEBRA)
+        state["zebra"] = not state["zebra"]
         x = left
-        for (i, w), value in zip(zip(columns, widths), values):
-            text = _fit_text(pymupdf, value, w - 10, font, size)
-            numeric = kinds[i] != "text"
-            tx = x + w - 5 - pymupdf.get_text_length(text, fontname=font, fontsize=size) if numeric else x + 5
-            page.insert_text((tx, y + 10.5), text, fontname=font, fontsize=size, color=_BRAND if band else _INK)
+        for i, w in zip(columns, widths):
+            value, kind = row[i], kinds[i]
+            font = "hebo" if bold else "helv"
+            if header[i] == "Status" and value:
+                tone = _tone_of_status(value)
+                page.draw_circle((x + 9, y + row_h / 2), 2.4, color=None, fill=_TONES[tone][0])
+                put(page, x + 15, y + 11, value, size, font, _TONES[tone][0], width=w - 20)
+            elif kind == "text":
+                put(page, x + 6, y + 11, _fmt(value, kind), size, font, _INK if i == item_col else _INK2, width=w - 12)
+            else:
+                color = _TONES[_tone_of_pct(value)][0] if kind == "pct" and isinstance(value, (int, float)) else _INK
+                cell_font = "hebo" if kind == "pct" or bold else font
+                shown = _fmt(value, kind)
+                cell_size = size
+                # A number is never shortened: shrink it to fit the column instead.
+                while cell_size > 5 and pymupdf.get_text_length(shown, fontname=cell_font, fontsize=cell_size) > w - 10:
+                    cell_size -= 0.5
+                put(page, x + w - 6, y + 11, shown, cell_size, cell_font, color, "right")
             x += w
-        if not band:
-            page.draw_line((left, y + row_h), (left + width_total, y + row_h), color=_RULE, width=0.5)
+        page.draw_line((left, y + row_h), (left + width_total, y + row_h), color=_RULE, width=0.4)
         state["y"] = y + row_h
 
     new_page(first=True)
+    rows = table["rows"]
+    if not rows:
+        put(state["page"], left + width_total / 2, state["y"] + 40, "No lines to show for this view.", 10, "helv", _MUTED, "center")
     section = None
-    for row in table["rows"]:
+    for row in rows:
         if grouped and row[0] != section:
             section = row[0]
-            ensure_room(row_h * 2)
-            draw_row([section or "General"] + [""] * (len(columns) - 1), bold=True, band=True)
-        draw_row([_fmt(row[i], kinds[i]) for i in columns])
+            subtotal = None
+            priced = [r[money_col] for r in rows if money_col is not None and r[0] == section and isinstance(r[money_col], (int, float))]
+            if priced and section != "Summary":
+                subtotal = sum(priced)
+            draw_band(section, subtotal)
+        summary = row[0] == "Summary"
+        draw_row(row, bold=summary, fill=_BRAND_SOFT if summary else None)
+
     if table["totals"]:
-        state["y"] += 6
-        for label, value in table["totals"]:
-            ensure_room(row_h)
-            page, y = state["page"], state["y"]
-            amount = _fmt(value, "money")
-            right = left + width_total - 5
-            page.insert_text(
-                (right - pymupdf.get_text_length(amount, fontname="hebo", fontsize=9), y + 11),
-                amount, fontname="hebo", fontsize=9, color=_INK,
-            )
-            label_right = right - widths[-1]
-            page.insert_text(
-                (label_right - pymupdf.get_text_length(label, fontname="hebo", fontsize=9), y + 11),
-                label, fontname="hebo", fontsize=9, color=_INK,
-            )
-            state["y"] = y + row_h + 2
+        box_w = 300
+        ensure_room(len(table["totals"]) * 20 + 30)
+        page, y = state["page"], state["y"] + 14
+        x0 = left + width_total - box_w
+        for n, (label, value) in enumerate(table["totals"]):
+            last = n == len(table["totals"]) - 1
+            h = 22 if last else 18
+            if last:
+                page.draw_rect(pymupdf.Rect(x0, y, x0 + box_w, y + h), color=None, fill=_BRAND, radius=0.15)
+            else:
+                page.draw_line((x0, y + h), (x0 + box_w, y + h), color=_RULE, width=0.5)
+            color = (1, 1, 1) if last else _INK2
+            put(page, x0 + 10, y + h - 6.5, label, 9 if last else 8.5, "hebo" if last else "helv", color)
+            amount = f"{table.get('currency') or ''} {_fmt(value, 'money')}".strip()
+            put(page, x0 + box_w - 10, y + h - 6.5, amount, 10 if last else 8.5, "hebo", color, "right")
+            y += h + (2 if last else 0)
+        state["y"] = y
+
     total = doc.page_count
     for number, page in enumerate(doc, start=1):
-        page.insert_text(
-            (left, 595 - 24),
-            f"Constech  |  {project_name}  |  page {number} of {total}",
-            fontname="helv", fontsize=7, color=_MUTED,
-        )
+        page.draw_line((left, _PAGE_H - 30), (_PAGE_W - _MARGIN, _PAGE_H - 30), color=_RULE, width=0.6)
+        put(page, left, _PAGE_H - 18, f"Constech  |  {project_name}  |  {table['title']}", 7, "helv", _MUTED, width=520)
+        put(page, _PAGE_W - _MARGIN, _PAGE_H - 18, f"Page {number} of {total}", 7, "hebo", _MUTED, "right")
     data = doc.tobytes(deflate=True, garbage=3)
     doc.close()
     return data

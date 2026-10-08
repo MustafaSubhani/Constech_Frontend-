@@ -1,9 +1,9 @@
 import type {
+  Account,
   AssistantSettingsPatch,
   AssistantStatus,
   AssistantThread,
   Proposal,
-  TranscriptItem,
   BillCandidate,
   CompareRow,
   ExportItem,
@@ -17,6 +17,8 @@ import type {
   RatesDoc,
   RatesImport,
   StageKey,
+  ThreadSummary,
+  UsageSummary,
   UploadFile,
   User,
 } from "../types";
@@ -29,6 +31,18 @@ function session(): User | null {
   } catch {
     return null;
   }
+}
+
+const sessionListeners = new Set<() => void>();
+
+function storeSession(user: User | null) {
+  try {
+    if (user) sessionStorage.setItem(SESSION, JSON.stringify(user));
+    else sessionStorage.removeItem(SESSION);
+  } catch {
+    /* storage unavailable */
+  }
+  sessionListeners.forEach((l) => l());
 }
 
 function headers(): HeadersInit {
@@ -52,6 +66,12 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
     response = await fetch(path, { ...options, headers: { ...headers(), ...options?.headers } });
   } catch {
     throw new ApiError(0, "Cannot reach the takeoff server. Check that it is running.");
+  }
+  if (response.status === 401 && !path.startsWith("/api/auth/") && !path.startsWith("/api/account")) {
+    // The session ended (signed out elsewhere, password changed, or a session from before accounts).
+    storeSession(null);
+    if (!window.location.pathname.startsWith("/login")) window.location.assign("/login");
+    throw new ApiError(401, "Your session has ended. Sign in again.");
   }
   if (!response.ok) {
     let message = "The server could not complete that request.";
@@ -80,21 +100,40 @@ export type ExportView = { scope?: string; sort?: string; dir?: "asc" | "desc" }
 export const api = {
   session,
   async login(email: string, password: string): Promise<User> {
-    const payload = await post<{ token: string; user: { email: string; name: string } }>("/api/auth/login", {
+    const payload = await post<{ token: string; user: { email: string; name: string; hasPassword?: boolean } }>("/api/auth/login", {
       email,
       password,
     });
     const user: User = { ...payload.user, token: payload.token };
-    sessionStorage.setItem(SESSION, JSON.stringify(user));
+    storeSession(user);
     return user;
   },
   async logout(): Promise<void> {
-    sessionStorage.removeItem(SESSION);
     try {
       await post("/api/auth/logout");
     } catch {
-      /* session already cleared locally */
+      /* the local session is cleared either way */
     }
+    storeSession(null);
+  },
+  onSession(listener: () => void) {
+    sessionListeners.add(listener);
+    return () => {
+      sessionListeners.delete(listener);
+    };
+  },
+  account: () => request<Account>("/api/account"),
+  async updateAccount(name: string): Promise<Account> {
+    const account = await post<Account>("/api/account", { name });
+    const current = session();
+    if (current) storeSession({ ...current, name: account.name, hasPassword: account.hasPassword });
+    return account;
+  },
+  async changePassword(currentPassword: string, newPassword: string): Promise<Account> {
+    const account = await post<Account>("/api/account/password", { currentPassword, newPassword });
+    const current = session();
+    if (current) storeSession({ ...current, hasPassword: true });
+    return account;
   },
 
   listProjects: () => request<ProjectSummary[]>("/api/projects"),
@@ -175,10 +214,19 @@ export const api = {
   assistantStatus: () => request<AssistantStatus>("/api/assistant/status"),
   saveAssistantSettings: (patch: AssistantSettingsPatch) => post<AssistantStatus>("/api/assistant/settings", patch),
   testAssistant: () => post<{ ok: boolean; error?: string; model?: string; ms?: number; reply?: string }>("/api/assistant/test"),
-  assistantChat: (id: string, body: { message: string; threadId?: string; context?: Record<string, string>; task?: "chat" | "discovery" }) =>
-    post<{ thread: AssistantThread; new: TranscriptItem[] }>(`${p(id)}/assistant`, body),
-  assistantThreads: (id: string) => request<{ id: string; title: string; updated: string }[]>(`${p(id)}/assistant/threads`),
+  assistantUsage: (days = 30) => request<UsageSummary>(`/api/assistant/usage?days=${days}`),
+  clearAssistantUsage: () => post<UsageSummary>("/api/assistant/usage/clear"),
+  assistantChat: (
+    id: string,
+    body: { message: string; threadId?: string; context?: Record<string, string>; task?: "chat" | "discovery"; autoApply?: boolean },
+  ) => post<{ thread: AssistantThread }>(`${p(id)}/assistant`, body),
+  assistantStop: (id: string, threadId: string) => post<{ cancelled: boolean }>(`${p(id)}/assistant/threads/${encodeURIComponent(threadId)}/stop`),
+  assistantDeleteThread: (id: string, threadId: string) => post(`${p(id)}/assistant/threads/${encodeURIComponent(threadId)}/delete`),
+  assistantThreads: (id: string) => request<ThreadSummary[]>(`${p(id)}/assistant/threads`),
   assistantThread: (id: string, threadId: string) => request<AssistantThread>(`${p(id)}/assistant/threads/${encodeURIComponent(threadId)}`),
+  reviewMarks: (id: string) => request<{ marks: Record<string, string[]> }>(`${p(id)}/review-marks`),
+  setReviewMarks: (id: string, sheetId: string, shapeIds: string[], reviewed: boolean) =>
+    post<{ marks: Record<string, string[]> }>(`${p(id)}/review-marks`, { sheetId, shapeIds, reviewed }),
   proposals: (id: string) => request<Proposal[]>(`${p(id)}/assistant/proposals`),
   proposalAction: (id: string, proposalId: string, action: "apply" | "reject" | "undo") =>
     post<Proposal>(`${p(id)}/assistant/proposals/${encodeURIComponent(proposalId)}/${action}`),

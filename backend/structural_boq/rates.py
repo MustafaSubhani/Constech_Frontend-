@@ -63,7 +63,11 @@ def save_rates(project, body):
         current["source"] = str(body["source"])[:200]
     path = rates_path(project)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(current, indent=2), encoding="utf-8")
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(current, indent=2), encoding="utf-8")
+    from .accounts import replace_file
+
+    replace_file(tmp, path)
     return current
 
 
